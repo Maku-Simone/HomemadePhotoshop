@@ -33,8 +33,8 @@
                   <Group type="102" attributes="0">
                       <Component id="abrirBoton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="abrirBoton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="583" max="32767" attributes="0"/>
+                      <Component id="cerrarTab" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="612" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -46,10 +46,10 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="abrirBoton" min="-2" max="-2" attributes="0"/>
-                  <Component id="abrirBoton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="cerrarTab" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="panelTabs" pref="527" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="panelTabs" pref="533" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -70,7 +70,6 @@
         <Property name="text" type="java.lang.String" value="Abrir"/>
         <Property name="alignmentY" type="float" value="0.0"/>
         <Property name="borderPainted" type="boolean" value="false"/>
-        <Property name="contentAreaFilled" type="boolean" value="false"/>
         <Property name="focusCycleRoot" type="boolean" value="true"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
@@ -82,7 +81,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="abrirBotonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="abrirBoton1">
+    <Component class="javax.swing.JButton" name="cerrarTab">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="c8" green="6d" red="ad" type="rgb"/>
@@ -93,18 +92,21 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Abrir"/>
         <Property name="borderPainted" type="boolean" value="false"/>
-        <Property name="contentAreaFilled" type="boolean" value="false"/>
+        <Property name="focusCycleRoot" type="boolean" value="true"/>
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
+        <Property name="label" type="java.lang.String" value="x"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 14, 0, 14]"/>
         </Property>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="x"/>
+      </AccessibilityProperties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="abrirBoton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cerrarTabActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JTabbedPane" name="panelTabs">
