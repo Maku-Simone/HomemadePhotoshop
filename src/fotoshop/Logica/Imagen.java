@@ -18,13 +18,23 @@ public class Imagen
     {
         private String ruta;
         private String nombreImagen;
+        private String extension;
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
+    }
         private int ancho;
         private int alto;
         private int argb[][][];// = new int[1][1][4]; //argb[x][y][valores argb]		
     
-        public Imagen(String rutaImg, String nombreImg) throws IOException
+        public Imagen(String rutaImg, String nombreImg, String extension) throws IOException
             {
                 this.ruta = rutaImg;
+                this.extension = extension;
                 this.nombreImagen = nombreImg;
                 File f = new File(rutaImg);
 		BufferedImage img = ImageIO.read(f);
@@ -36,8 +46,10 @@ public class Imagen
 
     @Override
     public String toString() {
-        return "Imagen{" + "ruta=" + ruta + ", nombreImagen=" + nombreImagen + ", ancho=" + ancho + ", alto=" + alto + ", argb=" + argb + '}';
+        return "Imagen{" + "ruta=" + ruta + ", nombreImagen=" + nombreImagen + ", extension=" + extension + ", ancho=" + ancho + ", alto=" + alto + ", argb=" + argb + '}';
     }
+
+
         
         public Imagen(){}
         

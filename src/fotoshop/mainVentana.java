@@ -10,16 +10,19 @@ import fotoshop.Logica.Imagen;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -44,38 +47,61 @@ public class mainVentana extends javax.swing.JFrame {
         redoBoton.setContentAreaFilled(false);   
         
         cerrarTab.addActionListener(new ActionListener()  //BOTON CERRAR IMAGEN
+            {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int r = panelTabs.getSelectedIndex();
+                    System.out.println("index es " + r);
+                    if(r >= 0)
+                        {
+                            panelTabs.remove(r);
+                            System.out.println("remuevo " + r);
+                            listaImagenes.remove(r);
+                        }
+                }
+            });
+        
+        
+        saveBoton.addActionListener(new ActionListener() 
+            {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int r = panelTabs.getSelectedIndex();
+                    System.out.println("index es " + r);
+                    if(r >= 0)
+                        {
+                            Imagen im = new Imagen();
+                            String rutaGuardar = "";
+                           // panelTabs.remove(r);
+                            //System.out.println("remoevuo " + r);
+                            im = listaImagenes.get(r);
+                            System.out.println("Tengo: " + im.toString());
+                            
+                            JFileChooser fileChooser = new JFileChooser();
+                            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                            int returnValue = fileChooser.showOpenDialog(null);
+                            if (returnValue == JFileChooser.APPROVE_OPTION) //abriendo el JFile
                                 {
-                                    @Override
-                                    public void actionPerformed(ActionEvent e) {
-                                        int r = panelTabs.getSelectedIndex();
-                                        System.out.println("index es " + r);
-                                        if(r >= 0)
-                                            {
-                                                panelTabs.remove(r);
-                                                System.out.println("remoevuo " + r);
-                                                listaImagenes.remove(r);
-                                            }
-                                    }
-                                });
-        
-        
-                saveBoton.addActionListener(new ActionListener() 
-                                {
-                                    @Override
-                                    public void actionPerformed(ActionEvent e) {
-                                        int r = panelTabs.getSelectedIndex();
-                                        System.out.println("index es " + r);
-                                        if(r >= 0)
-                                            {
-                                                Imagen im = new Imagen();
-                                               // panelTabs.remove(r);
-                                                //System.out.println("remoevuo " + r);
-                                                im = listaImagenes.get(r);
-                                                System.out.println("Tengo: " + im.toString());
-                                            }
-                                    }
-                                });
-        
+                                    rutaGuardar = fileChooser.getSelectedFile().getAbsolutePath() + "/" + im.getNombreImagen();
+                                    System.out.println("RUTA " +  rutaGuardar);                                                                                                    
+                                    try
+                                        {
+                                            File f = new File(rutaGuardar); //donde voy a guardar
+                                            File readImg = new File(im.getRuta());
+                                            BufferedImage img = ImageIO.read(readImg);
+                                            ImageIO.write(img, im.getExtension().replace(".",""), f);
+                                            JFrame mensaje = new JFrame("Mensajito de algo");
+                                            JOptionPane.showMessageDialog(mensaje, "Imagen Guardada exitosamente");
+                                        }
+                                    catch(IOException err)
+                                        {
+                                            System.out.println(err);
+                                        }
+                                }                            
+                        }
+                }
+            });
+
     }    
     
     /**
@@ -204,7 +230,7 @@ public class mainVentana extends javax.swing.JFrame {
                         System.out.println("Si :3");
                         try 
                             {
-                                Imagen img = new Imagen(file.getPath(), file.getName());                                
+                                Imagen img = new Imagen(file.getPath(), file.getName(), formatoImg);                                
                                 listaImagenes.add(img);                                                                                               
                                 JFrame f = new JFrame();                                   
                                 JScrollPane scroll = new JScrollPane();
@@ -221,7 +247,8 @@ public class mainVentana extends javax.swing.JFrame {
                        }
                 else
                     {
-                        //algo
+                        JFrame mensaje = new JFrame("Mensajito de algo");
+                        JOptionPane.showMessageDialog(mensaje, "Formato de imagen no permitido");
                     }
             }
 	else 
