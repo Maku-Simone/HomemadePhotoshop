@@ -34,10 +34,16 @@ public class mainVentana extends javax.swing.JFrame {
     /**
      * Creates new form mainVentana
      */
+    ArrayList<Imagen> listaImagenes = new ArrayList<Imagen>();
     
-    public mainVentana() {
-        initComponents();
-         cerrarTab.addActionListener(new ActionListener() 
+    public mainVentana() {                       
+        initComponents();            
+        cerrarTab.setContentAreaFilled(false);                      
+        saveBoton.setContentAreaFilled(false);          
+        abrirBoton.setContentAreaFilled(false);   
+        redoBoton.setContentAreaFilled(false);   
+        
+        cerrarTab.addActionListener(new ActionListener()  //BOTON CERRAR IMAGEN
                                 {
                                     @Override
                                     public void actionPerformed(ActionEvent e) {
@@ -47,12 +53,30 @@ public class mainVentana extends javax.swing.JFrame {
                                             {
                                                 panelTabs.remove(r);
                                                 System.out.println("remoevuo " + r);
+                                                listaImagenes.remove(r);
                                             }
                                     }
                                 });
-    }
-
-    ArrayList<Imagen> listaImagenes = new ArrayList<Imagen>();
+        
+        
+                saveBoton.addActionListener(new ActionListener() 
+                                {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        int r = panelTabs.getSelectedIndex();
+                                        System.out.println("index es " + r);
+                                        if(r >= 0)
+                                            {
+                                                Imagen im = new Imagen();
+                                               // panelTabs.remove(r);
+                                                //System.out.println("remoevuo " + r);
+                                                im = listaImagenes.get(r);
+                                                System.out.println("Tengo: " + im.toString());
+                                            }
+                                    }
+                                });
+        
+    }    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,19 +90,25 @@ public class mainVentana extends javax.swing.JFrame {
         abrirBoton = new javax.swing.JButton();
         cerrarTab = new javax.swing.JButton();
         panelTabs = new javax.swing.JTabbedPane();
+        saveBoton = new javax.swing.JButton();
+        redoBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 102, 255));
+        setPreferredSize(new java.awt.Dimension(1200, 1000));
 
-        abrirBoton.setBackground(new java.awt.Color(153, 153, 255));
+        abrirBoton.setBackground(new java.awt.Color(204, 204, 204));
         abrirBoton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        abrirBoton.setForeground(new java.awt.Color(153, 0, 255));
-        abrirBoton.setText("Abrir");
+        abrirBoton.setForeground(javax.swing.UIManager.getDefaults().getColor("netbeans.ps.background"));
+        abrirBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/file.png"))); // NOI18N
         abrirBoton.setAlignmentY(0.0F);
         abrirBoton.setBorderPainted(false);
         abrirBoton.setFocusCycleRoot(true);
         abrirBoton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        abrirBoton.setMargin(new java.awt.Insets(0, 14, 0, 14));
+        abrirBoton.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        abrirBoton.setMaximumSize(new java.awt.Dimension(50, 66));
+        abrirBoton.setMinimumSize(new java.awt.Dimension(50, 66));
+        abrirBoton.setPreferredSize(new java.awt.Dimension(50, 66));
         abrirBoton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         abrirBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,21 +116,41 @@ public class mainVentana extends javax.swing.JFrame {
             }
         });
 
-        cerrarTab.setBackground(new java.awt.Color(173, 109, 200));
+        cerrarTab.setBackground(new java.awt.Color(204, 204, 204));
         cerrarTab.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         cerrarTab.setForeground(new java.awt.Color(255, 255, 255));
+        cerrarTab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/x.png"))); // NOI18N
+        cerrarTab.setText("");
+        cerrarTab.setAlignmentY(0.0F);
         cerrarTab.setBorderPainted(false);
         cerrarTab.setFocusCycleRoot(true);
         cerrarTab.setFocusable(false);
         cerrarTab.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        cerrarTab.setLabel("x");
-        cerrarTab.setMargin(new java.awt.Insets(0, 14, 0, 14));
+        cerrarTab.setIconTextGap(0);
+        cerrarTab.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        cerrarTab.setMaximumSize(new java.awt.Dimension(50, 66));
+        cerrarTab.setMinimumSize(new java.awt.Dimension(50, 66));
+        cerrarTab.setPreferredSize(new java.awt.Dimension(50, 66));
         cerrarTab.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         cerrarTab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cerrarTabActionPerformed(evt);
             }
         });
+
+        saveBoton.setBackground(new java.awt.Color(204, 204, 204));
+        saveBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/save.png"))); // NOI18N
+        saveBoton.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        saveBoton.setMaximumSize(new java.awt.Dimension(50, 66));
+        saveBoton.setMinimumSize(new java.awt.Dimension(50, 66));
+        saveBoton.setPreferredSize(new java.awt.Dimension(50, 66));
+
+        redoBoton.setBackground(new java.awt.Color(204, 204, 204));
+        redoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/redo.png"))); // NOI18N
+        redoBoton.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        redoBoton.setMaximumSize(new java.awt.Dimension(50, 66));
+        redoBoton.setMinimumSize(new java.awt.Dimension(50, 66));
+        redoBoton.setPreferredSize(new java.awt.Dimension(50, 66));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,24 +161,28 @@ public class mainVentana extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelTabs)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(abrirBoton)
+                        .addComponent(abrirBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cerrarTab)
-                        .addGap(0, 612, Short.MAX_VALUE)))
+                        .addComponent(cerrarTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saveBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(redoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 505, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(abrirBoton)
-                    .addComponent(cerrarTab))
+                    .addComponent(abrirBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cerrarTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(redoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+                .addComponent(panelTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        cerrarTab.getAccessibleContext().setAccessibleName("x");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -221,6 +275,8 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JButton abrirBoton;
     private javax.swing.JButton cerrarTab;
     private javax.swing.JTabbedPane panelTabs;
+    private javax.swing.JButton redoBoton;
+    private javax.swing.JButton saveBoton;
     // End of variables declaration//GEN-END:variables
 
 

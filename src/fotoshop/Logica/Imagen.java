@@ -33,6 +33,13 @@ public class Imagen
                 this.argb = new int[1][1][4]; //argb[x][y][valores argb]		
                 argb = initCanales(img, ancho, alto);
             }
+
+    @Override
+    public String toString() {
+        return "Imagen{" + "ruta=" + ruta + ", nombreImagen=" + nombreImagen + ", ancho=" + ancho + ", alto=" + alto + ", argb=" + argb + '}';
+    }
+        
+        public Imagen(){}
         
         
         static int[][][] initCanales(BufferedImage img, int ancho, int alto)
