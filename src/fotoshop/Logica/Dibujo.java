@@ -35,7 +35,7 @@ public class Dibujo extends JPanel {
                 {
                     for(int x = 0; x < ancho; x++)
                         {
-                            Color c = new Color(canales[x][y][1], canales[x][y][2], canales[x][y][3]); //creo color del rgb
+                            Color c = new Color(canales[x][y][1], canales[x][y][2], canales[x][y][3]); //creo color del rgb                            
                             g2d.setColor(c);
                             g2d.drawLine(x, y, x, y);
                         }

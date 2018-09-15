@@ -19,17 +19,17 @@ public class Imagen
         private String ruta;
         private String nombreImagen;
         private String extension;
-
+        private int ancho;
+        private int alto;
+        private int argb[][][];// = new int[1][1][4]; //argb[x][y][valores argb]	
+        
     public String getExtension() {
         return extension;
     }
 
     public void setExtension(String extension) {
         this.extension = extension;
-    }
-        private int ancho;
-        private int alto;
-        private int argb[][][];// = new int[1][1][4]; //argb[x][y][valores argb]		
+    }       	
     
         public Imagen(String rutaImg, String nombreImg, String extension) throws IOException
             {

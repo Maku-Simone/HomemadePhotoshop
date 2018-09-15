@@ -7,23 +7,19 @@ package fotoshop;
 
 import fotoshop.Logica.Dibujo;
 import fotoshop.Logica.Imagen;
-import java.awt.Dimension;
+import fotoshop.Logica.Transformaciones;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
@@ -46,6 +42,7 @@ public class mainVentana extends javax.swing.JFrame {
         abrirBoton.setContentAreaFilled(false);   
         redoBoton.setContentAreaFilled(false);   
         
+        
         cerrarTab.addActionListener(new ActionListener()  //BOTON CERRAR IMAGEN
             {
                 @Override
@@ -60,7 +57,7 @@ public class mainVentana extends javax.swing.JFrame {
                         }
                 }
             });
-        
+
         
         saveBoton.addActionListener(new ActionListener() 
             {
@@ -118,10 +115,12 @@ public class mainVentana extends javax.swing.JFrame {
         panelTabs = new javax.swing.JTabbedPane();
         saveBoton = new javax.swing.JButton();
         redoBoton = new javax.swing.JButton();
+        sliderUmbral = new javax.swing.JSlider();
+        labelUmbral = new javax.swing.JLabel();
+        Binarización = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 102, 255));
-        setPreferredSize(new java.awt.Dimension(1200, 1000));
 
         abrirBoton.setBackground(new java.awt.Color(204, 204, 204));
         abrirBoton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -146,7 +145,6 @@ public class mainVentana extends javax.swing.JFrame {
         cerrarTab.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         cerrarTab.setForeground(new java.awt.Color(255, 255, 255));
         cerrarTab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/x.png"))); // NOI18N
-        cerrarTab.setText("");
         cerrarTab.setAlignmentY(0.0F);
         cerrarTab.setBorderPainted(false);
         cerrarTab.setFocusCycleRoot(true);
@@ -177,6 +175,25 @@ public class mainVentana extends javax.swing.JFrame {
         redoBoton.setMaximumSize(new java.awt.Dimension(50, 66));
         redoBoton.setMinimumSize(new java.awt.Dimension(50, 66));
         redoBoton.setPreferredSize(new java.awt.Dimension(50, 66));
+        redoBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redoBotonActionPerformed(evt);
+            }
+        });
+
+        sliderUmbral.setMaximum(255);
+        sliderUmbral.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sliderUmbralStateChanged(evt);
+            }
+        });
+
+        labelUmbral.setText("Umbral:");
+
+        Binarización.setText("Binarización");
+        Binarización.setAlignmentX(0.5F);
+        Binarización.setAutoscrolls(true);
+        Binarización.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,7 +211,12 @@ public class mainVentana extends javax.swing.JFrame {
                         .addComponent(saveBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(redoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 505, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(sliderUmbral, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(labelUmbral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Binarización, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
+                        .addGap(0, 646, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -204,9 +226,16 @@ public class mainVentana extends javax.swing.JFrame {
                     .addComponent(abrirBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cerrarTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(redoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+                    .addComponent(redoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Binarización)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sliderUmbral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelUmbral, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(panelTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -262,6 +291,60 @@ public class mainVentana extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cerrarTabActionPerformed
 
+    private void sliderUmbralStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderUmbralStateChanged
+        // TODO add your handling code here:
+        labelUmbral.setText("Umbral: " + sliderUmbral.getValue());
+        int r = panelTabs.getSelectedIndex();
+        System.out.println("index es " + r);
+        int[][][] binario;
+     //   binario = binarizacion(100, listaImagenes.get(r));
+        if(r >= 0)
+            {                            
+             //   panelTabs.remove(r);
+                System.out.println("repintaremos " + r);
+                Transformaciones tra = new Transformaciones();       
+                Imagen img = listaImagenes.get(r);
+                try 
+                    {
+                        binario = tra.binarizado(sliderUmbral.getValue(), listaImagenes.get(r));                           
+                        //listaImagenes.remove(r);
+
+                        JFrame f = new JFrame();                                   
+                        JScrollPane scroll = new JScrollPane();
+                        scroll.getViewport().add(new Dibujo(binario, img.getAncho(), img.getAlto()));                                       
+                        f.add(scroll);  
+                       // f.setVisible(true);
+                        panelTabs.setComponentAt(r, f.getContentPane());
+//                                    panelTabs.addTab(img.getNombreImagen(),null, f.getContentPane(), ":3");
+
+                    } 
+                catch (IOException ex) 
+                    {
+                        Logger.getLogger(mainVentana.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+            }
+    }//GEN-LAST:event_sliderUmbralStateChanged
+
+    private void redoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redoBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        System.out.println("index es " + r);
+        int[][][] binario;     
+        if(r >= 0)
+            {                                                         
+                Transformaciones tra = new Transformaciones();       
+                Imagen img = listaImagenes.get(r);
+                JFrame f = new JFrame();                                   
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(img.getArgb(), img.getAncho(), img.getAlto()));                                       
+                f.add(scroll);          
+                panelTabs.setComponentAt(r, f.getContentPane());
+            }
+        
+        
+    }//GEN-LAST:event_redoBotonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -299,11 +382,14 @@ public class mainVentana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Binarización;
     private javax.swing.JButton abrirBoton;
     private javax.swing.JButton cerrarTab;
+    private javax.swing.JLabel labelUmbral;
     private javax.swing.JTabbedPane panelTabs;
     private javax.swing.JButton redoBoton;
     private javax.swing.JButton saveBoton;
+    private javax.swing.JSlider sliderUmbral;
     // End of variables declaration//GEN-END:variables
 
 

@@ -6,9 +6,6 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="66" red="99" type="rgb"/>
     </Property>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1200, 1000]"/>
-    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -41,7 +38,13 @@
                       <Component id="saveBoton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="redoBoton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="505" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="sliderUmbral" pref="0" max="32767" attributes="0"/>
+                          <Component id="labelUmbral" max="32767" attributes="0"/>
+                          <Component id="Binarización" alignment="0" pref="84" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="646" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -56,9 +59,17 @@
                   <Component id="cerrarTab" min="-2" max="-2" attributes="0"/>
                   <Component id="saveBoton" min="-2" max="-2" attributes="0"/>
                   <Component id="redoBoton" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="Binarización" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="sliderUmbral" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelUmbral" min="-2" pref="16" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="panelTabs" pref="507" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="panelTabs" pref="556" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -115,7 +126,6 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/fotoshop/Icon/x.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value=""/>
         <Property name="alignmentY" type="float" value="0.0"/>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="focusCycleRoot" type="boolean" value="true"/>
@@ -186,6 +196,30 @@
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[50, 66]"/>
         </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="redoBotonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JSlider" name="sliderUmbral">
+      <Properties>
+        <Property name="maximum" type="int" value="255"/>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="sliderUmbralStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelUmbral">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Umbral:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="Binarizaci&#xf3;n">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Binarizaci&#xf3;n"/>
+        <Property name="alignmentX" type="float" value="0.5"/>
+        <Property name="autoscrolls" type="boolean" value="true"/>
+        <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
     </Component>
   </SubComponents>
