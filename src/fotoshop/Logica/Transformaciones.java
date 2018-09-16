@@ -52,25 +52,27 @@ public class Transformaciones {
             return retorno;
         }
         
-    int[][][] grises(String imagen) throws IOException
+    public int[][][] grises(Imagen imgClase) throws IOException
     {
-       File f = new File(imagen);
+       int[][][] gris = imgClase.getModificado();            
+       int ancho = imgClase.getAncho();
+       int alto = imgClase.getAlto();
+       File f = new File(imgClase.getRuta());                                   
        BufferedImage img = null;
-       img = ImageIO.read(f); 
-       int ancho = img.getWidth();
-       int alto = img.getHeight();
+       img = ImageIO.read(f);        
+       
        int argb[][][] = new int[ancho][alto][4];
        for (int y = 0; y < alto; y++)
         {
             for (int x = 0; x < ancho; x++)
             {
                 //obtengo las coordenadas x,y y los canales argb
-                int p = img.getRGB(x,y);
+                int p;// = img.getRGB(x,y);
  
-                int a = (p>>24)&0xff;
-                int r = (p>>16)&0xff;
-                int g = (p>>8)&0xff;
-                int b = p&0xff;                
+                int a = gris[x][y][0];
+                int r = gris[x][y][1];
+                int g = gris[x][y][2];
+                int b = gris[x][y][3];          
                 // calculo el promedio
                 int avg = (r+g+b)/3;
  
@@ -87,7 +89,7 @@ public class Transformaciones {
                 g = (p>>8)&0xff;
                 b = p&0xff;      
                 
-                //le doy sus valores ya en grises para guardarlos en el arreglo que voy a regersar
+                //le doy sus valores ya en grises para guardarlos en el arreglo que voy a regresar
                 argb[x][y][0] = a;
 		argb[x][y][1] = r;
 		argb[x][y][2] = g;

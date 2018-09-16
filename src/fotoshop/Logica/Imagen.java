@@ -22,9 +22,18 @@ public class Imagen
         private int ancho;
         private int alto;
         private int argb[][][];// = new int[1][1][4]; //argb[x][y][valores argb]	
+        private int modificado[][][];// = new int[1][1][4]; //argb[x][y][valores argb]	
         
     public String getExtension() {
         return extension;
+    }
+
+    public int[][][] getModificado() {
+        return modificado;
+    }
+
+    public void setModificado(int[][][] modificado) {
+        this.modificado = modificado;
     }
 
     public void setExtension(String extension) {
@@ -42,6 +51,7 @@ public class Imagen
                 this.alto = img.getHeight(); //alto
                 this.argb = new int[1][1][4]; //argb[x][y][valores argb]		
                 argb = initCanales(img, ancho, alto);
+                this.modificado = this.argb;
             }
 
     @Override

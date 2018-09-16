@@ -8,6 +8,7 @@ package fotoshop;
 import fotoshop.Logica.Dibujo;
 import fotoshop.Logica.Imagen;
 import fotoshop.Logica.Transformaciones;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -41,6 +42,7 @@ public class mainVentana extends javax.swing.JFrame {
         saveBoton.setContentAreaFilled(false);          
         abrirBoton.setContentAreaFilled(false);   
         redoBoton.setContentAreaFilled(false);   
+        grisesBoton.setContentAreaFilled(false); 
         
         
         cerrarTab.addActionListener(new ActionListener()  //BOTON CERRAR IMAGEN
@@ -67,25 +69,36 @@ public class mainVentana extends javax.swing.JFrame {
                     System.out.println("index es " + r);
                     if(r >= 0)
                         {
-                            Imagen im = new Imagen();
+                            Imagen im = listaImagenes.get(r);
                             String rutaGuardar = "";
+                            int[][][] rgbGuardar = im.getModificado();
                            // panelTabs.remove(r);
                             //System.out.println("remoevuo " + r);
                             im = listaImagenes.get(r);
                             System.out.println("Tengo: " + im.toString());
-                            
+                            JFrame parentFrame = new JFrame();
                             JFileChooser fileChooser = new JFileChooser();
-                            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                            int returnValue = fileChooser.showOpenDialog(null);
-                            if (returnValue == JFileChooser.APPROVE_OPTION) //abriendo el JFile
+                            //fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);                            
+                            fileChooser.setDialogTitle("Especifice nomrbe y extensión para guardar");   
+                            int userSelection = fileChooser.showSaveDialog(parentFrame);
+                            if (userSelection == JFileChooser.APPROVE_OPTION) 
                                 {
-                                    rutaGuardar = fileChooser.getSelectedFile().getAbsolutePath() + "/" + im.getNombreImagen();
+                                    rutaGuardar = fileChooser.getSelectedFile().getAbsolutePath();
                                     System.out.println("RUTA " +  rutaGuardar);                                                                                                    
                                     try
                                         {
-                                            File f = new File(rutaGuardar); //donde voy a guardar
+                                            File f = new File(rutaGuardar + "." + im.getExtension()); //donde voy a guardar
                                             File readImg = new File(im.getRuta());
-                                            BufferedImage img = ImageIO.read(readImg);
+                                            //BufferedImage img = ImageIO.read(readImg);
+                                            BufferedImage img = new BufferedImage(im.getAncho(), im.getAlto(), BufferedImage.TYPE_INT_RGB);
+                                            for(int x = 0; x < im.getAncho(); x++)
+                                                {
+                                                    for(int y = 0; y < im.getAlto(); y++)
+                                                       {
+                                                           //System.out.println("Guardando rgb " + rgbGuardar[x][y][1] + " - " +  rgbGuardar[x][y][2] + " - " +rgbGuardar[x][y][3]);
+                                                           img.setRGB(x, y, (new Color(rgbGuardar[x][y][1],rgbGuardar[x][y][2],rgbGuardar[x][y][3])).getRGB());
+                                                       }
+                                                }
                                             ImageIO.write(img, im.getExtension().replace(".",""), f);
                                             JFrame mensaje = new JFrame("Mensajito de algo");
                                             JOptionPane.showMessageDialog(mensaje, "Imagen Guardada exitosamente");
@@ -118,6 +131,7 @@ public class mainVentana extends javax.swing.JFrame {
         sliderUmbral = new javax.swing.JSlider();
         labelUmbral = new javax.swing.JLabel();
         Binarización = new javax.swing.JLabel();
+        grisesBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 102, 255));
@@ -182,6 +196,7 @@ public class mainVentana extends javax.swing.JFrame {
         });
 
         sliderUmbral.setMaximum(255);
+        sliderUmbral.setValue(128);
         sliderUmbral.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 sliderUmbralStateChanged(evt);
@@ -194,6 +209,18 @@ public class mainVentana extends javax.swing.JFrame {
         Binarización.setAlignmentX(0.5F);
         Binarización.setAutoscrolls(true);
         Binarización.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        grisesBoton.setBackground(new java.awt.Color(204, 204, 204));
+        grisesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/Gris.png"))); // NOI18N
+        grisesBoton.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        grisesBoton.setMaximumSize(new java.awt.Dimension(50, 66));
+        grisesBoton.setMinimumSize(new java.awt.Dimension(50, 66));
+        grisesBoton.setPreferredSize(new java.awt.Dimension(50, 66));
+        grisesBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                grisesBotonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,7 +243,9 @@ public class mainVentana extends javax.swing.JFrame {
                             .addComponent(sliderUmbral, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(labelUmbral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Binarización, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
-                        .addGap(0, 646, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(grisesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 590, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -229,13 +258,16 @@ public class mainVentana extends javax.swing.JFrame {
                     .addComponent(redoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(Binarización)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sliderUmbral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelUmbral, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(grisesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Binarización)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sliderUmbral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelUmbral, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18)
-                .addComponent(panelTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
+                .addComponent(panelTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -307,7 +339,7 @@ public class mainVentana extends javax.swing.JFrame {
                 try 
                     {
                         binario = tra.binarizado(sliderUmbral.getValue(), listaImagenes.get(r));                           
-                        //listaImagenes.remove(r);
+                        listaImagenes.get(r).setModificado(binario);
 
                         JFrame f = new JFrame();                                   
                         JScrollPane scroll = new JScrollPane();
@@ -330,7 +362,6 @@ public class mainVentana extends javax.swing.JFrame {
         // TODO add your handling code here:
         int r = panelTabs.getSelectedIndex();
         System.out.println("index es " + r);
-        int[][][] binario;     
         if(r >= 0)
             {                                                         
                 Transformaciones tra = new Transformaciones();       
@@ -338,12 +369,40 @@ public class mainVentana extends javax.swing.JFrame {
                 JFrame f = new JFrame();                                   
                 JScrollPane scroll = new JScrollPane();
                 scroll.getViewport().add(new Dibujo(img.getArgb(), img.getAncho(), img.getAlto()));                                       
+                listaImagenes.get(r).setModificado(listaImagenes.get(r).getArgb());
                 f.add(scroll);          
                 panelTabs.setComponentAt(r, f.getContentPane());
             }
         
         
     }//GEN-LAST:event_redoBotonActionPerformed
+
+    private void grisesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grisesBotonActionPerformed
+        int r = panelTabs.getSelectedIndex();
+        System.out.println("index es " + r);
+        int[][][] gris;     
+        if(r >= 0)
+            {                                         
+                System.out.println("repintaremos " + r);
+                Transformaciones tra = new Transformaciones();       
+                Imagen img = listaImagenes.get(r);
+                try 
+                    {
+                        gris = tra.grises(listaImagenes.get(r));                                                   
+                        JFrame f = new JFrame();                                   
+                        JScrollPane scroll = new JScrollPane();
+                        scroll.getViewport().add(new Dibujo(gris, img.getAncho(), img.getAlto()));                                       
+                        f.add(scroll);  
+                        listaImagenes.get(r).setModificado(gris);
+                        panelTabs.setComponentAt(r, f.getContentPane());//                    
+                    } 
+                catch (IOException ex) 
+                    {
+                        Logger.getLogger(mainVentana.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+            }
+    }//GEN-LAST:event_grisesBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -385,6 +444,7 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JLabel Binarización;
     private javax.swing.JButton abrirBoton;
     private javax.swing.JButton cerrarTab;
+    private javax.swing.JButton grisesBoton;
     private javax.swing.JLabel labelUmbral;
     private javax.swing.JTabbedPane panelTabs;
     private javax.swing.JButton redoBoton;
