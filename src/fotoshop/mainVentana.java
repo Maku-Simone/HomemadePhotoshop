@@ -41,6 +41,7 @@ public class mainVentana extends javax.swing.JFrame {
      * Creates new form mainVentana
      */
     ArrayList<Imagen> listaImagenes = new ArrayList<Imagen>();
+    static int[][][] operacionesAritmeticas;
     
     public mainVentana() {                       
         initComponents();            
@@ -58,11 +59,11 @@ public class mainVentana extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     int r = panelTabs.getSelectedIndex();
-                    System.out.println("index es " + r);
+                  //  System.out.println("index es " + r);
                     if(r >= 0)
                         {
                             panelTabs.remove(r);
-                            System.out.println("remuevo " + r);
+                          //  System.out.println("remuevo " + r);
                             listaImagenes.remove(r);
                         }
                 }
@@ -74,7 +75,7 @@ public class mainVentana extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     int r = panelTabs.getSelectedIndex();
-                    System.out.println("index es " + r);
+                 //   System.out.println("index es " + r);
                     if(r >= 0)
                         {
                             Imagen im = listaImagenes.get(r);
@@ -83,7 +84,7 @@ public class mainVentana extends javax.swing.JFrame {
                            // panelTabs.remove(r);
                             //System.out.println("remoevuo " + r);
                             im = listaImagenes.get(r);
-                            System.out.println("Tengo: " + im.toString());
+                           // System.out.println("Tengo: " + im.toString());
                             JFrame parentFrame = new JFrame();
                             JFileChooser fileChooser = new JFileChooser();
                             //fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);                            
@@ -96,7 +97,7 @@ public class mainVentana extends javax.swing.JFrame {
                                     try
                                         {
                                             File f = new File(rutaGuardar + "." + im.getExtension()); //donde voy a guardar
-                                            File readImg = new File(im.getRuta());
+                                            //File readImg = new File(im.getRuta());
                                             //BufferedImage img = ImageIO.read(readImg);
                                             BufferedImage img = new BufferedImage(im.getAncho(), im.getAlto(), BufferedImage.TYPE_INT_RGB);
                                             for(int x = 0; x < im.getAncho(); x++)
@@ -146,9 +147,11 @@ public class mainVentana extends javax.swing.JFrame {
         sumaBotom = new javax.swing.JButton();
         multiBoton = new javax.swing.JButton();
         restaBoton = new javax.swing.JButton();
+        diviBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(153, 102, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setForeground(java.awt.Color.white);
 
         abrirBoton.setBackground(new java.awt.Color(204, 204, 204));
         abrirBoton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -311,6 +314,19 @@ public class mainVentana extends javax.swing.JFrame {
             }
         });
 
+        diviBoton.setBackground(new java.awt.Color(255, 255, 255));
+        diviBoton.setForeground(new java.awt.Color(204, 0, 0));
+        diviBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/divi.png"))); // NOI18N
+        diviBoton.setAlignmentY(0.0F);
+        diviBoton.setBorderPainted(false);
+        diviBoton.setContentAreaFilled(false);
+        diviBoton.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        diviBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diviBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -348,7 +364,9 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addComponent(restaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(multiBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 732, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(diviBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 694, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -371,15 +389,16 @@ public class mainVentana extends javax.swing.JFrame {
                             .addComponent(grisesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(gBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(bBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sumaBotom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(multiBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(restaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(restaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(diviBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(panelTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
                 .addContainerGap())
@@ -399,7 +418,7 @@ public class mainVentana extends javax.swing.JFrame {
                 File file = fileChooser.getSelectedFile();
                 formatoImg = file.getName(); //obtengo nombre.extension                
                 formatoImg = formatoImg.substring(formatoImg.lastIndexOf("."), formatoImg.length());
-                System.out.println("Abriendo: " + file.getPath() + "    -    " + file.getName() + " de extension " + formatoImg);       
+              //  System.out.println("Abriendo: " + file.getPath() + "    -    " + file.getName() + " de extension " + formatoImg);       
                 if(checaExtensionImg(formatoImg)) //si está admitido
                     {
                         System.out.println("Si :3");
@@ -412,7 +431,7 @@ public class mainVentana extends javax.swing.JFrame {
                                 scroll.getViewport().add(new Dibujo(img.getArgb(), img.getAncho(), img.getAlto()));                                
                                 f.add(scroll);                                                                   
                                 panelTabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-                                panelTabs.addTab(img.getNombreImagen(),null, f.getContentPane(), ":3");
+                                panelTabs.addTab(img.getNombreImagen(),null, f.getContentPane(), ":3");                                
                                 
                             }
                         catch (IOException ex) 
@@ -441,13 +460,13 @@ public class mainVentana extends javax.swing.JFrame {
         // TODO add your handling code here:
         labelUmbral.setText("Umbral: " + sliderUmbral.getValue());
         int r = panelTabs.getSelectedIndex();
-        System.out.println("index es " + r);
+        //System.out.println("index es " + r);
         int[][][] binario;
      //   binario = binarizacion(100, listaImagenes.get(r));
         if(r >= 0)
             {                            
              //   panelTabs.remove(r);
-                System.out.println("repintaremos " + r);
+               // System.out.println("repintaremos " + r);
                 Transformaciones tra = new Transformaciones();       
                 Imagen img = listaImagenes.get(r);
                 try 
@@ -475,7 +494,7 @@ public class mainVentana extends javax.swing.JFrame {
     private void redoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redoBotonActionPerformed
         // TODO add your handling code here:
         int r = panelTabs.getSelectedIndex();
-        System.out.println("index es " + r);
+        //System.out.println("index es " + r);
         if(r >= 0)
             {                                                         
                 Transformaciones tra = new Transformaciones();       
@@ -493,11 +512,11 @@ public class mainVentana extends javax.swing.JFrame {
 
     private void grisesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grisesBotonActionPerformed
         int r = panelTabs.getSelectedIndex();
-        System.out.println("index es " + r);
+        //System.out.println("index es " + r);
         int[][][] gris;     
         if(r >= 0)
             {                                         
-                System.out.println("repintaremos " + r);
+               // System.out.println("repintaremos " + r);
                 Transformaciones tra = new Transformaciones();       
                 Imagen img = listaImagenes.get(r);
                 try 
@@ -522,13 +541,13 @@ public class mainVentana extends javax.swing.JFrame {
         // BOTOM ROJO
         
         int r = panelTabs.getSelectedIndex();
-        System.out.println("index es " + r);
+        //System.out.println("index es " + r);
         int[][][] canal;
      //   binario = binarizacion(100, listaImagenes.get(r));
         if(r >= 0)
             {                            
              //   panelTabs.remove(r);
-                System.out.println("repintaremos " + r);
+                //System.out.println("repintaremos " + r);
                 Transformaciones tra = new Transformaciones();       
                 Imagen img = listaImagenes.get(r);
                 canal = tra.canales(0, listaImagenes.get(r));
@@ -545,13 +564,13 @@ public class mainVentana extends javax.swing.JFrame {
     private void gBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBotonActionPerformed
         // TODO add your handling code here:
         int r = panelTabs.getSelectedIndex();
-        System.out.println("index es " + r);
+       // System.out.println("index es " + r);
         int[][][] canal;
      //   binario = binarizacion(100, listaImagenes.get(r));
         if(r >= 0)
             {                            
              //   panelTabs.remove(r);
-                System.out.println("repintaremos " + r);
+               // System.out.println("repintaremos " + r);
                 Transformaciones tra = new Transformaciones();       
                 Imagen img = listaImagenes.get(r);
                 canal = tra.canales(1, listaImagenes.get(r));
@@ -568,13 +587,13 @@ public class mainVentana extends javax.swing.JFrame {
     private void bBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBotonActionPerformed
         // TODO add your handling code here:
         int r = panelTabs.getSelectedIndex();
-        System.out.println("index es " + r);
+      //  System.out.println("index es " + r);
         int[][][] canal;
      //   binario = binarizacion(100, listaImagenes.get(r));
         if(r >= 0)
             {                            
              //   panelTabs.remove(r);
-                System.out.println("repintaremos " + r);
+             //   System.out.println("repintaremos " + r);
                 Transformaciones tra = new Transformaciones();       
                 Imagen img = listaImagenes.get(r);                
                 canal = tra.canales(2, listaImagenes.get(r));
@@ -590,7 +609,7 @@ public class mainVentana extends javax.swing.JFrame {
 
     private void sumaBotomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumaBotomActionPerformed
         // TODO add your handling code here:
-        initOperacion(listaImagenes, 0);                        
+        initOperacion(listaImagenes, 0);        
     }//GEN-LAST:event_sumaBotomActionPerformed
 
     private void multiBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiBotonActionPerformed
@@ -602,6 +621,11 @@ public class mainVentana extends javax.swing.JFrame {
         // TODO add your handling code here:
         initOperacion(listaImagenes, 1);  
     }//GEN-LAST:event_restaBotonActionPerformed
+
+    private void diviBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diviBotonActionPerformed
+        // TODO add your handling code here:
+        initOperacion(listaImagenes, 3);  
+    }//GEN-LAST:event_diviBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -644,6 +668,7 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JButton abrirBoton;
     private javax.swing.JButton bBoton;
     private javax.swing.JButton cerrarTab;
+    private javax.swing.JButton diviBoton;
     private javax.swing.JButton gBoton;
     private javax.swing.JButton grisesBoton;
     private javax.swing.JLabel labelUmbral;
@@ -671,7 +696,7 @@ public class mainVentana extends javax.swing.JFrame {
             return false; //no estuvo dentro de los formatos admitidos
         }
 
-    static int initOperacion(ArrayList<Imagen> listaImagenes, int operacion)
+     int initOperacion(ArrayList<Imagen> listaImagenes, int operacion)
         {
             final int numImagenes = listaImagenes.size();
             Imagen[] limiteArray = new Imagen[2];
@@ -697,26 +722,36 @@ public class mainVentana extends javax.swing.JFrame {
                                 if(cajita[i].isSelected() && limite < 2)
                                     {
                                         limiteArray[limite] = listaImagenes.get(i);
-                                        System.out.println("++" + limiteArray[limite]);
+                                        //System.out.println("++" + limiteArray[limite]);
                                         limite++;
                                     }
                             }
                         switch(operacion)
                             {
                                 case 0: // +
-                                    tra.suma(limiteArray[0], limiteArray[1]);
+                                    operacionesAritmeticas = tra.ajusta(tra.suma(limiteArray[0], limiteArray[1]));
                                 break;
                                 case 1: // -
-                                    tra.resta(limiteArray[0], limiteArray[1]);
+                                    operacionesAritmeticas = tra.ajusta(tra.resta(limiteArray[0], limiteArray[1]));
                                 break;
                                 case 2: // *
-                                    tra.multi(limiteArray[0], limiteArray[1]);
+                                    operacionesAritmeticas = tra.ajusta(tra.multi(limiteArray[0], limiteArray[1]));
                                 break;
                                 case 3: //divi
-                                    tra.divi(limiteArray[0], limiteArray[1]);
+                                    operacionesAritmeticas = tra.ajusta(tra.divi(limiteArray[0], limiteArray[1]));
                                 break;
                                 default:
                             }
+                        
+                        Imagen img = new Imagen();
+                        img.setArgb(operacionesAritmeticas);
+                        img.setModificado(operacionesAritmeticas);
+                        img.setAncho(operacionesAritmeticas.length);
+                        img.setAlto(operacionesAritmeticas[0].length);
+                        img.setExtension(".png");
+                        img.setNombreImagen(limiteArray[0].getNombreImagen() + " + " + limiteArray[1].getNombreImagen());      
+                        pinta(img);
+                        f.dispose();
                     }
                 });
 
@@ -724,7 +759,7 @@ public class mainVentana extends javax.swing.JFrame {
             for (int i = 0; i < numImagenes; i++) 
                 {
                     nomImagenes[i] = listaImagenes.get(i).getNombreImagen();       
-                    System.out.println("["+nomImagenes[i]+"]");
+                    //System.out.println("["+nomImagenes[i]+"]");
                     cajita[i] = new JCheckBox(nomImagenes[i]);
                     p.add(cajita[i]);
                 }
@@ -734,4 +769,16 @@ public class mainVentana extends javax.swing.JFrame {
             f.setVisible(true);
             return 0;
         }
+    
+        private int pinta(Imagen img)
+            {                                                
+                listaImagenes.add(img);                                                                                               
+                JFrame f = new JFrame();                                   
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(img.getArgb(), img.getAncho(), img.getAlto()));                                
+                f.add(scroll);                                                                   
+                panelTabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+                panelTabs.addTab(img.getNombreImagen(),null, f.getContentPane(), ":3");
+                return 0;
+            }
 }

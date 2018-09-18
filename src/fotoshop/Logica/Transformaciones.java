@@ -150,29 +150,157 @@ public class Transformaciones {
         }
  
     public int[][][] suma(Imagen A, Imagen B)
-        {
-            int sumados[][][] = new int[1][2][3];
-                System.out.println("Suma :3");
+        {            
+            int ancho = 0, alto = 0;            
+            alto =  menor(A.getAlto(), B.getAlto());
+            ancho = menor(A.getAncho(), B.getAncho());
+            int sumados[][][] = new int[ancho][alto][4];
+            
+            int imagenA[][][] = A.getArgb();
+            int imagenB[][][] = B.getArgb();
+            for(int x = 0; x < ancho; x++)
+                {
+                    for(int y = 0; y < alto; y++)
+                        {
+                            sumados[x][y][1] = imagenA[x][y][1] + imagenB[x][y][1];
+                            sumados[x][y][2] = imagenA[x][y][1] + imagenB[x][y][2];
+                            sumados[x][y][3] = imagenA[x][y][1] + imagenB[x][y][3];
+                        }
+                }
+                
+                
             return sumados;
         }
     
     public int[][][] resta(Imagen A, Imagen B)
         {
-            int sumados[][][] = new int[1][2][3];
-                System.out.println("Resta :3");
+            int ancho = 0, alto = 0;
+            alto =  menor(A.getAlto(), B.getAlto());
+            ancho = menor(A.getAncho(), B.getAncho());
+            int sumados[][][] = new int[ancho][alto][4];
+            
+                       int imagenA[][][] = A.getArgb();
+            int imagenB[][][] = B.getArgb();
+            for(int x = 0; x < ancho; x++)
+                {
+                    for(int y = 0; y < alto; y++)
+                        {
+                            sumados[x][y][1] = imagenA[x][y][1] - imagenB[x][y][1];
+                            sumados[x][y][2] = imagenA[x][y][1] - imagenB[x][y][2];
+                            sumados[x][y][3] = imagenA[x][y][1] - imagenB[x][y][3];
+                        }
+                }
+            
             return sumados;
         }
 
     public int[][][] multi(Imagen A, Imagen B)
         {
-            int sumados[][][] = new int[1][2][3];
-                System.out.println("Multi :3");
+            int ancho = 0, alto = 0;
+            alto =  menor(A.getAlto(), B.getAlto());
+            ancho = menor(A.getAncho(), B.getAncho());
+            int sumados[][][] = new int[ancho][alto][4];
+            
+           int imagenA[][][] = A.getArgb();
+            int imagenB[][][] = B.getArgb();
+            for(int x = 0; x < ancho; x++)
+                {
+                    for(int y = 0; y < alto; y++)
+                        {
+                            sumados[x][y][1] = imagenA[x][y][1] * imagenB[x][y][1];
+                            sumados[x][y][2] = imagenA[x][y][1] * imagenB[x][y][2];
+                            sumados[x][y][3] = imagenA[x][y][1] * imagenB[x][y][3];
+                        }
+                }            
+            
             return sumados;
         }    
     public int[][][] divi(Imagen A, Imagen B)
         {
-            int sumados[][][] = new int[1][2][3];
-                System.out.println("Divide :3");
+            int ancho = 0, alto = 0;
+            alto =  menor(A.getAlto(), B.getAlto());
+            ancho = menor(A.getAncho(), B.getAncho());
+            int sumados[][][] = new int[ancho][alto][4];
+            
+            int imagenA[][][] = A.getArgb();
+            int imagenB[][][] = B.getArgb();
+            for(int x = 0; x < ancho; x++)
+                {
+                    for(int y = 0; y < alto; y++)
+                        {
+                            sumados[x][y][1] = imagenA[x][y][1] / (imagenB[x][y][1] + 1);
+                            sumados[x][y][2] = imagenA[x][y][1] / (imagenB[x][y][2] + 1);
+                            sumados[x][y][3] = imagenA[x][y][1] / (imagenB[x][y][3] + 1);
+                        }
+                }
+            
             return sumados;
         }    
+    
+    public  static int mayor(int a,  int b)
+        {
+            if(a >= b) 
+                {
+                    return a;
+                }
+            else
+                {
+                    return b;
+                }
+        }
+    public  static int menor(int a,  int b)
+        {
+            if(a <= b) 
+                {
+                    return a;
+                }
+            else
+                {
+                    return b;
+                }
+        }    
+    public int[][][] ajusta(int[][][] rgb)
+        {
+            for(int x = 0; x < rgb.length; x++)
+                {
+                    for(int y = 0; y < rgb[0].length; y++)
+                        {
+                            if(rgb[x][y][1] > 255)
+                                {
+                                    rgb[x][y][1] = 255;
+                                }
+                            if(rgb[x][y][2] > 255)
+                                {
+                                    rgb[x][y][2] = 255;
+                                }
+                            if(rgb[x][y][3] > 255)
+                                {
+                                    rgb[x][y][3] = 255;
+                                }
+                           if(rgb[x][y][1] > 255)
+                                {
+                                    rgb[x][y][1] = 255;
+                                }
+                            if(rgb[x][y][2] > 255)
+                                {
+                                    rgb[x][y][2] = 255;
+                                }
+                            //menores
+                            if(rgb[x][y][1] < 0)
+                                {
+                                    rgb[x][y][1] = 0;
+                                }  
+                            if(rgb[x][y][2] < 0)
+                                {
+                                    rgb[x][y][2] = 0;
+                                }                   
+                            if(rgb[x][y][3] < 0)
+                                {
+                                    rgb[x][y][3] = 0;
+                                }                   
+                            
+                        } //y
+                }//x
+            return rgb;
+        }
 }
