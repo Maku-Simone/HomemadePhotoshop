@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
  */
 public class Transformaciones {
     
-       public int[][][] binarizado(int umbral, Imagen img) throws IOException
+    public int[][][] binarizado(int umbral, Imagen img) throws IOException
         {
             int[][][] binario = img.getArgb();            
             int ancho = img.getAncho();
@@ -149,4 +149,30 @@ public class Transformaciones {
             return argb;
         }
  
+    public int[][][] suma(Imagen A, Imagen B)
+        {
+            int sumados[][][] = new int[1][2][3];
+                System.out.println("Suma :3");
+            return sumados;
+        }
+    
+    public int[][][] resta(Imagen A, Imagen B)
+        {
+            int sumados[][][] = new int[1][2][3];
+                System.out.println("Resta :3");
+            return sumados;
+        }
+
+    public int[][][] multi(Imagen A, Imagen B)
+        {
+            int sumados[][][] = new int[1][2][3];
+                System.out.println("Multi :3");
+            return sumados;
+        }    
+    public int[][][] divi(Imagen A, Imagen B)
+        {
+            int sumados[][][] = new int[1][2][3];
+                System.out.println("Divide :3");
+            return sumados;
+        }    
 }

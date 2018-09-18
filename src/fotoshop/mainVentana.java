@@ -9,6 +9,7 @@ import fotoshop.Logica.Dibujo;
 import fotoshop.Logica.Imagen;
 import fotoshop.Logica.Transformaciones;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +24,9 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
@@ -587,33 +590,17 @@ public class mainVentana extends javax.swing.JFrame {
 
     private void sumaBotomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumaBotomActionPerformed
         // TODO add your handling code here:
-        int numImagenes = 0;
-        numImagenes = listaImagenes.size();
-        JFrame f = new JFrame();
-        JButton comfirm = new JButton();        
-        
-        String[] nomImagenes = new String[numImagenes];
-        
-        JCheckBox[] cajita = new JCheckBox[numImagenes];
-        for (int i = 0; i < numImagenes; i++) 
-            {
-                nomImagenes[i] = listaImagenes.get(i).getNombreImagen();       
-                System.out.println("["+nomImagenes[i]+"]");
-                cajita[i].setText("lo");
-                f.add(cajita[i]);
-            }
-        f.setVisible(true);
-        
-        
-        
+        initOperacion(listaImagenes, 0);                        
     }//GEN-LAST:event_sumaBotomActionPerformed
 
     private void multiBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiBotonActionPerformed
         // TODO add your handling code here:
+        initOperacion(listaImagenes, 2);  
     }//GEN-LAST:event_multiBotonActionPerformed
 
     private void restaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaBotonActionPerformed
         // TODO add your handling code here:
+        initOperacion(listaImagenes, 1);  
     }//GEN-LAST:event_restaBotonActionPerformed
 
     /**
@@ -684,4 +671,67 @@ public class mainVentana extends javax.swing.JFrame {
             return false; //no estuvo dentro de los formatos admitidos
         }
 
+    static int initOperacion(ArrayList<Imagen> listaImagenes, int operacion)
+        {
+            final int numImagenes = listaImagenes.size();
+            Imagen[] limiteArray = new Imagen[2];
+            JFrame f = new JFrame();
+            JPanel p = new JPanel();
+            p.setPreferredSize(new Dimension(500,500));
+            JButton operar = new JButton("Hacer Operación");                            
+            JLabel texto = new JLabel("seleccione las imágenes sobre las que desea trabajar");
+            String[] nomImagenes = new String[numImagenes];        
+            JCheckBox[] cajita = new JCheckBox[numImagenes];
+            p.add(texto);
+            Transformaciones tra = new Transformaciones();
+
+            operar.addActionListener(new ActionListener()                 
+                {
+                    @Override
+                    public void actionPerformed(ActionEvent e) 
+                    {
+                        int limite = 0;
+                      
+                        for(int i = 0; i < numImagenes; i++)
+                            {
+                                if(cajita[i].isSelected() && limite < 2)
+                                    {
+                                        limiteArray[limite] = listaImagenes.get(i);
+                                        System.out.println("++" + limiteArray[limite]);
+                                        limite++;
+                                    }
+                            }
+                        switch(operacion)
+                            {
+                                case 0: // +
+                                    tra.suma(limiteArray[0], limiteArray[1]);
+                                break;
+                                case 1: // -
+                                    tra.resta(limiteArray[0], limiteArray[1]);
+                                break;
+                                case 2: // *
+                                    tra.multi(limiteArray[0], limiteArray[1]);
+                                break;
+                                case 3: //divi
+                                    tra.divi(limiteArray[0], limiteArray[1]);
+                                break;
+                                default:
+                            }
+                    }
+                });
+
+
+            for (int i = 0; i < numImagenes; i++) 
+                {
+                    nomImagenes[i] = listaImagenes.get(i).getNombreImagen();       
+                    System.out.println("["+nomImagenes[i]+"]");
+                    cajita[i] = new JCheckBox(nomImagenes[i]);
+                    p.add(cajita[i]);
+                }
+            p.add(operar);
+            f.getContentPane().add(p);
+            f.pack();
+            f.setVisible(true);
+            return 0;
+        }
 }
