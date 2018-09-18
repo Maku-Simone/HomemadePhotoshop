@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import javax.imageio.ImageIO;
 
 /**
@@ -99,5 +100,53 @@ public class Transformaciones {
        return argb;
     }
         
+    public int[][][] canales(int canal, Imagen img)
+        {
+            int[][][] canalrgb = img.getArgb();  
+            int ancho = img.getAncho();
+            int alto = img.getAlto();                                               
+            int argb[][][] = new int[ancho][alto][4];
+            
+            for (int[][] square : argb) 
+                {
+                    for (int[] line : square) 
+                        {
+                            Arrays.fill(line, 0);
+                        }
+                }
+
+            switch(canal)
+                {                                                                                       
+                    case 0: //rojo
+                        for (int y = 0; y < alto; y++)
+                            {
+                                for (int x = 0; x < ancho; x++)
+                                {
+                                    argb[x][y][1] = canalrgb[x][y][1];
+                                }
+                            }
+                    break;
+                    case 1: //verde
+                        for (int y = 0; y < alto; y++)
+                            {
+                                for (int x = 0; x < ancho; x++)
+                                {
+                                    argb[x][y][2] = canalrgb[x][y][1];
+                                }
+                            }
+                    break;
+                    case 2: //azul
+                        for (int y = 0; y < alto; y++)
+                            {
+                                for (int x = 0; x < ancho; x++)
+                                {
+                                    argb[x][y][3] = canalrgb[x][y][1];
+                                }
+                            }                        
+                    break;
+                    default: //alfa
+                }
+            return argb;
+        }
  
 }

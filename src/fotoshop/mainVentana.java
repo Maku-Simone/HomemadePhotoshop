@@ -9,6 +9,7 @@ import fotoshop.Logica.Dibujo;
 import fotoshop.Logica.Imagen;
 import fotoshop.Logica.Transformaciones;
 import java.awt.Color;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -42,8 +45,10 @@ public class mainVentana extends javax.swing.JFrame {
         saveBoton.setContentAreaFilled(false);          
         abrirBoton.setContentAreaFilled(false);   
         redoBoton.setContentAreaFilled(false);   
-        grisesBoton.setContentAreaFilled(false); 
-        
+        grisesBoton.setContentAreaFilled(false);                        
+        rBoton.setContentAreaFilled(false);  
+        gBoton.setContentAreaFilled(false);  
+        bBoton.setContentAreaFilled(false);  
         
         cerrarTab.addActionListener(new ActionListener()  //BOTON CERRAR IMAGEN
             {
@@ -132,6 +137,12 @@ public class mainVentana extends javax.swing.JFrame {
         labelUmbral = new javax.swing.JLabel();
         Binarización = new javax.swing.JLabel();
         grisesBoton = new javax.swing.JButton();
+        rBoton = new javax.swing.JButton();
+        gBoton = new javax.swing.JButton();
+        bBoton = new javax.swing.JButton();
+        sumaBotom = new javax.swing.JButton();
+        multiBoton = new javax.swing.JButton();
+        restaBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 102, 255));
@@ -222,6 +233,81 @@ public class mainVentana extends javax.swing.JFrame {
             }
         });
 
+        rBoton.setBackground(new java.awt.Color(255, 255, 255));
+        rBoton.setForeground(new java.awt.Color(204, 0, 0));
+        rBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/red.png"))); // NOI18N
+        rBoton.setAlignmentY(0.0F);
+        rBoton.setBorderPainted(false);
+        rBoton.setContentAreaFilled(false);
+        rBoton.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        rBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rBotonActionPerformed(evt);
+            }
+        });
+
+        gBoton.setBackground(new java.awt.Color(255, 255, 255));
+        gBoton.setForeground(new java.awt.Color(0, 204, 0));
+        gBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/green.png"))); // NOI18N
+        gBoton.setBorderPainted(false);
+        gBoton.setContentAreaFilled(false);
+        gBoton.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        gBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBotonActionPerformed(evt);
+            }
+        });
+
+        bBoton.setBackground(new java.awt.Color(255, 255, 255));
+        bBoton.setForeground(new java.awt.Color(0, 204, 255));
+        bBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/blue.png"))); // NOI18N
+        bBoton.setBorderPainted(false);
+        bBoton.setContentAreaFilled(false);
+        bBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBotonActionPerformed(evt);
+            }
+        });
+
+        sumaBotom.setBackground(new java.awt.Color(255, 255, 255));
+        sumaBotom.setForeground(new java.awt.Color(204, 0, 0));
+        sumaBotom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/suma.png"))); // NOI18N
+        sumaBotom.setAlignmentY(0.0F);
+        sumaBotom.setBorderPainted(false);
+        sumaBotom.setContentAreaFilled(false);
+        sumaBotom.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        sumaBotom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sumaBotomActionPerformed(evt);
+            }
+        });
+
+        multiBoton.setBackground(new java.awt.Color(255, 255, 255));
+        multiBoton.setForeground(new java.awt.Color(204, 0, 0));
+        multiBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/multi.png"))); // NOI18N
+        multiBoton.setAlignmentY(0.0F);
+        multiBoton.setBorderPainted(false);
+        multiBoton.setContentAreaFilled(false);
+        multiBoton.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        multiBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                multiBotonActionPerformed(evt);
+            }
+        });
+
+        restaBoton.setBackground(new java.awt.Color(255, 255, 255));
+        restaBoton.setForeground(new java.awt.Color(204, 0, 0));
+        restaBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/resta.png"))); // NOI18N
+        restaBoton.setAlignmentY(0.0F);
+        restaBoton.setBorderPainted(false);
+        restaBoton.setContentAreaFilled(false);
+        restaBoton.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        restaBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restaBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -242,32 +328,57 @@ public class mainVentana extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(sliderUmbral, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(labelUmbral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Binarización, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
+                            .addComponent(Binarización, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(grisesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 590, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(gBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(sumaBotom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(restaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(multiBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 732, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(abrirBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cerrarTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(saveBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(redoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(grisesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Binarización)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(sliderUmbral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelUmbral, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(18, 18, 18)
-                .addComponent(panelTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                                .addComponent(labelUmbral, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(abrirBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cerrarTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(saveBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(redoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(grisesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sumaBotom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(multiBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(restaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(panelTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -404,6 +515,107 @@ public class mainVentana extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_grisesBotonActionPerformed
 
+    private void rBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBotonActionPerformed
+        // BOTOM ROJO
+        
+        int r = panelTabs.getSelectedIndex();
+        System.out.println("index es " + r);
+        int[][][] canal;
+     //   binario = binarizacion(100, listaImagenes.get(r));
+        if(r >= 0)
+            {                            
+             //   panelTabs.remove(r);
+                System.out.println("repintaremos " + r);
+                Transformaciones tra = new Transformaciones();       
+                Imagen img = listaImagenes.get(r);
+                canal = tra.canales(0, listaImagenes.get(r));
+                JFrame f = new JFrame();
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(canal, img.getAncho(), img.getAlto()));
+                f.add(scroll);
+                listaImagenes.get(r).setModificado(canal);
+                panelTabs.setComponentAt(r, f.getContentPane());
+
+            }
+    }//GEN-LAST:event_rBotonActionPerformed
+
+    private void gBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        System.out.println("index es " + r);
+        int[][][] canal;
+     //   binario = binarizacion(100, listaImagenes.get(r));
+        if(r >= 0)
+            {                            
+             //   panelTabs.remove(r);
+                System.out.println("repintaremos " + r);
+                Transformaciones tra = new Transformaciones();       
+                Imagen img = listaImagenes.get(r);
+                canal = tra.canales(1, listaImagenes.get(r));
+                listaImagenes.get(r).setModificado(canal);
+                JFrame f = new JFrame();
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(canal, img.getAncho(), img.getAlto()));
+                f.add(scroll);
+                panelTabs.setComponentAt(r, f.getContentPane());
+
+            }
+    }//GEN-LAST:event_gBotonActionPerformed
+
+    private void bBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        System.out.println("index es " + r);
+        int[][][] canal;
+     //   binario = binarizacion(100, listaImagenes.get(r));
+        if(r >= 0)
+            {                            
+             //   panelTabs.remove(r);
+                System.out.println("repintaremos " + r);
+                Transformaciones tra = new Transformaciones();       
+                Imagen img = listaImagenes.get(r);                
+                canal = tra.canales(2, listaImagenes.get(r));
+                listaImagenes.get(r).setModificado(canal);
+                JFrame f = new JFrame();
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(canal, img.getAncho(), img.getAlto()));
+                f.add(scroll);
+                panelTabs.setComponentAt(r, f.getContentPane());
+
+            }
+    }//GEN-LAST:event_bBotonActionPerformed
+
+    private void sumaBotomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumaBotomActionPerformed
+        // TODO add your handling code here:
+        int numImagenes = 0;
+        numImagenes = listaImagenes.size();
+        JFrame f = new JFrame();
+        JButton comfirm = new JButton();        
+        
+        String[] nomImagenes = new String[numImagenes];
+        
+        JCheckBox[] cajita = new JCheckBox[numImagenes];
+        for (int i = 0; i < numImagenes; i++) 
+            {
+                nomImagenes[i] = listaImagenes.get(i).getNombreImagen();       
+                System.out.println("["+nomImagenes[i]+"]");
+                cajita[i].setText("lo");
+                f.add(cajita[i]);
+            }
+        f.setVisible(true);
+        
+        
+        
+    }//GEN-LAST:event_sumaBotomActionPerformed
+
+    private void multiBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_multiBotonActionPerformed
+
+    private void restaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_restaBotonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -443,13 +655,19 @@ public class mainVentana extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Binarización;
     private javax.swing.JButton abrirBoton;
+    private javax.swing.JButton bBoton;
     private javax.swing.JButton cerrarTab;
+    private javax.swing.JButton gBoton;
     private javax.swing.JButton grisesBoton;
     private javax.swing.JLabel labelUmbral;
+    private javax.swing.JButton multiBoton;
     private javax.swing.JTabbedPane panelTabs;
+    private javax.swing.JButton rBoton;
     private javax.swing.JButton redoBoton;
+    private javax.swing.JButton restaBoton;
     private javax.swing.JButton saveBoton;
     private javax.swing.JSlider sliderUmbral;
+    private javax.swing.JButton sumaBotom;
     // End of variables declaration//GEN-END:variables
 
 
