@@ -148,6 +148,14 @@ public class mainVentana extends javax.swing.JFrame {
         multiBoton = new javax.swing.JButton();
         restaBoton = new javax.swing.JButton();
         diviBoton = new javax.swing.JButton();
+        inversoBoton = new javax.swing.JButton();
+        andBoton = new javax.swing.JButton();
+        orBoton = new javax.swing.JButton();
+        xorBoton = new javax.swing.JButton();
+        xnorBoton = new javax.swing.JButton();
+        norBoton = new javax.swing.JButton();
+        nanBoton = new javax.swing.JButton();
+        notBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -327,6 +335,108 @@ public class mainVentana extends javax.swing.JFrame {
             }
         });
 
+        inversoBoton.setBackground(new java.awt.Color(255, 255, 255));
+        inversoBoton.setForeground(new java.awt.Color(0, 204, 255));
+        inversoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/inverso.png"))); // NOI18N
+        inversoBoton.setBorderPainted(false);
+        inversoBoton.setContentAreaFilled(false);
+        inversoBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inversoBotonActionPerformed(evt);
+            }
+        });
+
+        andBoton.setBackground(new java.awt.Color(255, 255, 255));
+        andBoton.setForeground(new java.awt.Color(204, 0, 0));
+        andBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/and.png"))); // NOI18N
+        andBoton.setAlignmentY(0.0F);
+        andBoton.setBorderPainted(false);
+        andBoton.setContentAreaFilled(false);
+        andBoton.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        andBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                andBotonActionPerformed(evt);
+            }
+        });
+
+        orBoton.setBackground(new java.awt.Color(255, 255, 255));
+        orBoton.setForeground(new java.awt.Color(204, 0, 0));
+        orBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/or.png"))); // NOI18N
+        orBoton.setAlignmentY(0.0F);
+        orBoton.setBorderPainted(false);
+        orBoton.setContentAreaFilled(false);
+        orBoton.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        orBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orBotonActionPerformed(evt);
+            }
+        });
+
+        xorBoton.setBackground(new java.awt.Color(255, 255, 255));
+        xorBoton.setForeground(new java.awt.Color(204, 0, 0));
+        xorBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/xor.png"))); // NOI18N
+        xorBoton.setAlignmentY(0.0F);
+        xorBoton.setBorderPainted(false);
+        xorBoton.setContentAreaFilled(false);
+        xorBoton.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        xorBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xorBotonActionPerformed(evt);
+            }
+        });
+
+        xnorBoton.setBackground(new java.awt.Color(255, 255, 255));
+        xnorBoton.setForeground(new java.awt.Color(204, 0, 0));
+        xnorBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/xnor.png"))); // NOI18N
+        xnorBoton.setAlignmentY(0.0F);
+        xnorBoton.setBorderPainted(false);
+        xnorBoton.setContentAreaFilled(false);
+        xnorBoton.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        xnorBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xnorBotonActionPerformed(evt);
+            }
+        });
+
+        norBoton.setBackground(new java.awt.Color(255, 255, 255));
+        norBoton.setForeground(new java.awt.Color(204, 0, 0));
+        norBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/nor.png"))); // NOI18N
+        norBoton.setAlignmentY(0.0F);
+        norBoton.setBorderPainted(false);
+        norBoton.setContentAreaFilled(false);
+        norBoton.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        norBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                norBotonActionPerformed(evt);
+            }
+        });
+
+        nanBoton.setBackground(new java.awt.Color(255, 255, 255));
+        nanBoton.setForeground(new java.awt.Color(204, 0, 0));
+        nanBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/nand.png"))); // NOI18N
+        nanBoton.setAlignmentY(0.0F);
+        nanBoton.setBorderPainted(false);
+        nanBoton.setContentAreaFilled(false);
+        nanBoton.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        nanBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nanBotonActionPerformed(evt);
+            }
+        });
+
+        notBoton.setBackground(new java.awt.Color(255, 255, 255));
+        notBoton.setForeground(new java.awt.Color(204, 0, 0));
+        notBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/not.png"))); // NOI18N
+        notBoton.setAlignmentY(0.0F);
+        notBoton.setBorderPainted(false);
+        notBoton.setContentAreaFilled(false);
+        notBoton.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        notBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -365,8 +475,26 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(multiBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(diviBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 694, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(diviBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nanBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(norBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(xnorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(inversoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(andBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(orBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(xorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(notBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 542, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -392,13 +520,21 @@ public class mainVentana extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(gBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(rBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inversoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(andBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(orBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(xorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(notBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sumaBotom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(multiBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(restaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(diviBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(diviBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nanBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(norBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(xnorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(panelTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
                 .addContainerGap())
@@ -627,6 +763,64 @@ public class mainVentana extends javax.swing.JFrame {
         initOperacion(listaImagenes, 3);  
     }//GEN-LAST:event_diviBotonActionPerformed
 
+    private void inversoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inversoBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+      //  System.out.println("index es " + r);
+        int[][][] canal;
+     //   binario = binarizacion(100, listaImagenes.get(r));
+        if(r >= 0)
+            {                            
+             //   panelTabs.remove(r);
+             //   System.out.println("repintaremos " + r);
+                Transformaciones tra = new Transformaciones();       
+                Imagen img = listaImagenes.get(r);                
+                canal = tra.inverso(listaImagenes.get(r));
+                listaImagenes.get(r).setModificado(canal);
+                JFrame f = new JFrame();
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(canal, img.getAncho(), img.getAlto()));
+                f.add(scroll);
+                panelTabs.setComponentAt(r, f.getContentPane());
+
+            }
+    }//GEN-LAST:event_inversoBotonActionPerformed
+
+    private void andBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andBotonActionPerformed
+        // TODO add your handling code here:
+        initOperacion(listaImagenes, 4);  
+    }//GEN-LAST:event_andBotonActionPerformed
+
+    private void orBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orBotonActionPerformed
+        // TODO add your handling code here:
+        initOperacion(listaImagenes, 5);  
+    }//GEN-LAST:event_orBotonActionPerformed
+
+    private void xorBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xorBotonActionPerformed
+        // TODO add your handling code here:
+        initOperacion(listaImagenes, 6);  
+    }//GEN-LAST:event_xorBotonActionPerformed
+
+    private void xnorBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xnorBotonActionPerformed
+        // TODO add your handling code here:
+        initOperacion(listaImagenes, 7);  
+    }//GEN-LAST:event_xnorBotonActionPerformed
+
+    private void norBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_norBotonActionPerformed
+        // TODO add your handling code here:
+        initOperacion(listaImagenes, 8);  
+    }//GEN-LAST:event_norBotonActionPerformed
+
+    private void nanBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nanBotonActionPerformed
+        // TODO add your handling code here:
+        initOperacion(listaImagenes, 9);  
+    }//GEN-LAST:event_nanBotonActionPerformed
+
+    private void notBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notBotonActionPerformed
+        // TODO add your handling code here:
+        initOperacion(listaImagenes, 10);  
+    }//GEN-LAST:event_notBotonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -666,13 +860,19 @@ public class mainVentana extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Binarización;
     private javax.swing.JButton abrirBoton;
+    private javax.swing.JButton andBoton;
     private javax.swing.JButton bBoton;
     private javax.swing.JButton cerrarTab;
     private javax.swing.JButton diviBoton;
     private javax.swing.JButton gBoton;
     private javax.swing.JButton grisesBoton;
+    private javax.swing.JButton inversoBoton;
     private javax.swing.JLabel labelUmbral;
     private javax.swing.JButton multiBoton;
+    private javax.swing.JButton nanBoton;
+    private javax.swing.JButton norBoton;
+    private javax.swing.JButton notBoton;
+    private javax.swing.JButton orBoton;
     private javax.swing.JTabbedPane panelTabs;
     private javax.swing.JButton rBoton;
     private javax.swing.JButton redoBoton;
@@ -680,6 +880,8 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JButton saveBoton;
     private javax.swing.JSlider sliderUmbral;
     private javax.swing.JButton sumaBotom;
+    private javax.swing.JButton xnorBoton;
+    private javax.swing.JButton xorBoton;
     // End of variables declaration//GEN-END:variables
 
 
@@ -716,7 +918,7 @@ public class mainVentana extends javax.swing.JFrame {
                     public void actionPerformed(ActionEvent e) 
                     {
                         int limite = 0;
-                      
+                        String oper = "";
                         for(int i = 0; i < numImagenes; i++)
                             {
                                 if(cajita[i].isSelected() && limite < 2)
@@ -730,16 +932,48 @@ public class mainVentana extends javax.swing.JFrame {
                             {
                                 case 0: // +
                                     operacionesAritmeticas = tra.ajusta(tra.suma(limiteArray[0], limiteArray[1]));
+                                    oper = " + ";
                                 break;
                                 case 1: // -
                                     operacionesAritmeticas = tra.ajusta(tra.resta(limiteArray[0], limiteArray[1]));
+                                    oper = " - ";
                                 break;
                                 case 2: // *
                                     operacionesAritmeticas = tra.ajusta(tra.multi(limiteArray[0], limiteArray[1]));
+                                    oper = " * ";
                                 break;
                                 case 3: //divi
                                     operacionesAritmeticas = tra.ajusta(tra.divi(limiteArray[0], limiteArray[1]));
+                                    oper = " / ";
                                 break;
+                                case 4: //and
+                                    operacionesAritmeticas = tra.logicos(limiteArray[0], limiteArray[1], 0);
+                                    oper = " ^ ";
+                                break;
+                                case 5: //or
+                                    operacionesAritmeticas = tra.logicos(limiteArray[0], limiteArray[1], 1);
+                                    oper = " v ";
+                                break;
+                                case 6: //xor
+                                    operacionesAritmeticas = tra.logicos(limiteArray[0], limiteArray[1], 2);
+                                    oper = " -V- ";
+                                break;
+                                case 7: //nand
+                                    operacionesAritmeticas = tra.logicos(limiteArray[0], limiteArray[1], 3);
+                                    oper = " ¬^ ";
+                                break;         
+                                case 8: //nor
+                                    operacionesAritmeticas = tra.logicos(limiteArray[0], limiteArray[1], 4);
+                                    oper = " ¬v ";
+                                break;
+                                case 9:  //xnor
+                                    operacionesAritmeticas = tra.logicos(limiteArray[0], limiteArray[1], 5);
+                                    oper = " ¬(-V-) ";
+                                break;    
+                                case 10: 
+                                    operacionesAritmeticas = tra.logicos(limiteArray[0], null, 6);
+                                    oper = " negado";
+                                break;    
                                 default:
                             }
                         
@@ -749,7 +983,7 @@ public class mainVentana extends javax.swing.JFrame {
                         img.setAncho(operacionesAritmeticas.length);
                         img.setAlto(operacionesAritmeticas[0].length);
                         img.setExtension(".png");
-                        img.setNombreImagen(limiteArray[0].getNombreImagen() + " + " + limiteArray[1].getNombreImagen());      
+                        img.setNombreImagen(limiteArray[0].getNombreImagen() + oper + ((operacion == 10)?"":limiteArray[1].getNombreImagen())  ) ;      
                         pinta(img);
                         f.dispose();
                     }

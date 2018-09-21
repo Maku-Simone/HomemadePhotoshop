@@ -163,8 +163,8 @@ public class Transformaciones {
                     for(int y = 0; y < alto; y++)
                         {
                             sumados[x][y][1] = imagenA[x][y][1] + imagenB[x][y][1];
-                            sumados[x][y][2] = imagenA[x][y][1] + imagenB[x][y][2];
-                            sumados[x][y][3] = imagenA[x][y][1] + imagenB[x][y][3];
+                            sumados[x][y][2] = imagenA[x][y][2] + imagenB[x][y][2];
+                            sumados[x][y][3] = imagenA[x][y][3] + imagenB[x][y][3];
                         }
                 }
                 
@@ -186,8 +186,8 @@ public class Transformaciones {
                     for(int y = 0; y < alto; y++)
                         {
                             sumados[x][y][1] = imagenA[x][y][1] - imagenB[x][y][1];
-                            sumados[x][y][2] = imagenA[x][y][1] - imagenB[x][y][2];
-                            sumados[x][y][3] = imagenA[x][y][1] - imagenB[x][y][3];
+                            sumados[x][y][2] = imagenA[x][y][2] - imagenB[x][y][2];
+                            sumados[x][y][3] = imagenA[x][y][3] - imagenB[x][y][3];
                         }
                 }
             
@@ -208,8 +208,8 @@ public class Transformaciones {
                     for(int y = 0; y < alto; y++)
                         {
                             sumados[x][y][1] = imagenA[x][y][1] * imagenB[x][y][1];
-                            sumados[x][y][2] = imagenA[x][y][1] * imagenB[x][y][2];
-                            sumados[x][y][3] = imagenA[x][y][1] * imagenB[x][y][3];
+                            sumados[x][y][2] = imagenA[x][y][2] * imagenB[x][y][2];
+                            sumados[x][y][3] = imagenA[x][y][3] * imagenB[x][y][3];
                         }
                 }            
             
@@ -229,8 +229,8 @@ public class Transformaciones {
                     for(int y = 0; y < alto; y++)
                         {
                             sumados[x][y][1] = imagenA[x][y][1] / (imagenB[x][y][1] + 1);
-                            sumados[x][y][2] = imagenA[x][y][1] / (imagenB[x][y][2] + 1);
-                            sumados[x][y][3] = imagenA[x][y][1] / (imagenB[x][y][3] + 1);
+                            sumados[x][y][2] = imagenA[x][y][2] / (imagenB[x][y][2] + 1);
+                            sumados[x][y][3] = imagenA[x][y][3] / (imagenB[x][y][3] + 1);
                         }
                 }
             
@@ -248,6 +248,7 @@ public class Transformaciones {
                     return b;
                 }
         }
+    
     public  static int menor(int a,  int b)
         {
             if(a <= b) 
@@ -259,6 +260,7 @@ public class Transformaciones {
                     return b;
                 }
         }    
+    
     public int[][][] ajusta(int[][][] rgb)
         {
             for(int x = 0; x < rgb.length; x++)
@@ -303,4 +305,195 @@ public class Transformaciones {
                 }//x
             return rgb;
         }
+     public int[][][] logicos(Imagen A, Imagen B, int oper)
+        {
+            int ancho = 0, alto = 0;
+            alto =  menor(A.getAlto(), B.getAlto());
+            ancho = menor(A.getAncho(), B.getAncho());
+            int sumados[][][] = new int[ancho][alto][4];
+            
+            int imagenA[][][] = A.getArgb();
+            int imagenB[][][] = B.getArgb();
+            
+            switch(oper)
+                {
+                    case 0: //and
+                        for(int x = 0; x < ancho; x++)
+                            {
+                                for(int y = 0; y < alto; y++)
+                                    {
+                                        sumados[x][y][1] = and(binario(imagenA[x][y][1]), binario(imagenB[x][y][1]));
+                                        sumados[x][y][2] = and(binario(imagenA[x][y][2]), binario(imagenB[x][y][2]));
+                                        sumados[x][y][3] = and(binario(imagenA[x][y][3]), binario(imagenB[x][y][3]));
+                                    }
+                            }
+                        break;
+                    case 1: //or
+                        for(int x = 0; x < ancho; x++)
+                            {
+                                for(int y = 0; y < alto; y++)
+                                    {
+                                        sumados[x][y][1] = or(binario(imagenA[x][y][1]), binario(imagenB[x][y][1]));
+                                        sumados[x][y][2] = or(binario(imagenA[x][y][2]), binario(imagenB[x][y][2]));
+                                        sumados[x][y][3] = or(binario(imagenA[x][y][3]), binario(imagenB[x][y][3]));
+                                    }
+                            }                        
+                        break;
+                    case 2: //xor
+                        for(int x = 0; x < ancho; x++)
+                            {
+                                for(int y = 0; y < alto; y++)
+                                    {
+                                        sumados[x][y][1] = xor(binario(imagenA[x][y][1]), binario(imagenB[x][y][1]));
+                                        sumados[x][y][2] = xor(binario(imagenA[x][y][2]), binario(imagenB[x][y][2]));
+                                        sumados[x][y][3] = xor(binario(imagenA[x][y][3]), binario(imagenB[x][y][3]));
+                                    }
+                            }                        
+                        break;
+                    case 3: //nand
+                        for(int x = 0; x < ancho; x++)
+                            {
+                                for(int y = 0; y < alto; y++)
+                                    {
+                                        sumados[x][y][1] = negador(and(binario(imagenA[x][y][1]), binario(imagenB[x][y][1])));
+                                        sumados[x][y][2] = negador(and(binario(imagenA[x][y][2]), binario(imagenB[x][y][2])));
+                                        sumados[x][y][3] = negador(and(binario(imagenA[x][y][3]), binario(imagenB[x][y][3])));
+                                    }
+                            }                        
+                        break;    
+                    case 4: //nor
+                        for(int x = 0; x < ancho; x++)
+                            {
+                                for(int y = 0; y < alto; y++)
+                                    {
+                                        sumados[x][y][1] = negador(or(binario(imagenA[x][y][1]), binario(imagenB[x][y][1])));
+                                        sumados[x][y][2] = negador(or(binario(imagenA[x][y][2]), binario(imagenB[x][y][2])));
+                                        sumados[x][y][3] = negador(or(binario(imagenA[x][y][3]), binario(imagenB[x][y][3])));
+                                    }
+                            }                                                
+                        break;
+                    case 5: //xnor
+                        for(int x = 0; x < ancho; x++)
+                            {
+                                for(int y = 0; y < alto; y++)
+                                    {
+                                        sumados[x][y][1] = negador(xor(binario(imagenA[x][y][1]), binario(imagenB[x][y][1])));
+                                        sumados[x][y][2] = negador(xor(binario(imagenA[x][y][2]), binario(imagenB[x][y][2])));
+                                        sumados[x][y][3] = negador(xor(binario(imagenA[x][y][3]), binario(imagenB[x][y][3])));
+                                    }
+                            }                                                
+                        break;
+                    case 6: //not
+                       for(int x = 0; x < ancho; x++)
+                            {
+                                for(int y = 0; y < alto; y++)
+                                    {
+                                        sumados[x][y][1] = negador(imagenA[x][y][1]);
+                                        sumados[x][y][2] = negador(imagenA[x][y][2]);
+                                        sumados[x][y][3] = negador(imagenA[x][y][3]);
+                                    }
+                            }                        
+                        break;                        
+                    default:    
+                }            
+            
+            return sumados;
+        }    
+    public int[][][] inverso(Imagen img)
+        {
+            int ancho = 0, alto = 0;
+            ancho = img.getAncho();
+            alto = img.getAlto();
+            int[][][] inverso = new int[ancho][alto][4];
+            int[][][] rgb = img.getArgb();
+            for(int x = 0; x < ancho; x++)
+                {
+                    for(int y = 0; y < alto; y++)
+                        {
+                            inverso[x][y][1] = 255 - rgb[x][y][1];
+                            inverso[x][y][2] = 255 - rgb[x][y][2];
+                            inverso[x][y][3] = 255 - rgb[x][y][3];
+                        }
+                }
+            return inverso;
+        }
+    public int[] binario(int num)
+        {
+            int[] bin = {0,0,0,0,0,0,0,0};
+            String binary = Integer.toBinaryString(num);
+            for(int i = 0; i < binary.length(); i++)
+                {
+                    if( (binary.charAt(i) + "").equals("1") )
+                        {
+                            bin[i] = 1;
+                        }
+                }
+            return bin;
+        }
+    public int and(int[] a, int[] b)
+        {
+            String num = "";
+            
+            for(int i = 0; i < 8; i++)
+                {
+                    if(a[i] == 1 && b[i] == 1)
+                        {
+                            num += 1;
+                        }
+                     else
+                        {
+                            num += 0;
+                        }
+                }            
+            return Integer.parseInt(num, 2);        
+        }
+
+   public int or(int[] a, int[] b)
+        {
+            String num = "";
+            
+            for(int i = 0; i < 8; i++)
+                {
+                    if(a[i] == 0 && b[i] == 0)
+                        {
+                            num += 0;
+                        }
+                     else
+                        {
+                            num += 1;
+                        }
+                }            
+            return Integer.parseInt(num, 2);         
+        }    
+   
+   public int xor(int[] a, int[] b)
+        {
+            String num = "";
+            
+            for(int i = 0; i < 8; i++)
+                {
+                    if(a[i] == b[i])
+                        {
+                            num += 0;
+                        }
+                     else
+                        {
+                            num += 1;
+                        }
+                }            
+            return Integer.parseInt(num, 2);        
+        }   
+   
+   public int negador(int a)
+    {        
+        String binary = Integer.toBinaryString(a);        
+        String neg = "";        
+        for(int i = 0; i < binary.length(); i++)
+            {
+                neg += (binary.charAt(i) == '0') ? "1" : "0";
+            }
+        return Integer.parseInt(neg, 2);
+    }
+    
+   
 }
