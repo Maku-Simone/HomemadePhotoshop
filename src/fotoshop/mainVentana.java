@@ -971,7 +971,10 @@ public class mainVentana extends javax.swing.JFrame {
                                     oper = " ¬(-V-) ";
                                 break;    
                                 case 10: 
-                                    operacionesAritmeticas = tra.logicos(limiteArray[0], null, 6);
+                                    Imagen vacia = new Imagen();
+                                    vacia.setAlto(1000000);
+                                    vacia.setAncho(1000000);                                    
+                                    operacionesAritmeticas = tra.logicos(limiteArray[0], vacia, 6);
                                     oper = " negado";
                                 break;    
                                 default:
