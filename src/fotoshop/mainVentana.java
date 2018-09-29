@@ -8,6 +8,7 @@ package fotoshop;
 import fotoshop.Logica.Dibujo;
 import fotoshop.Logica.Imagen;
 import fotoshop.Logica.Transformaciones;
+import histograma.Histogram;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.List;
@@ -155,7 +156,7 @@ public class mainVentana extends javax.swing.JFrame {
         xnorBoton = new javax.swing.JButton();
         norBoton = new javax.swing.JButton();
         nanBoton = new javax.swing.JButton();
-        notBoton = new javax.swing.JButton();
+        histogramaBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -424,16 +425,14 @@ public class mainVentana extends javax.swing.JFrame {
             }
         });
 
-        notBoton.setBackground(new java.awt.Color(255, 255, 255));
-        notBoton.setForeground(new java.awt.Color(204, 0, 0));
-        notBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/not.png"))); // NOI18N
-        notBoton.setAlignmentY(0.0F);
-        notBoton.setBorderPainted(false);
-        notBoton.setContentAreaFilled(false);
-        notBoton.setMargin(new java.awt.Insets(2, 1, 2, 1));
-        notBoton.addActionListener(new java.awt.event.ActionListener() {
+        histogramaBoton.setBackground(new java.awt.Color(255, 255, 255));
+        histogramaBoton.setForeground(new java.awt.Color(0, 204, 255));
+        histogramaBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/inverso.png"))); // NOI18N
+        histogramaBoton.setBorderPainted(false);
+        histogramaBoton.setContentAreaFilled(false);
+        histogramaBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                notBotonActionPerformed(evt);
+                histogramaBotonActionPerformed(evt);
             }
         });
 
@@ -493,7 +492,7 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(xorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(notBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(histogramaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 542, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -525,7 +524,7 @@ public class mainVentana extends javax.swing.JFrame {
                             .addComponent(andBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(orBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(xorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(notBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(histogramaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sumaBotom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -816,10 +815,14 @@ public class mainVentana extends javax.swing.JFrame {
         initOperacion(listaImagenes, 9);  
     }//GEN-LAST:event_nanBotonActionPerformed
 
-    private void notBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notBotonActionPerformed
+    private void histogramaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_histogramaBotonActionPerformed
         // TODO add your handling code here:
-        initOperacion(listaImagenes, 10);  
-    }//GEN-LAST:event_notBotonActionPerformed
+        int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {     
+                new Histogram().display(listaImagenes.get(r));
+            }
+    }//GEN-LAST:event_histogramaBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -866,12 +869,12 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JButton diviBoton;
     private javax.swing.JButton gBoton;
     private javax.swing.JButton grisesBoton;
+    private javax.swing.JButton histogramaBoton;
     private javax.swing.JButton inversoBoton;
     private javax.swing.JLabel labelUmbral;
     private javax.swing.JButton multiBoton;
     private javax.swing.JButton nanBoton;
     private javax.swing.JButton norBoton;
-    private javax.swing.JButton notBoton;
     private javax.swing.JButton orBoton;
     private javax.swing.JTabbedPane panelTabs;
     private javax.swing.JButton rBoton;
