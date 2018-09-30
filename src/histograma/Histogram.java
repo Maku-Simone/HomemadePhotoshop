@@ -25,6 +25,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import static javax.swing.WindowConstants.HIDE_ON_CLOSE;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -105,9 +107,17 @@ public class Histogram {
         JPanel panel = new JPanel();
         panel.add(new JCheckBox(new VisibleAction(0)));
         panel.add(new JCheckBox(new VisibleAction(1)));
-        panel.add(new JCheckBox(new VisibleAction(2)));
+        panel.add(new JCheckBox(new VisibleAction(2)));        
         return panel;
     }
+    
+    private JPanel createTabla(Imagen img)
+        {
+            JPanel panel = new JPanel();
+            Data datos = new Data();        
+            panel.add(datos.Data(img));
+            return panel;
+        }
 
     private class VisibleAction extends AbstractAction {
 
@@ -128,11 +138,16 @@ public class Histogram {
 
     public void display(Imagen img) {
         image = setImage(img);
+        
+        //datos.pack();
+      //  datos.setDefaultCloseOperation(HIDE_ON_CLOSE);
+        //datos.setVisible(true);
         JFrame f = new JFrame("Histograma sensual");
         f.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        f.add(createChartPanel());
-        f.add(createControlPanel(), BorderLayout.SOUTH);
-        f.add(new JLabel(new ImageIcon(image)), BorderLayout.WEST);
+        f.add(createChartPanel());                
+        f.add(createControlPanel(), BorderLayout.NORTH);
+        f.add(createTabla(img), BorderLayout.SOUTH);
+        f.add(new JLabel(new ImageIcon(image)), BorderLayout.WEST);             
         f.pack();
         f.setLocationRelativeTo(null);
         f.setVisible(true);

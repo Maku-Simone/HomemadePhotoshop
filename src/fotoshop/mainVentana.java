@@ -8,6 +8,7 @@ package fotoshop;
 import fotoshop.Logica.Dibujo;
 import fotoshop.Logica.Imagen;
 import fotoshop.Logica.Transformaciones;
+import histograma.Data;
 import histograma.Histogram;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -30,6 +31,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import static javax.swing.WindowConstants.HIDE_ON_CLOSE;
 
 
 /**
@@ -819,7 +821,7 @@ public class mainVentana extends javax.swing.JFrame {
         // TODO add your handling code here:
         int r = panelTabs.getSelectedIndex();
         if(r >= 0)
-            {     
+            {                    
                 new Histogram().display(listaImagenes.get(r));
             }
     }//GEN-LAST:event_histogramaBotonActionPerformed
