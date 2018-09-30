@@ -115,11 +115,16 @@ public class Calculos {
         public int moda(Map mapa, int[] m)
             {
                 int moda = 0;
-                for(int  i = 0; i < m.length; i++)
+                for(int  i = 0; i < 255; i++)
                     {
-                        if((int)mapa.get(m[i]) > moda)
+                        if(mapa.get(i) != null)
                             {
-                                moda = (int)mapa.get(m[i]); 
+                                int existe = (mapa.get(moda) != null) ? (int)mapa.get(moda) : 0;
+                                if((int)mapa.get(i) > existe)
+                                    {
+                                        System.out.println((int)mapa.get(i)  + " > " + mapa.get(moda));    
+                                        moda = i; 
+                                    }                                                            
                             }
                     }
                 return moda;

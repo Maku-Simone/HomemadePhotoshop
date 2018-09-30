@@ -58,9 +58,7 @@ public class Data{
         
         modaR = C.modaYenergiaYentropia(R, 3); //[moda, energia, entropia]
         modaG = C.modaYenergiaYentropia(G, 3); //0 solo moda, 1 solo energia, 2 solo entropia, 3 todo
-        modaB = C.modaYenergiaYentropia(B, 3);
-        
-        System.out.println("MODA R " + modaR[2]);
+        modaB = C.modaYenergiaYentropia(B, 3);        
         
         varianzaR = C.varianza(R, mediaR);
         varianzaG = C.varianza(G, mediaG);
@@ -87,7 +85,8 @@ public class Data{
                                 "Canal Azul"};
 
         JTable table = new JTable(data, nombreColumnas);
-        table.setPreferredSize(new Dimension(450, 150));
+        table.setPreferredSize(new Dimension(1500, 150));        
+        table.setDefaultEditor(Object.class, null);
 
 
         return table;

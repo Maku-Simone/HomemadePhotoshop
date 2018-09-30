@@ -43,11 +43,13 @@ public class mainVentana extends javax.swing.JFrame {
     /**
      * Creates new form mainVentana
      */
+    
     ArrayList<Imagen> listaImagenes = new ArrayList<Imagen>();
     static int[][][] operacionesAritmeticas;
     
     public mainVentana() {                       
-        initComponents();            
+        initComponents();     
+        panelTabs.setBackground(Color.white);
         cerrarTab.setContentAreaFilled(false);                      
         saveBoton.setContentAreaFilled(false);          
         abrirBoton.setContentAreaFilled(false);   
@@ -203,6 +205,9 @@ public class mainVentana extends javax.swing.JFrame {
                 cerrarTabActionPerformed(evt);
             }
         });
+
+        panelTabs.setBackground(new java.awt.Color(255, 255, 255));
+        panelTabs.setForeground(new java.awt.Color(255, 255, 255));
 
         saveBoton.setBackground(new java.awt.Color(204, 204, 204));
         saveBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/save.png"))); // NOI18N

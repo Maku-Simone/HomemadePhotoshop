@@ -79,6 +79,7 @@ public class Histogram {
         dataset.addSeries("Verde", r, BINS);
         r = raster.getSamples(0, 0, w, h, 2, r);
         dataset.addSeries("Azul", r, BINS);
+ 
         // chart
         JFreeChart chart = ChartFactory.createHistogram("Histograma sensual :3", "Valor",
             "Cantidad", dataset, PlotOrientation.VERTICAL, true, true, false);
@@ -107,7 +108,8 @@ public class Histogram {
         JPanel panel = new JPanel();
         panel.add(new JCheckBox(new VisibleAction(0)));
         panel.add(new JCheckBox(new VisibleAction(1)));
-        panel.add(new JCheckBox(new VisibleAction(2)));        
+        panel.add(new JCheckBox(new VisibleAction(2)));  
+        panel.setBackground(Color.white);
         return panel;
     }
     
@@ -115,7 +117,8 @@ public class Histogram {
         {
             JPanel panel = new JPanel();
             Data datos = new Data();        
-            panel.add(datos.Data(img));
+            panel.add(datos.Data(img));       
+            panel.setBackground(Color.white);
             return panel;
         }
 
@@ -147,7 +150,8 @@ public class Histogram {
         f.add(createChartPanel());                
         f.add(createControlPanel(), BorderLayout.NORTH);
         f.add(createTabla(img), BorderLayout.SOUTH);
-        f.add(new JLabel(new ImageIcon(image)), BorderLayout.WEST);             
+        f.add(new JLabel(new ImageIcon(image)), BorderLayout.WEST);       
+        f.getContentPane().setBackground(Color.white);
         f.pack();
         f.setLocationRelativeTo(null);
         f.setVisible(true);
