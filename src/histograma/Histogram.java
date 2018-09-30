@@ -46,6 +46,8 @@ public class Histogram {
     private BufferedImage image;
     private HistogramDataset dataset;
     private XYBarRenderer renderer;
+    int media = 0;
+    
 
     private BufferedImage setImage(Imagen im) 
         {            
