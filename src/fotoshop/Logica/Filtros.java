@@ -11,24 +11,24 @@ package fotoshop.Logica;
  */
 public class Filtros {
     //pasa bajas
-    final int[][] promedio = {{1,1,1} ,{1,1,1} ,{1,1,1}};
-    final int[][] gauss = {{1,2,1},{2,4,2},{1,2,1}};
+    public final static int[][] PROMEDIO = {{1,1,1} ,{1,1,1} ,{1,1,1}};
+    public final static int[][] GAUSS = {{1,2,1},{2,4,2},{1,2,1}};
     
     //pasa altas
-    final int[][] diferenciaPixelX = {{0,0,0}, {0,1,-1}, {0,0,0}};
-    final int[][] diferenciaPixelY = {{0,-1,0}, {0,1,0}, {0,0,0}};
+    public final static int[][] DIF_PIX_X = {{0,0,0}, {0,1,-1}, {0,0,0}};
+    public final static int[][] DIF_PIX_Y = {{0,-1,0}, {0,1,0}, {0,0,0}};
 
-    final int[][] separadoX = {{0,0,0}, {1,0,-1}, {0,0,0}};
-    final int[][] separadoY = {{0,-1,0}, {0,0,0}, {0,1,0}};
+    public final static int[][] SEP_X = {{0,0,0}, {1,0,-1}, {0,0,0}};
+    public final static int[][] SEP_Y = {{0,-1,0}, {0,0,0}, {0,1,0}};
 
-    final int[][] robertsX = {{0,0,-1}, {0,1,0}, {0,0,0}};
-    final int[][] robertsY = {{-1,0,0}, {0,1,0}, {0,0,0}};
+    public final static int[][] ROBERTS_X = {{0,0,-1}, {0,1,0}, {0,0,0}};
+    public final static int[][] ROBERTS_Y = {{-1,0,0}, {0,1,0}, {0,0,0}};
 
-    final int[][] prewittX = {{1,0,-1}, {1,0,-1}, {1,0,-1}};
-    final int[][] prewittY = {{-1,-1,-1}, {0,0,0}, {1,1,1}};
+    public final static int[][] PREWITT_X = {{1,0,-1}, {1,0,-1}, {1,0,-1}};
+    public final static int[][] PREWITT_Y = {{-1,-1,-1}, {0,0,0}, {1,1,1}};
 
-    final int[][] sobelX = {{,,}, {,,}, {,,}};
-    final int[][] sobelY = {{,,}, {,,}, {,,}};
+    public final static int[][] SOBEL_X = {{1,0,-1}, {2,0,-2}, {1,0,-1}};
+    public final static int[][] SOBEL_Y = {{-1,-2,-1}, {0,0,0}, {1,2,1}};
     
     
     
@@ -38,17 +38,18 @@ public class Filtros {
                 {
                     kernel = rotaKernel(kernel);
                 }
-            int[][][] expandido, sinCeros;
+            int[][][] expandido, copiaExp, sinCeros;
             expandido = expande(argb);
+            copiaExp = expandido;
             sinCeros = new int[argb.length][argb[0].length][4];
             
             for(int x = 1; x < argb.length; x++)
                 {
                     for(int y = 1; y < argb[0].length; y++)
                         {
-                            expandido[x][y][1] = multiplica(x, y, kernel, argb, cosaK, 1);
-                            expandido[x][y][2] = multiplica(x, y, kernel, argb, cosaK, 2);                                   
-                            expandido[x][y][3] = multiplica(x, y, kernel, argb, cosaK, 3);
+                            expandido[x][y][1] = multiplica(x, y, kernel, copiaExp, cosaK, 1);
+                            expandido[x][y][2] = multiplica(x, y, kernel, copiaExp, cosaK, 2);                                   
+                            expandido[x][y][3] = multiplica(x, y, kernel, copiaExp, cosaK, 3);
                         }
                 }
             for(int x = 0; x < argb.length; x++)
@@ -87,9 +88,9 @@ public class Filtros {
                     largo[0][y][2] = 0;
                     largo[0][y][3] = 0;   
                     
-                    largo[largo[0].length - 1][y][1] = 0;
-                    largo[largo[0].length - 1][y][2] = 0;
-                    largo[largo[0].length - 1][y][3] = 0;                       
+                    largo[largo.length - 1][y][1] = 0;
+                    largo[largo.length - 1][y][2] = 0;
+                    largo[largo.length - 1][y][3] = 0;                       
                 }
         
             for(int x = 0; x < largo.length; x++) //horizontales
@@ -98,17 +99,17 @@ public class Filtros {
                     largo[x][0][2] = 0;
                     largo[x][0][3] = 0;   
                     
-                    largo[x][largo.length - 1][1] = 0;
-                    largo[x][largo.length - 1][2] = 0;
-                    largo[x][largo.length - 1][3] = 0;                       
+                    largo[x][largo[0].length - 1][1] = 0;
+                    largo[x][largo[0].length - 1][2] = 0;
+                    largo[x][largo[0].length - 1][3] = 0;                       
                 }
             for(int x = 1; x < argb.length; x++)
                 {
                     for(int y = 1; y < argb[0].length; y++)
                         {
-                            largo[x][y][0] = argb[x-1][y-1][1];
-                            largo[x][y][1] = argb[x-1][y-1][2];
-                            largo[x][y][2] = argb[x-1][y-1][3];
+                            largo[x][y][1] = argb[x-1][y-1][1];
+                            largo[x][y][2] = argb[x-1][y-1][2];
+                            largo[x][y][3] = argb[x-1][y-1][3];
                         }
                 }
             return largo;
@@ -118,6 +119,8 @@ public class Filtros {
     public int multiplica(int x, int y, int[][] kernel, int[][][] argb, int k, int canal)
         {
             int suma = 0;
+            x += 1;
+            y += 1;
             
             suma+= argb[x-1][y-1][canal] * kernel[0][0]; //[0][0]
             suma+= argb[x][y-1][canal] * kernel[0][1]; //[0][1]
@@ -129,8 +132,8 @@ public class Filtros {
             
             suma+= argb[x-1][y+1][canal] * kernel[2][0];
             suma+= argb[x][y+1][canal] * kernel[2][1];
-            suma+= argb[x+1][y+1][canal] * kernel[2][2];
+            suma+= argb[x+1][y+1][canal] * kernel[2][2];           
             
-            return suma/canal;
+            return suma/k;
         }
 }

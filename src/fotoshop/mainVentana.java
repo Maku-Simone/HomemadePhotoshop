@@ -6,6 +6,7 @@
 package fotoshop;
 
 import fotoshop.Logica.Dibujo;
+import fotoshop.Logica.Filtros;
 import fotoshop.Logica.Imagen;
 import fotoshop.Logica.Transformaciones;
 import histograma.Data;
@@ -161,6 +162,15 @@ public class mainVentana extends javax.swing.JFrame {
         norBoton = new javax.swing.JButton();
         nanBoton = new javax.swing.JButton();
         histogramaBoton = new javax.swing.JButton();
+        opersHistogramaBoton = new javax.swing.JButton();
+        filtroPromedioBoton = new javax.swing.JButton();
+        filtroPromedioPesadoBoton = new javax.swing.JButton();
+        gaussianoBoton = new javax.swing.JButton();
+        pixSepBoton = new javax.swing.JButton();
+        robertsBoton = new javax.swing.JButton();
+        sobelBoton = new javax.swing.JButton();
+        difPixBoton = new javax.swing.JButton();
+        prewittBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -170,6 +180,7 @@ public class mainVentana extends javax.swing.JFrame {
         abrirBoton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         abrirBoton.setForeground(javax.swing.UIManager.getDefaults().getColor("netbeans.ps.background"));
         abrirBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/file.png"))); // NOI18N
+        abrirBoton.setToolTipText("Abrir nueva imagen");
         abrirBoton.setAlignmentY(0.0F);
         abrirBoton.setBorderPainted(false);
         abrirBoton.setFocusCycleRoot(true);
@@ -189,6 +200,7 @@ public class mainVentana extends javax.swing.JFrame {
         cerrarTab.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         cerrarTab.setForeground(new java.awt.Color(255, 255, 255));
         cerrarTab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/x.png"))); // NOI18N
+        cerrarTab.setToolTipText("Cerrar Imagen actual");
         cerrarTab.setAlignmentY(0.0F);
         cerrarTab.setBorderPainted(false);
         cerrarTab.setFocusCycleRoot(true);
@@ -211,6 +223,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         saveBoton.setBackground(new java.awt.Color(204, 204, 204));
         saveBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/save.png"))); // NOI18N
+        saveBoton.setToolTipText("Guardar Imagen actual");
         saveBoton.setMargin(new java.awt.Insets(0, 0, 0, 0));
         saveBoton.setMaximumSize(new java.awt.Dimension(50, 66));
         saveBoton.setMinimumSize(new java.awt.Dimension(50, 66));
@@ -218,6 +231,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         redoBoton.setBackground(new java.awt.Color(204, 204, 204));
         redoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/redo.png"))); // NOI18N
+        redoBoton.setToolTipText("Deshacer todo");
         redoBoton.setMargin(new java.awt.Insets(0, 0, 0, 0));
         redoBoton.setMaximumSize(new java.awt.Dimension(50, 66));
         redoBoton.setMinimumSize(new java.awt.Dimension(50, 66));
@@ -245,6 +259,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         grisesBoton.setBackground(new java.awt.Color(204, 204, 204));
         grisesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/Gris.png"))); // NOI18N
+        grisesBoton.setToolTipText("Escala de grises");
         grisesBoton.setMargin(new java.awt.Insets(0, 0, 0, 0));
         grisesBoton.setMaximumSize(new java.awt.Dimension(50, 66));
         grisesBoton.setMinimumSize(new java.awt.Dimension(50, 66));
@@ -258,6 +273,7 @@ public class mainVentana extends javax.swing.JFrame {
         rBoton.setBackground(new java.awt.Color(255, 255, 255));
         rBoton.setForeground(new java.awt.Color(204, 0, 0));
         rBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/red.png"))); // NOI18N
+        rBoton.setToolTipText("Canal Rojo");
         rBoton.setAlignmentY(0.0F);
         rBoton.setBorderPainted(false);
         rBoton.setContentAreaFilled(false);
@@ -271,6 +287,7 @@ public class mainVentana extends javax.swing.JFrame {
         gBoton.setBackground(new java.awt.Color(255, 255, 255));
         gBoton.setForeground(new java.awt.Color(0, 204, 0));
         gBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/green.png"))); // NOI18N
+        gBoton.setToolTipText("Canal Verde");
         gBoton.setBorderPainted(false);
         gBoton.setContentAreaFilled(false);
         gBoton.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -283,6 +300,7 @@ public class mainVentana extends javax.swing.JFrame {
         bBoton.setBackground(new java.awt.Color(255, 255, 255));
         bBoton.setForeground(new java.awt.Color(0, 204, 255));
         bBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/blue.png"))); // NOI18N
+        bBoton.setToolTipText("Canal Azul");
         bBoton.setBorderPainted(false);
         bBoton.setContentAreaFilled(false);
         bBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -294,6 +312,7 @@ public class mainVentana extends javax.swing.JFrame {
         sumaBotom.setBackground(new java.awt.Color(255, 255, 255));
         sumaBotom.setForeground(new java.awt.Color(204, 0, 0));
         sumaBotom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/suma.png"))); // NOI18N
+        sumaBotom.setToolTipText("Suma");
         sumaBotom.setAlignmentY(0.0F);
         sumaBotom.setBorderPainted(false);
         sumaBotom.setContentAreaFilled(false);
@@ -307,6 +326,7 @@ public class mainVentana extends javax.swing.JFrame {
         multiBoton.setBackground(new java.awt.Color(255, 255, 255));
         multiBoton.setForeground(new java.awt.Color(204, 0, 0));
         multiBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/multi.png"))); // NOI18N
+        multiBoton.setToolTipText("Multiplicación");
         multiBoton.setAlignmentY(0.0F);
         multiBoton.setBorderPainted(false);
         multiBoton.setContentAreaFilled(false);
@@ -320,6 +340,7 @@ public class mainVentana extends javax.swing.JFrame {
         restaBoton.setBackground(new java.awt.Color(255, 255, 255));
         restaBoton.setForeground(new java.awt.Color(204, 0, 0));
         restaBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/resta.png"))); // NOI18N
+        restaBoton.setToolTipText("Resta");
         restaBoton.setAlignmentY(0.0F);
         restaBoton.setBorderPainted(false);
         restaBoton.setContentAreaFilled(false);
@@ -333,6 +354,7 @@ public class mainVentana extends javax.swing.JFrame {
         diviBoton.setBackground(new java.awt.Color(255, 255, 255));
         diviBoton.setForeground(new java.awt.Color(204, 0, 0));
         diviBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/divi.png"))); // NOI18N
+        diviBoton.setToolTipText("División");
         diviBoton.setAlignmentY(0.0F);
         diviBoton.setBorderPainted(false);
         diviBoton.setContentAreaFilled(false);
@@ -346,6 +368,7 @@ public class mainVentana extends javax.swing.JFrame {
         inversoBoton.setBackground(new java.awt.Color(255, 255, 255));
         inversoBoton.setForeground(new java.awt.Color(0, 204, 255));
         inversoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/inverso.png"))); // NOI18N
+        inversoBoton.setToolTipText("Inverso");
         inversoBoton.setBorderPainted(false);
         inversoBoton.setContentAreaFilled(false);
         inversoBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -357,6 +380,7 @@ public class mainVentana extends javax.swing.JFrame {
         andBoton.setBackground(new java.awt.Color(255, 255, 255));
         andBoton.setForeground(new java.awt.Color(204, 0, 0));
         andBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/and.png"))); // NOI18N
+        andBoton.setToolTipText("AND");
         andBoton.setAlignmentY(0.0F);
         andBoton.setBorderPainted(false);
         andBoton.setContentAreaFilled(false);
@@ -370,6 +394,7 @@ public class mainVentana extends javax.swing.JFrame {
         orBoton.setBackground(new java.awt.Color(255, 255, 255));
         orBoton.setForeground(new java.awt.Color(204, 0, 0));
         orBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/or.png"))); // NOI18N
+        orBoton.setToolTipText("OR");
         orBoton.setAlignmentY(0.0F);
         orBoton.setBorderPainted(false);
         orBoton.setContentAreaFilled(false);
@@ -383,6 +408,7 @@ public class mainVentana extends javax.swing.JFrame {
         xorBoton.setBackground(new java.awt.Color(255, 255, 255));
         xorBoton.setForeground(new java.awt.Color(204, 0, 0));
         xorBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/xor.png"))); // NOI18N
+        xorBoton.setToolTipText("XOR");
         xorBoton.setAlignmentY(0.0F);
         xorBoton.setBorderPainted(false);
         xorBoton.setContentAreaFilled(false);
@@ -396,6 +422,7 @@ public class mainVentana extends javax.swing.JFrame {
         xnorBoton.setBackground(new java.awt.Color(255, 255, 255));
         xnorBoton.setForeground(new java.awt.Color(204, 0, 0));
         xnorBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/xnor.png"))); // NOI18N
+        xnorBoton.setToolTipText("XNOR");
         xnorBoton.setAlignmentY(0.0F);
         xnorBoton.setBorderPainted(false);
         xnorBoton.setContentAreaFilled(false);
@@ -409,6 +436,7 @@ public class mainVentana extends javax.swing.JFrame {
         norBoton.setBackground(new java.awt.Color(255, 255, 255));
         norBoton.setForeground(new java.awt.Color(204, 0, 0));
         norBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/nor.png"))); // NOI18N
+        norBoton.setToolTipText("NOR");
         norBoton.setAlignmentY(0.0F);
         norBoton.setBorderPainted(false);
         norBoton.setContentAreaFilled(false);
@@ -422,6 +450,7 @@ public class mainVentana extends javax.swing.JFrame {
         nanBoton.setBackground(new java.awt.Color(255, 255, 255));
         nanBoton.setForeground(new java.awt.Color(204, 0, 0));
         nanBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/nand.png"))); // NOI18N
+        nanBoton.setToolTipText("NAND");
         nanBoton.setAlignmentY(0.0F);
         nanBoton.setBorderPainted(false);
         nanBoton.setContentAreaFilled(false);
@@ -435,11 +464,120 @@ public class mainVentana extends javax.swing.JFrame {
         histogramaBoton.setBackground(new java.awt.Color(255, 255, 255));
         histogramaBoton.setForeground(new java.awt.Color(0, 204, 255));
         histogramaBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/histogram.png"))); // NOI18N
+        histogramaBoton.setToolTipText("Histograma");
         histogramaBoton.setBorderPainted(false);
         histogramaBoton.setContentAreaFilled(false);
         histogramaBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 histogramaBotonActionPerformed(evt);
+            }
+        });
+
+        opersHistogramaBoton.setBackground(new java.awt.Color(255, 255, 255));
+        opersHistogramaBoton.setForeground(new java.awt.Color(0, 204, 255));
+        opersHistogramaBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/histoOpers.png"))); // NOI18N
+        opersHistogramaBoton.setToolTipText("Operaciones sobre el Histograma");
+        opersHistogramaBoton.setBorderPainted(false);
+        opersHistogramaBoton.setContentAreaFilled(false);
+        opersHistogramaBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opersHistogramaBotonActionPerformed(evt);
+            }
+        });
+
+        filtroPromedioBoton.setBackground(new java.awt.Color(255, 255, 255));
+        filtroPromedioBoton.setForeground(new java.awt.Color(0, 204, 255));
+        filtroPromedioBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/promedio.png"))); // NOI18N
+        filtroPromedioBoton.setToolTipText("Filtro Promedio");
+        filtroPromedioBoton.setBorderPainted(false);
+        filtroPromedioBoton.setContentAreaFilled(false);
+        filtroPromedioBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtroPromedioBotonActionPerformed(evt);
+            }
+        });
+
+        filtroPromedioPesadoBoton.setBackground(new java.awt.Color(255, 255, 255));
+        filtroPromedioPesadoBoton.setForeground(new java.awt.Color(0, 204, 255));
+        filtroPromedioPesadoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/promedioPesado.png"))); // NOI18N
+        filtroPromedioPesadoBoton.setToolTipText("Filtro Promedio Pesado");
+        filtroPromedioPesadoBoton.setBorderPainted(false);
+        filtroPromedioPesadoBoton.setContentAreaFilled(false);
+        filtroPromedioPesadoBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtroPromedioPesadoBotonActionPerformed(evt);
+            }
+        });
+
+        gaussianoBoton.setBackground(new java.awt.Color(255, 255, 255));
+        gaussianoBoton.setForeground(new java.awt.Color(0, 204, 255));
+        gaussianoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/gauss.png"))); // NOI18N
+        gaussianoBoton.setToolTipText("Filtro Gaussiano");
+        gaussianoBoton.setBorderPainted(false);
+        gaussianoBoton.setContentAreaFilled(false);
+        gaussianoBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gaussianoBotonActionPerformed(evt);
+            }
+        });
+
+        pixSepBoton.setBackground(new java.awt.Color(255, 255, 255));
+        pixSepBoton.setForeground(new java.awt.Color(0, 204, 255));
+        pixSepBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/pixel.png"))); // NOI18N
+        pixSepBoton.setToolTipText("Filtro de diferencia de pixel separado");
+        pixSepBoton.setBorderPainted(false);
+        pixSepBoton.setContentAreaFilled(false);
+        pixSepBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pixSepBotonActionPerformed(evt);
+            }
+        });
+
+        robertsBoton.setBackground(new java.awt.Color(255, 255, 255));
+        robertsBoton.setForeground(new java.awt.Color(0, 204, 255));
+        robertsBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/Roberts.png"))); // NOI18N
+        robertsBoton.setToolTipText("Filtro de Roberts");
+        robertsBoton.setBorderPainted(false);
+        robertsBoton.setContentAreaFilled(false);
+        robertsBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                robertsBotonActionPerformed(evt);
+            }
+        });
+
+        sobelBoton.setBackground(new java.awt.Color(255, 255, 255));
+        sobelBoton.setForeground(new java.awt.Color(0, 204, 255));
+        sobelBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/Sobel.png"))); // NOI18N
+        sobelBoton.setToolTipText("Filtro de Sobel");
+        sobelBoton.setBorderPainted(false);
+        sobelBoton.setContentAreaFilled(false);
+        sobelBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sobelBotonActionPerformed(evt);
+            }
+        });
+
+        difPixBoton.setBackground(new java.awt.Color(255, 255, 255));
+        difPixBoton.setForeground(new java.awt.Color(0, 204, 255));
+        difPixBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/difPixel.png"))); // NOI18N
+        difPixBoton.setToolTipText("Filtro de diferencia de pixeles");
+        difPixBoton.setBorderPainted(false);
+        difPixBoton.setContentAreaFilled(false);
+        difPixBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                difPixBotonActionPerformed(evt);
+            }
+        });
+
+        prewittBoton.setBackground(new java.awt.Color(255, 255, 255));
+        prewittBoton.setForeground(new java.awt.Color(0, 204, 255));
+        prewittBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/Prewitt.png"))); // NOI18N
+        prewittBoton.setToolTipText("Filtro de Prewitt");
+        prewittBoton.setBorderPainted(false);
+        prewittBoton.setContentAreaFilled(false);
+        prewittBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prewittBotonActionPerformed(evt);
             }
         });
 
@@ -481,15 +619,7 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(multiBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(diviBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nanBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(norBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(xnorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(inversoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -499,8 +629,36 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(xorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(histogramaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 542, Short.MAX_VALUE)))
+                                .addComponent(histogramaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(filtroPromedioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(diviBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nanBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(norBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(xnorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(opersHistogramaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(difPixBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(filtroPromedioPesadoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(gaussianoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(prewittBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pixSepBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(robertsBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sobelBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 390, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -531,7 +689,11 @@ public class mainVentana extends javax.swing.JFrame {
                             .addComponent(andBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(orBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(xorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(histogramaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(histogramaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(filtroPromedioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(filtroPromedioPesadoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gaussianoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(prewittBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sumaBotom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -540,7 +702,12 @@ public class mainVentana extends javax.swing.JFrame {
                             .addComponent(diviBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nanBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(norBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(xnorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(xnorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(opersHistogramaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pixSepBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(robertsBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sobelBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(difPixBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(panelTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
                 .addContainerGap())
@@ -831,6 +998,191 @@ public class mainVentana extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_histogramaBotonActionPerformed
 
+    private void opersHistogramaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opersHistogramaBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_opersHistogramaBotonActionPerformed
+
+    private void filtroPromedioBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroPromedioBotonActionPerformed
+        // TODO add your handling code here:
+        
+        int r = panelTabs.getSelectedIndex();
+      //  System.out.println("index es " + r);
+        int[][][] filtrado;
+     //   binario = binarizacion(100, listaImagenes.get(r));
+        if(r >= 0)
+            {                            
+             //   panelTabs.remove(r);
+             //   System.out.println("repintaremos " + r);
+                Filtros F = new Filtros(); 
+                Transformaciones T = new Transformaciones();
+                Imagen img = listaImagenes.get(r);                
+                filtrado = T.ajusta(F.convolucion(img.getArgb(), Filtros.PROMEDIO, 9, 1));
+                listaImagenes.get(r).setModificado(filtrado);
+                JFrame f = new JFrame();
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(filtrado, img.getAncho(), img.getAlto()));
+                f.add(scroll);
+                panelTabs.setComponentAt(r, f.getContentPane());
+
+            }
+        
+        
+    }//GEN-LAST:event_filtroPromedioBotonActionPerformed
+
+    private void filtroPromedioPesadoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroPromedioPesadoBotonActionPerformed
+        // TODO add your handling code here:                
+        int r = panelTabs.getSelectedIndex();
+        int[][][] filtrado;
+        if(r >= 0)
+            {                            
+              
+                int N = verificaEntero(JOptionPane.showInputDialog("Introduzca el valor del filtro pesado:"));                                                         
+                
+                Filtros F = new Filtros(); 
+                Transformaciones T = new Transformaciones();
+                Imagen img = listaImagenes.get(r);                
+                filtrado = T.ajusta(F.convolucion(img.getArgb(), Filtros.PROMEDIO, N > 0 ? N + 8: 8, 1));
+                listaImagenes.get(r).setModificado(filtrado);
+                JFrame f = new JFrame();
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(filtrado, img.getAncho(), img.getAlto()));
+                f.add(scroll);
+                panelTabs.setComponentAt(r, f.getContentPane());
+
+            }        
+    }//GEN-LAST:event_filtroPromedioPesadoBotonActionPerformed
+
+    private void gaussianoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gaussianoBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        int[][][] filtrado;
+        if(r >= 0)
+            {                                                                                                             
+                Filtros F = new Filtros(); 
+                Transformaciones T = new Transformaciones();
+                Imagen img = listaImagenes.get(r);                
+                filtrado = T.ajusta(F.convolucion(img.getArgb(), Filtros.GAUSS,16, 1));
+                listaImagenes.get(r).setModificado(filtrado);
+                JFrame f = new JFrame();
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(filtrado, img.getAncho(), img.getAlto()));
+                f.add(scroll);
+                panelTabs.setComponentAt(r, f.getContentPane());
+
+            } 
+        
+    }//GEN-LAST:event_gaussianoBotonActionPerformed
+
+    private void pixSepBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pixSepBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        int[][][] filtroX, filtroXY;
+        if(r >= 0)
+            {                                                                                                              
+                Filtros F = new Filtros(); 
+                Transformaciones T = new Transformaciones();
+                Imagen img = listaImagenes.get(r);                
+                filtroX = F.convolucion(img.getArgb(), Filtros.SEP_X, 1, 0);
+                filtroXY = T.ajusta(F.convolucion(filtroX, Filtros.SEP_Y, 1, 0));
+                listaImagenes.get(r).setModificado(filtroXY);
+                JFrame f = new JFrame();
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(filtroXY, img.getAncho(), img.getAlto()));
+                f.add(scroll);
+                panelTabs.setComponentAt(r, f.getContentPane());
+
+            } 
+    }//GEN-LAST:event_pixSepBotonActionPerformed
+
+    private void robertsBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_robertsBotonActionPerformed
+        // TODO add your handling code here:
+                int r = panelTabs.getSelectedIndex();
+                int[][][] filtroX, filtroXY;
+                if(r >= 0)
+                    {                                                                                                              
+                        Filtros F = new Filtros(); 
+                        Transformaciones T = new Transformaciones();
+                        Imagen img = listaImagenes.get(r);                
+                        filtroX = F.convolucion(img.getArgb(), Filtros.ROBERTS_X, 1, 0);
+                        filtroXY = T.ajusta(F.convolucion(filtroX, Filtros.ROBERTS_Y, 1, 0));
+                        listaImagenes.get(r).setModificado(filtroXY);
+                        JFrame f = new JFrame();
+                        JScrollPane scroll = new JScrollPane();
+                        scroll.getViewport().add(new Dibujo(filtroXY, img.getAncho(), img.getAlto()));
+                        f.add(scroll);
+                        panelTabs.setComponentAt(r, f.getContentPane());
+
+                    } 
+        
+    }//GEN-LAST:event_robertsBotonActionPerformed
+
+    private void sobelBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobelBotonActionPerformed
+        // TODO add your handling code here:
+        
+        int r = panelTabs.getSelectedIndex();
+        int[][][] filtroX, filtroXY;
+        if(r >= 0)
+            {                                                                                                              
+                Filtros F = new Filtros(); 
+                Transformaciones T = new Transformaciones();
+                Imagen img = listaImagenes.get(r);                
+                filtroX = F.convolucion(img.getArgb(), Filtros.SOBEL_X, 4, 0);
+                filtroXY = T.ajusta(F.convolucion(filtroX, Filtros.SOBEL_Y, 4, 0));
+                listaImagenes.get(r).setModificado(filtroXY);
+                JFrame f = new JFrame();
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(filtroXY, img.getAncho(), img.getAlto()));
+                f.add(scroll);
+                panelTabs.setComponentAt(r, f.getContentPane());
+
+            } 
+    }//GEN-LAST:event_sobelBotonActionPerformed
+
+    private void difPixBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_difPixBotonActionPerformed
+        // TODO add your handling code here:
+        
+        int r = panelTabs.getSelectedIndex();
+        int[][][] filtroX, filtroXY;
+        if(r >= 0)
+            {                                                                                                              
+                Filtros F = new Filtros(); 
+                Transformaciones T = new Transformaciones();
+                Imagen img = listaImagenes.get(r);                
+                filtroX = F.convolucion(img.getArgb(), Filtros.DIF_PIX_X, 1, 0);
+                filtroXY = T.ajusta(F.convolucion(filtroX, Filtros.DIF_PIX_Y, 1, 0));
+                listaImagenes.get(r).setModificado(filtroXY);
+                JFrame f = new JFrame();
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(filtroXY, img.getAncho(), img.getAlto()));
+                f.add(scroll);
+                panelTabs.setComponentAt(r, f.getContentPane());
+
+            } 
+        
+    }//GEN-LAST:event_difPixBotonActionPerformed
+
+    private void prewittBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prewittBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        int[][][] filtroX, filtroXY;
+        if(r >= 0)
+            {                                                                                                              
+                Filtros F = new Filtros(); 
+                Transformaciones T = new Transformaciones();
+                Imagen img = listaImagenes.get(r);                
+                filtroX = F.convolucion(img.getArgb(), Filtros.PREWITT_X, 3, 0);
+                filtroXY = T.ajusta(F.convolucion(filtroX, Filtros.PREWITT_Y, 3, 0));
+                listaImagenes.get(r).setModificado(filtroXY);
+                JFrame f = new JFrame();
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(filtroXY, img.getAncho(), img.getAlto()));
+                f.add(scroll);
+                panelTabs.setComponentAt(r, f.getContentPane());
+
+            }         
+        
+    }//GEN-LAST:event_prewittBotonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -873,8 +1225,12 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JButton andBoton;
     private javax.swing.JButton bBoton;
     private javax.swing.JButton cerrarTab;
+    private javax.swing.JButton difPixBoton;
     private javax.swing.JButton diviBoton;
+    private javax.swing.JButton filtroPromedioBoton;
+    private javax.swing.JButton filtroPromedioPesadoBoton;
     private javax.swing.JButton gBoton;
+    private javax.swing.JButton gaussianoBoton;
     private javax.swing.JButton grisesBoton;
     private javax.swing.JButton histogramaBoton;
     private javax.swing.JButton inversoBoton;
@@ -882,13 +1238,18 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JButton multiBoton;
     private javax.swing.JButton nanBoton;
     private javax.swing.JButton norBoton;
+    private javax.swing.JButton opersHistogramaBoton;
     private javax.swing.JButton orBoton;
     private javax.swing.JTabbedPane panelTabs;
+    private javax.swing.JButton pixSepBoton;
+    private javax.swing.JButton prewittBoton;
     private javax.swing.JButton rBoton;
     private javax.swing.JButton redoBoton;
     private javax.swing.JButton restaBoton;
+    private javax.swing.JButton robertsBoton;
     private javax.swing.JButton saveBoton;
     private javax.swing.JSlider sliderUmbral;
+    private javax.swing.JButton sobelBoton;
     private javax.swing.JButton sumaBotom;
     private javax.swing.JButton xnorBoton;
     private javax.swing.JButton xorBoton;
@@ -1028,4 +1389,16 @@ public class mainVentana extends javax.swing.JFrame {
                 panelTabs.addTab(img.getNombreImagen(),null, f.getContentPane(), ":3");
                 return 0;
             }
+        public int verificaEntero(String string) 
+                {
+                    try 
+                        {
+                            return Integer.parseInt(string);
+                        }
+                    catch (NumberFormatException e) 
+                        {
+                            JOptionPane.showMessageDialog(null,"Te dije que un numero >:c \n Ahora le pondré 0 :3");
+                            return -1;
+                        }
+                }        
 }
