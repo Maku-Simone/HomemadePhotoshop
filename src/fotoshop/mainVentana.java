@@ -434,7 +434,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         histogramaBoton.setBackground(new java.awt.Color(255, 255, 255));
         histogramaBoton.setForeground(new java.awt.Color(0, 204, 255));
-        histogramaBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/inverso.png"))); // NOI18N
+        histogramaBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/histogram.png"))); // NOI18N
         histogramaBoton.setBorderPainted(false);
         histogramaBoton.setContentAreaFilled(false);
         histogramaBoton.addActionListener(new java.awt.event.ActionListener() {

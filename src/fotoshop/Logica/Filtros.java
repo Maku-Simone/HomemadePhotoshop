@@ -10,10 +10,34 @@ package fotoshop.Logica;
  * @author Maku
  */
 public class Filtros {
+    //pasa bajas
+    final int[][] promedio = {{1,1,1} ,{1,1,1} ,{1,1,1}};
+    final int[][] gauss = {{1,2,1},{2,4,2},{1,2,1}};
     
-    public int[][][] convolucion(int[][][] argb, int[][] kernel, int cosaK)
+    //pasa altas
+    final int[][] diferenciaPixelX = {{0,0,0}, {0,1,-1}, {0,0,0}};
+    final int[][] diferenciaPixelY = {{0,-1,0}, {0,1,0}, {0,0,0}};
+
+    final int[][] separadoX = {{0,0,0}, {1,0,-1}, {0,0,0}};
+    final int[][] separadoY = {{0,-1,0}, {0,0,0}, {0,1,0}};
+
+    final int[][] robertsX = {{0,0,-1}, {0,1,0}, {0,0,0}};
+    final int[][] robertsY = {{-1,0,0}, {0,1,0}, {0,0,0}};
+
+    final int[][] prewittX = {{1,0,-1}, {1,0,-1}, {1,0,-1}};
+    final int[][] prewittY = {{-1,-1,-1}, {0,0,0}, {1,1,1}};
+
+    final int[][] sobelX = {{,,}, {,,}, {,,}};
+    final int[][] sobelY = {{,,}, {,,}, {,,}};
+    
+    
+    
+    public int[][][] convolucion(int[][][] argb, int[][] kernel, int cosaK, int simetrico)
         {
-            kernel = rotaKernel(kernel);
+            if(simetrico == 0) //no es simetrico
+                {
+                    kernel = rotaKernel(kernel);
+                }
             int[][][] expandido, sinCeros;
             expandido = expande(argb);
             sinCeros = new int[argb.length][argb[0].length][4];
