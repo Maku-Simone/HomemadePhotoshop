@@ -171,7 +171,7 @@ public class mainVentana extends javax.swing.JFrame {
         sobelBoton = new javax.swing.JButton();
         difPixBoton = new javax.swing.JButton();
         prewittBoton = new javax.swing.JButton();
-        prewittBoton1 = new javax.swing.JButton();
+        laplacianoBoton = new javax.swing.JButton();
         modaBoton = new javax.swing.JButton();
         medianaBoton = new javax.swing.JButton();
         maxMinBoton = new javax.swing.JButton();
@@ -585,15 +585,15 @@ public class mainVentana extends javax.swing.JFrame {
             }
         });
 
-        prewittBoton1.setBackground(new java.awt.Color(255, 255, 255));
-        prewittBoton1.setForeground(new java.awt.Color(0, 204, 255));
-        prewittBoton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/laplaciano.png"))); // NOI18N
-        prewittBoton1.setToolTipText("Filtro Laplaciano");
-        prewittBoton1.setBorderPainted(false);
-        prewittBoton1.setContentAreaFilled(false);
-        prewittBoton1.addActionListener(new java.awt.event.ActionListener() {
+        laplacianoBoton.setBackground(new java.awt.Color(255, 255, 255));
+        laplacianoBoton.setForeground(new java.awt.Color(0, 204, 255));
+        laplacianoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/laplaciano.png"))); // NOI18N
+        laplacianoBoton.setToolTipText("Filtro Laplaciano");
+        laplacianoBoton.setBorderPainted(false);
+        laplacianoBoton.setContentAreaFilled(false);
+        laplacianoBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prewittBoton1ActionPerformed(evt);
+                laplacianoBotonActionPerformed(evt);
             }
         });
 
@@ -715,7 +715,7 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(prewittBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(prewittBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(laplacianoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(medianaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 314, Short.MAX_VALUE)))
@@ -754,7 +754,7 @@ public class mainVentana extends javax.swing.JFrame {
                             .addComponent(filtroPromedioPesadoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(gaussianoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(prewittBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(prewittBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(laplacianoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(medianaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1247,9 +1247,50 @@ public class mainVentana extends javax.swing.JFrame {
         
     }//GEN-LAST:event_prewittBotonActionPerformed
 
-    private void prewittBoton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prewittBoton1ActionPerformed
+    private void laplacianoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laplacianoBotonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_prewittBoton1ActionPerformed
+        
+        int r = panelTabs.getSelectedIndex();
+        int[][][] filtro;
+        if(r >= 0)
+            {                                                                                                              
+                Filtros F = new Filtros(); 
+                Transformaciones T = new Transformaciones();
+                Imagen img = listaImagenes.get(r);         
+                
+                Object[] buttons = {"Tipo A", "Tipo B", "Tipo C", "Tipo D"};      
+                int result = JOptionPane.showOptionDialog(null, "Elige un filtro laplaciano", ":3",
+                                JOptionPane.PLAIN_MESSAGE, 0, null, buttons, buttons[0]);
+                System.out.println(result);
+                switch(result)                         
+                    {
+                    case 0:
+                        filtro = F.convolucion(img.getArgb(), Filtros.LAPLACIANO_A, 1, 1);
+                        break;
+                    case 1:
+                        filtro = F.convolucion(img.getArgb(), Filtros.LAPLACIANO_B, 1, 1);
+                        break;
+                    case 2:
+                        filtro = F.convolucion(img.getArgb(), Filtros.LAPLACIANO_C, 1, 1);
+                        break;
+                    case 3:
+                        filtro = F.convolucion(img.getArgb(), Filtros.LAPLACIANO_D, 1, 1);
+                        break;               
+                    default:
+                        filtro = F.convolucion(img.getArgb(), Filtros.LAPLACIANO_A, 1, 1);
+                    }
+                T.ajusta(filtro);
+                listaImagenes.get(r).setModificado(filtro);
+                JFrame f = new JFrame();
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(filtro, img.getAncho(), img.getAlto()));
+                f.add(scroll);
+                panelTabs.setComponentAt(r, f.getContentPane());
+
+            }              
+        
+        
+    }//GEN-LAST:event_laplacianoBotonActionPerformed
 
     private void modaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modaBotonActionPerformed
         // TODO add your handling code here:
@@ -1382,6 +1423,7 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JButton histogramaBoton;
     private javax.swing.JButton inversoBoton;
     private javax.swing.JLabel labelUmbral;
+    private javax.swing.JButton laplacianoBoton;
     private javax.swing.JButton maxMinBoton;
     private javax.swing.JButton medianaBoton;
     private javax.swing.JButton modaBoton;
@@ -1393,7 +1435,6 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JTabbedPane panelTabs;
     private javax.swing.JButton pixSepBoton;
     private javax.swing.JButton prewittBoton;
-    private javax.swing.JButton prewittBoton1;
     private javax.swing.JButton rBoton;
     private javax.swing.JButton redoBoton;
     private javax.swing.JButton restaBoton;

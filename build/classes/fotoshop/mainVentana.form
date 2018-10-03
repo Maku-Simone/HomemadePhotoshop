@@ -115,7 +115,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="prewittBoton" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="prewittBoton1" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="laplacianoBoton" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="medianaBoton" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
@@ -164,7 +164,7 @@
                           <Component id="filtroPromedioPesadoBoton" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="gaussianoBoton" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="prewittBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="prewittBoton1" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="laplacianoBoton" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="medianaBoton" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -882,7 +882,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="prewittBotonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="prewittBoton1">
+    <Component class="javax.swing.JButton" name="laplacianoBoton">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -898,7 +898,7 @@
         <Property name="contentAreaFilled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="prewittBoton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="laplacianoBotonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="modaBoton">
