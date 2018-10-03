@@ -122,7 +122,7 @@ public class Calculos {
                                 int existe = (mapa.get(moda) != null) ? (int)mapa.get(moda) : 0;
                                 if((int)mapa.get(i) > existe)
                                     {
-                                        System.out.println((int)mapa.get(i)  + " > " + mapa.get(moda));    
+                                        //System.out.println((int)mapa.get(i)  + " > " + mapa.get(moda));    
                                         moda = i; 
                                     }                                                            
                             }
