@@ -1261,7 +1261,6 @@ public class mainVentana extends javax.swing.JFrame {
                 Object[] buttons = {"Tipo A", "Tipo B", "Tipo C", "Tipo D"};      
                 int result = JOptionPane.showOptionDialog(null, "Elige un filtro laplaciano", ":3",
                                 JOptionPane.PLAIN_MESSAGE, 0, null, buttons, buttons[0]);
-                System.out.println(result);
                 switch(result)                         
                     {
                     case 0:
