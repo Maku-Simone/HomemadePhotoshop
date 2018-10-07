@@ -9,8 +9,10 @@ import fotoshop.Logica.Dibujo;
 import fotoshop.Logica.Filtros;
 import fotoshop.Logica.Imagen;
 import fotoshop.Logica.Transformaciones;
+import histograma.AjusteDeBrillo;
 import histograma.Data;
 import histograma.Histogram;
+import histograma.dobleHistograma;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.List;
@@ -1064,6 +1066,59 @@ public class mainVentana extends javax.swing.JFrame {
 
     private void opersHistogramaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opersHistogramaBotonActionPerformed
         // TODO add your handling code here:
+        
+         
+        int r = panelTabs.getSelectedIndex();
+        int[][][] filtro;
+        if(r >= 0)
+            {                                                                                                              
+                AjusteDeBrillo A = new AjusteDeBrillo();
+                Transformaciones T = new Transformaciones();
+                Imagen img = listaImagenes.get(r);                                         
+                Object[] buttons = {"Desplazamiento", "Expansión", "Contracción", "Ecualización"};      
+                int result = JOptionPane.showOptionDialog(null, "Elige una operación sobre el histograma", ":3",
+                                JOptionPane.PLAIN_MESSAGE, 0, null, buttons, buttons[0]);
+                int[] max, min;
+                switch(result)                         
+                    {
+                    case 0:
+                        int des = verificaEntero(JOptionPane.showInputDialog("Introduzca el valor del desplazamiento [-255, 255]"));                                                         
+                        filtro = A.desplazamientoHist(img.getArgb(), des);
+                        break;
+                    case 1:
+                        max = A.maximoNG(img.getArgb());
+                        min = A.minimoNG(img.getArgb());
+                        filtro = A.expansion(img.getArgb(), max, min);
+                        break;
+                    case 2:
+                        int Cmax = verificaEntero(JOptionPane.showInputDialog("Introduzca el valor de brillo maximo [0, 255]"));                                                         
+                        int Cmin = verificaEntero(JOptionPane.showInputDialog("Introduzca el valor de brillo minimo [0, 255]"));                                                         
+                        max = A.maximoNG(img.getArgb());
+                        min = A.minimoNG(img.getArgb());
+                        
+                        filtro = A.contraccion(img.getArgb(), min, max, Cmax, Cmin);
+                        break;
+                    case 3:
+                        filtro = A.ecualizacion(img.getArgb());
+                        break;               
+                    default:
+                        filtro = A.desplazamientoHist(img.getArgb(), 0);
+                    }
+                T.ajusta(filtro);
+                listaImagenes.get(r).setModificado(filtro);
+                
+                new dobleHistograma().display(listaImagenes.get(r));
+                
+                JFrame f = new JFrame();
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(filtro, img.getAncho(), img.getAlto()));
+                f.add(scroll);
+                panelTabs.setComponentAt(r, f.getContentPane());
+
+            }              
+        
+        
+        
     }//GEN-LAST:event_opersHistogramaBotonActionPerformed
 
     private void filtroPromedioBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroPromedioBotonActionPerformed
