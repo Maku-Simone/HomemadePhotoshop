@@ -1135,7 +1135,7 @@ public class mainVentana extends javax.swing.JFrame {
                 Filtros F = new Filtros(); 
                 Transformaciones T = new Transformaciones();
                 Imagen img = listaImagenes.get(r);                
-                filtrado = T.ajusta(F.convolucion(img.getArgb(), Filtros.PROMEDIO, 9, 1));
+                filtrado = T.ajusta(F.convolucion(img.getModificado(), Filtros.PROMEDIO, 9, 1));
                 listaImagenes.get(r).setModificado(filtrado);
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
@@ -1160,7 +1160,7 @@ public class mainVentana extends javax.swing.JFrame {
                 Filtros F = new Filtros(); 
                 Transformaciones T = new Transformaciones();
                 Imagen img = listaImagenes.get(r);                
-                filtrado = T.ajusta(F.convolucion(img.getArgb(), Filtros.PROMEDIO, N > 0 ? N + 8: 8, 1));
+                filtrado = T.ajusta(F.convolucion(img.getModificado(), Filtros.PROMEDIO, N > 0 ? N + 8: 8, 1));
                 listaImagenes.get(r).setModificado(filtrado);
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
@@ -1180,7 +1180,7 @@ public class mainVentana extends javax.swing.JFrame {
                 Filtros F = new Filtros(); 
                 Transformaciones T = new Transformaciones();
                 Imagen img = listaImagenes.get(r);                
-                filtrado = T.ajusta(F.convolucion(img.getArgb(), Filtros.GAUSS,16, 1));
+                filtrado = T.ajusta(F.convolucion(img.getModificado(), Filtros.GAUSS,16, 1));
                 listaImagenes.get(r).setModificado(filtrado);
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
@@ -1201,7 +1201,7 @@ public class mainVentana extends javax.swing.JFrame {
                 Filtros F = new Filtros(); 
                 Transformaciones T = new Transformaciones();
                 Imagen img = listaImagenes.get(r);                
-                filtroX = F.convolucion(img.getArgb(), Filtros.SEP_X, 1, 0);
+                filtroX = F.convolucion(img.getModificado(), Filtros.SEP_X, 1, 0);
                 filtroXY = T.ajusta(F.convolucion(filtroX, Filtros.SEP_Y, 1, 0));
                 listaImagenes.get(r).setModificado(filtroXY);
                 JFrame f = new JFrame();
@@ -1222,7 +1222,7 @@ public class mainVentana extends javax.swing.JFrame {
                         Filtros F = new Filtros(); 
                         Transformaciones T = new Transformaciones();
                         Imagen img = listaImagenes.get(r);                
-                        filtroX = F.convolucion(img.getArgb(), Filtros.ROBERTS_X, 1, 0);
+                        filtroX = F.convolucion(img.getModificado(), Filtros.ROBERTS_X, 1, 0);
                         filtroXY = T.ajusta(F.convolucion(filtroX, Filtros.ROBERTS_Y, 1, 0));
                         listaImagenes.get(r).setModificado(filtroXY);
                         JFrame f = new JFrame();
@@ -1245,7 +1245,7 @@ public class mainVentana extends javax.swing.JFrame {
                 Filtros F = new Filtros(); 
                 Transformaciones T = new Transformaciones();
                 Imagen img = listaImagenes.get(r);                
-                filtroX = F.convolucion(img.getArgb(), Filtros.SOBEL_X, 4, 0);
+                filtroX = F.convolucion(img.getModificado(), Filtros.SOBEL_X, 4, 0);
                 filtroXY = T.ajusta(F.convolucion(filtroX, Filtros.SOBEL_Y, 4, 0));
                 listaImagenes.get(r).setModificado(filtroXY);
                 JFrame f = new JFrame();
@@ -1267,7 +1267,7 @@ public class mainVentana extends javax.swing.JFrame {
                 Filtros F = new Filtros(); 
                 Transformaciones T = new Transformaciones();
                 Imagen img = listaImagenes.get(r);                
-                filtroX = F.convolucion(img.getArgb(), Filtros.DIF_PIX_X, 1, 0);
+                filtroX = F.convolucion(img.getModificado(), Filtros.DIF_PIX_X, 1, 0);
                 filtroXY = T.ajusta(F.convolucion(filtroX, Filtros.DIF_PIX_Y, 1, 0));
                 listaImagenes.get(r).setModificado(filtroXY);
                 JFrame f = new JFrame();
@@ -1289,7 +1289,7 @@ public class mainVentana extends javax.swing.JFrame {
                 Filtros F = new Filtros(); 
                 Transformaciones T = new Transformaciones();
                 Imagen img = listaImagenes.get(r);                
-                filtroX = F.convolucion(img.getArgb(), Filtros.PREWITT_X, 3, 0);
+                filtroX = F.convolucion(img.getModificado(), Filtros.PREWITT_X, 3, 0);
                 filtroXY = T.ajusta(F.convolucion(filtroX, Filtros.PREWITT_Y, 3, 0));
                 listaImagenes.get(r).setModificado(filtroXY);
                 JFrame f = new JFrame();
@@ -1319,19 +1319,19 @@ public class mainVentana extends javax.swing.JFrame {
                 switch(result)                         
                     {
                     case 0:
-                        filtro = F.convolucion(img.getArgb(), Filtros.LAPLACIANO_A, 1, 1);
+                        filtro = F.convolucion(img.getModificado(), Filtros.LAPLACIANO_A, 1, 1);
                         break;
                     case 1:
-                        filtro = F.convolucion(img.getArgb(), Filtros.LAPLACIANO_B, 1, 1);
+                        filtro = F.convolucion(img.getModificado(), Filtros.LAPLACIANO_B, 1, 1);
                         break;
                     case 2:
-                        filtro = F.convolucion(img.getArgb(), Filtros.LAPLACIANO_C, 1, 1);
+                        filtro = F.convolucion(img.getModificado(), Filtros.LAPLACIANO_C, 1, 1);
                         break;
                     case 3:
-                        filtro = F.convolucion(img.getArgb(), Filtros.LAPLACIANO_D, 1, 1);
+                        filtro = F.convolucion(img.getModificado(), Filtros.LAPLACIANO_D, 1, 1);
                         break;               
                     default:
-                        filtro = F.convolucion(img.getArgb(), Filtros.LAPLACIANO_A, 1, 1);
+                        filtro = F.convolucion(img.getModificado(), Filtros.LAPLACIANO_A, 1, 1);
                     }
                 T.ajusta(filtro);
                 listaImagenes.get(r).setModificado(filtro);
@@ -1355,7 +1355,7 @@ public class mainVentana extends javax.swing.JFrame {
                 Filtros F = new Filtros(); 
                 Transformaciones T = new Transformaciones();
                 Imagen img = listaImagenes.get(r);                
-                filtro = F.moda(img.getArgb());                
+                filtro = F.moda(img.getModificado());                
                 listaImagenes.get(r).setModificado(filtro);
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
@@ -1376,7 +1376,7 @@ public class mainVentana extends javax.swing.JFrame {
                 Filtros F = new Filtros(); 
                 Transformaciones T = new Transformaciones();
                 Imagen img = listaImagenes.get(r);                
-                filtro = F.mediana(img.getArgb());                
+                filtro = F.mediana(img.getModificado());                
                 listaImagenes.get(r).setModificado(filtro);
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
@@ -1406,11 +1406,11 @@ public class mainVentana extends javax.swing.JFrame {
 
                 if (result == JOptionPane.YES_OPTION) //maximo
                     {
-                        filtro = F.maximoMinimo(img.getArgb(), 1);    
+                        filtro = F.maximoMinimo(img.getModificado(), 1);    
                     }
                 else //minimo
                     {
-                        filtro = F.maximoMinimo(img.getArgb(), 0);    
+                        filtro = F.maximoMinimo(img.getModificado(), 0);    
                     }                            
                 
                 listaImagenes.get(r).setModificado(filtro);
