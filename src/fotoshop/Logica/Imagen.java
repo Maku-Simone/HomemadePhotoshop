@@ -23,6 +23,15 @@ public class Imagen
         private int alto;
         private int argb[][][];// = new int[1][1][4]; //argb[x][y][valores argb]	
         private int modificado[][][];// = new int[1][1][4]; //argb[x][y][valores argb]	
+        private int preHistograma[][][];// = new int[1][1][4]; //argb[x][y][valores argb]	
+
+    public int[][][] getPreHistograma() {
+        return preHistograma;
+    }
+
+    public void setPreHistograma(int[][][] preHistograma) {
+        this.preHistograma = preHistograma;
+    }
         
     public String getExtension() {
         return extension;

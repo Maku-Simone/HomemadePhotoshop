@@ -60,7 +60,7 @@ public class dobleHistograma {
 
     private BufferedImage setImage(Imagen im, int tipo)  //0 = original,  1 =  modificado
         {            
-            int[][][] rgbGuardar = (tipo == 0) ? im.getArgb() : im.getModificado();
+            int[][][] rgbGuardar = (tipo == 0) ? im.getPreHistograma(): im.getModificado();
             BufferedImage img = new BufferedImage(im.getAncho(), im.getAlto(), BufferedImage.TYPE_INT_RGB);
             for(int x = 0; x < im.getAncho(); x++)
                 {

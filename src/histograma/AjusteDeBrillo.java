@@ -35,7 +35,7 @@ public class AjusteDeBrillo {
             return desplazado;
         }
     
-    public int[][][] expansion(int[][][] argb, int[] min, int[] max) //max o min [R, G, B]
+    public int[][][] expansion(int[][][] argb, int[] max, int[] min, int maxGris, int minGris) //max o min [R, G, B]
         {
             int ancho = argb.length;
             int alto = argb[0].length;
@@ -45,9 +45,22 @@ public class AjusteDeBrillo {
                 {
                     for(int y = 0; y < alto; y++)
                         {
-                            expandido[x][y][1] = ( ( (argb[x][y][1] - min[0]) / (max[0] - min[0]) ) * ( max[0] - min[0] ) ) + min[0];
-                            expandido[x][y][2] = ( ( (argb[x][y][2] - min[1]) / (max[1] - min[1]) ) * ( max[1] - min[1] ) ) + min[1];
-                            expandido[x][y][3] = ( ( (argb[x][y][3] - min[2]) / (max[2] - min[2]) ) * ( max[2] - min[2] ) ) + min[2];
+                            expandido[x][y][1] = (int)( (float)( (float)(argb[x][y][1] - min[0]) / (max[0] - min[0]) ) * ( maxGris - minGris ) ) + minGris;
+                            expandido[x][y][2] = (int)( (float)( (float)(argb[x][y][2] - min[1]) / (max[1] - min[1]) ) * ( maxGris - minGris ) ) + minGris;
+                            expandido[x][y][3] = (int)( (float)( (float)(argb[x][y][3] - min[2]) / (max[2] - min[2]) ) * ( maxGris - minGris ) ) + minGris;
+                            
+                           /* if(x == 100)
+                                {
+                                    System.out.println("\n\n*******\nValores max " + maxGris + " min " + minGris + " maximo " + max[0] + " minimo " + min[0] + " y px = " + argb[x][y][1] + " = " + expandido[x][y][1]);
+                                    System.out.println("max - min = " + (maxGris - minGris));
+                                    System.out.println("max - min " + (max[0] - min[0]));
+                                    System.out.println("argb - min = " + argb[x][y][1] + " - " + min[0]);
+                                    System.out.println(" --- = " + (argb[x][y][1]  - min[0]) );                                    
+                                    System.out.println(" --- = " + ((float)((float)(argb[x][y][1] - min[0]) / (max[0] - min[0]) )));
+                                   
+                                    System.out.println("todo junto " + (( (float)( (float)(argb[x][y][1] - min[0]) / (max[0] - min[0]) ) * ( maxGris - minGris ) ) + minGris));
+                                }*/
+                            
                         }
                 }
             return expandido;
@@ -63,11 +76,22 @@ public class AjusteDeBrillo {
                 {
                     for(int y = 0; y < alto; y++)
                         {
-                            contraido[x][y][1] = ( ( (Cmax - Cmin) / max[0] - min[0] ) * (argb[x][y][1]  - min[0]) ) + Cmin;
-                            contraido[x][y][2] = ( ( (Cmax - Cmin) / max[1] - min[1] ) * (argb[x][y][2]  - min[1]) ) + Cmin;
-                            contraido[x][y][3] = ( ( (Cmax - Cmin) / max[2] - min[2] ) * (argb[x][y][3]  - min[2]) ) + Cmin;
+                            contraido[x][y][1] = (int)( (float)( (float)(Cmax - Cmin) / (max[0] - min[0]) ) * (argb[x][y][1]  - min[0]) ) + Cmin;
+                            contraido[x][y][2] = (int)( (float)( (float)(Cmax - Cmin) / (max[1] - min[1]) ) * (argb[x][y][2]  - min[1]) ) + Cmin;
+                            contraido[x][y][3] = (int)( (float)( (float)(Cmax - Cmin) / (max[2] - min[2]) ) * (argb[x][y][3]  - min[2]) ) + Cmin;
+                           /* if(x == 100)
+                                {
+                                    System.out.println("\n\n*******\nValores Cmax " + Cmax + " Cmin " + Cmin + " maximo " + max[0] + " minimo " + min[0] + " y px = " + argb[x][y][1] + " = " + contraido[x][y][1]);
+                                    System.out.println("Cmax - Cmin = " + (Cmax - Cmin));
+                                    System.out.println("max - min " + (max[0] - min[0]));
+                                    System.out.println(" --- = " + ((float)(Cmax - Cmin) / (max[0] - min[0])));
+                                    System.out.println("argb - min = " + argb[x][y][1] + " - " + min[0]);
+                                    System.out.println(" --- = " + (argb[x][y][1]  - min[0]) );
+                                    System.out.println("todo junto " + (( (float)(Cmax - Cmin) / (max[0] - min[0]) ) * (argb[x][y][1]  - min[0])  +Cmin));
+                                }*/
                         }
                 }
+            
             return contraido;
         }
     

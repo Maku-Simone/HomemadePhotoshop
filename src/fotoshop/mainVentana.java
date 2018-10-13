@@ -1070,6 +1070,7 @@ public class mainVentana extends javax.swing.JFrame {
          
         int r = panelTabs.getSelectedIndex();
         int[][][] filtro;
+        boolean cerrar = false;
         if(r >= 0)
             {                                                                                                              
                 AjusteDeBrillo A = new AjusteDeBrillo();
@@ -1079,41 +1080,45 @@ public class mainVentana extends javax.swing.JFrame {
                 int result = JOptionPane.showOptionDialog(null, "Elige una operación sobre el histograma", ":3",
                                 JOptionPane.PLAIN_MESSAGE, 0, null, buttons, buttons[0]);
                 int[] max, min;
+                img.setPreHistograma(img.getModificado());
                 switch(result)                         
                     {
                     case 0:
                         int des = verificaEntero(JOptionPane.showInputDialog("Introduzca el valor del desplazamiento [-255, 255]"));                                                         
-                        filtro = A.desplazamientoHist(img.getArgb(), des);
+                        filtro = A.desplazamientoHist(img.getModificado(), des);
                         break;
                     case 1:
-                        max = A.maximoNG(img.getArgb());
-                        min = A.minimoNG(img.getArgb());
-                        filtro = A.expansion(img.getArgb(), max, min);
+                        max = A.maximoNG(img.getModificado());
+                        min = A.minimoNG(img.getModificado());
+                        filtro = A.expansion(img.getModificado(), max, min, 255, 0);
                         break;
                     case 2:
                         int Cmax = verificaEntero(JOptionPane.showInputDialog("Introduzca el valor de brillo maximo [0, 255]"));                                                         
                         int Cmin = verificaEntero(JOptionPane.showInputDialog("Introduzca el valor de brillo minimo [0, 255]"));                                                         
-                        max = A.maximoNG(img.getArgb());
-                        min = A.minimoNG(img.getArgb());
+                        max = A.maximoNG(img.getModificado());
+                        min = A.minimoNG(img.getModificado());
                         
-                        filtro = A.contraccion(img.getArgb(), min, max, Cmax, Cmin);
+                        filtro = A.contraccion(img.getModificado(), min, max, Cmax, Cmin);
                         break;
                     case 3:
-                        filtro = A.ecualizacion(img.getArgb());
+                        filtro = A.ecualizacion(img.getModificado());
                         break;               
                     default:
+                        System.out.println("cerrado");
+                        cerrar = true; //cerré la seleccion
                         filtro = A.desplazamientoHist(img.getArgb(), 0);
                     }
-                T.ajusta(filtro);
-                listaImagenes.get(r).setModificado(filtro);
-                
-                new dobleHistograma().display(listaImagenes.get(r));
-                
-                JFrame f = new JFrame();
-                JScrollPane scroll = new JScrollPane();
-                scroll.getViewport().add(new Dibujo(filtro, img.getAncho(), img.getAlto()));
-                f.add(scroll);
-                panelTabs.setComponentAt(r, f.getContentPane());
+                if(!cerrar)
+                    {
+                        T.ajusta(filtro);
+                        listaImagenes.get(r).setModificado(filtro);                
+                        new dobleHistograma().display(listaImagenes.get(r));                
+                        JFrame f = new JFrame();
+                        JScrollPane scroll = new JScrollPane();
+                        scroll.getViewport().add(new Dibujo(filtro, img.getAncho(), img.getAlto()));
+                        f.add(scroll);
+                        panelTabs.setComponentAt(r, f.getContentPane());
+                    }               
 
             }              
         
