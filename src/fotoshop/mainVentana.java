@@ -1200,14 +1200,15 @@ public class mainVentana extends javax.swing.JFrame {
     private void pixSepBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pixSepBotonActionPerformed
         // TODO add your handling code here:
         int r = panelTabs.getSelectedIndex();
-        int[][][] filtroX, filtroXY;
+        int[][][] filtroX, filtroXY, filtroY;
         if(r >= 0)
             {                                                                                                              
                 Filtros F = new Filtros(); 
                 Transformaciones T = new Transformaciones();
                 Imagen img = listaImagenes.get(r);                
                 filtroX = F.convolucion(img.getModificado(), Filtros.SEP_X, 1, 0);
-                filtroXY = T.ajusta(F.convolucion(filtroX, Filtros.SEP_Y, 1, 0));
+                filtroY = F.convolucion(img.getModificado(), Filtros.SEP_Y, 1, 0);
+                filtroXY = T.ajusta(F.magnitud(filtroX, filtroY));//T.ajusta(F.convolucion(filtroX, Filtros.SEP_Y, 1, 0));
                 listaImagenes.get(r).setModificado(filtroXY);
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
@@ -1221,14 +1222,15 @@ public class mainVentana extends javax.swing.JFrame {
     private void robertsBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_robertsBotonActionPerformed
         // TODO add your handling code here:
                 int r = panelTabs.getSelectedIndex();
-                int[][][] filtroX, filtroXY;
+                int[][][] filtroX, filtroY, filtroXY;
                 if(r >= 0)
                     {                                                                                                              
                         Filtros F = new Filtros(); 
                         Transformaciones T = new Transformaciones();
                         Imagen img = listaImagenes.get(r);                
                         filtroX = F.convolucion(img.getModificado(), Filtros.ROBERTS_X, 1, 0);
-                        filtroXY = T.ajusta(F.convolucion(filtroX, Filtros.ROBERTS_Y, 1, 0));
+                        filtroY = F.convolucion(img.getModificado(), Filtros.ROBERTS_Y, 1, 0);
+                        filtroXY = T.ajusta(F.magnitud(filtroX, filtroY));//T.ajusta(F.convolucion(filtroX, Filtros.ROBERTS_Y, 1, 0));
                         listaImagenes.get(r).setModificado(filtroXY);
                         JFrame f = new JFrame();
                         JScrollPane scroll = new JScrollPane();
@@ -1244,14 +1246,15 @@ public class mainVentana extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         int r = panelTabs.getSelectedIndex();
-        int[][][] filtroX, filtroXY;
+        int[][][] filtroX, filtroXY, filtroY;
         if(r >= 0)
             {                                                                                                              
                 Filtros F = new Filtros(); 
                 Transformaciones T = new Transformaciones();
                 Imagen img = listaImagenes.get(r);                
                 filtroX = F.convolucion(img.getModificado(), Filtros.SOBEL_X, 4, 0);
-                filtroXY = T.ajusta(F.convolucion(filtroX, Filtros.SOBEL_Y, 4, 0));
+                filtroY = F.convolucion(img.getModificado(), Filtros.SOBEL_Y, 4, 0);
+                filtroXY = T.ajusta(F.magnitud(filtroX, filtroY)); // T.ajusta(F.convolucion(filtroX, Filtros.SOBEL_Y, 1, 0));
                 listaImagenes.get(r).setModificado(filtroXY);
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
@@ -1266,14 +1269,15 @@ public class mainVentana extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         int r = panelTabs.getSelectedIndex();
-        int[][][] filtroX, filtroXY;
+        int[][][] filtroX, filtroXY, filtroY;
         if(r >= 0)
             {                                                                                                              
                 Filtros F = new Filtros(); 
                 Transformaciones T = new Transformaciones();
                 Imagen img = listaImagenes.get(r);                
                 filtroX = F.convolucion(img.getModificado(), Filtros.DIF_PIX_X, 1, 0);
-                filtroXY = T.ajusta(F.convolucion(filtroX, Filtros.DIF_PIX_Y, 1, 0));
+                filtroY = F.convolucion(img.getModificado(), Filtros.DIF_PIX_Y, 1, 0);
+                filtroXY = T.ajusta(F.magnitud(filtroX, filtroY));// T.ajusta(F.convolucion(filtroX, Filtros.DIF_PIX_Y, 1, 0));
                 listaImagenes.get(r).setModificado(filtroXY);
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
@@ -1288,14 +1292,15 @@ public class mainVentana extends javax.swing.JFrame {
     private void prewittBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prewittBotonActionPerformed
         // TODO add your handling code here:
         int r = panelTabs.getSelectedIndex();
-        int[][][] filtroX, filtroXY;
+        int[][][] filtroX, filtroY, filtroXY;
         if(r >= 0)
             {                                                                                                              
                 Filtros F = new Filtros(); 
                 Transformaciones T = new Transformaciones();
                 Imagen img = listaImagenes.get(r);                
                 filtroX = F.convolucion(img.getModificado(), Filtros.PREWITT_X, 3, 0);
-                filtroXY = T.ajusta(F.convolucion(filtroX, Filtros.PREWITT_Y, 3, 0));
+                filtroY = F.convolucion(img.getModificado(), Filtros.PREWITT_Y, 3, 0);
+                filtroXY = T.ajusta(F.magnitud(filtroX, filtroY));//T.ajusta(F.convolucion(filtroX, Filtros.PREWITT_Y, 2, 0));
                 listaImagenes.get(r).setModificado(filtroXY);
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
@@ -1336,7 +1341,7 @@ public class mainVentana extends javax.swing.JFrame {
                         filtro = F.convolucion(img.getModificado(), Filtros.LAPLACIANO_D, 1, 1);
                         break;               
                     default:
-                        filtro = F.convolucion(img.getModificado(), Filtros.LAPLACIANO_A, 1, 1);
+                        filtro = img.getModificado();
                     }
                 T.ajusta(filtro);
                 listaImagenes.get(r).setModificado(filtro);
@@ -1403,7 +1408,7 @@ public class mainVentana extends javax.swing.JFrame {
                 Filtros F = new Filtros(); 
                 Transformaciones T = new Transformaciones();
                 Imagen img = listaImagenes.get(r);         
-                
+                boolean cerrar = false;
                 Object[] options1 = {"Filtro máximo", "Filtro minimo"};      
                 int result = JOptionPane.showOptionDialog(null, null, "Elige un filtro",
                         JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
@@ -1415,16 +1420,26 @@ public class mainVentana extends javax.swing.JFrame {
                     }
                 else //minimo
                     {
-                        filtro = F.maximoMinimo(img.getModificado(), 0);    
+                        if(result == JOptionPane.NO_OPTION)
+                            {
+                                filtro = F.maximoMinimo(img.getModificado(), 0);
+                            }   
+                        else
+                            {
+                                cerrar = true;
+                                filtro = img.getModificado();
+                            }
                     }                            
-                
-                listaImagenes.get(r).setModificado(filtro);
-                JFrame f = new JFrame();
-                JScrollPane scroll = new JScrollPane();
-                scroll.getViewport().add(new Dibujo(filtro, img.getAncho(), img.getAlto()));
-                f.add(scroll);
-                panelTabs.setComponentAt(r, f.getContentPane());
+                if(!cerrar)
+                    {
+                        listaImagenes.get(r).setModificado(filtro);
+                        JFrame f = new JFrame();
+                        JScrollPane scroll = new JScrollPane();
+                        scroll.getViewport().add(new Dibujo(filtro, img.getAncho(), img.getAlto()));
+                        f.add(scroll);
+                        panelTabs.setComponentAt(r, f.getContentPane());
 
+                    }                
             }               
         
         

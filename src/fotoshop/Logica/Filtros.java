@@ -25,14 +25,14 @@ public class Filtros {
     public final static int[][] SEP_X = {{0,0,0}, {1,0,-1}, {0,0,0}};
     public final static int[][] SEP_Y = {{0,-1,0}, {0,0,0}, {0,1,0}};
 
-    public final static int[][] ROBERTS_X = {{0,0,-1}, {0,1,0}, {0,0,0}};
-    public final static int[][] ROBERTS_Y = {{-1,0,0}, {0,1,0}, {0,0,0}};
+    public final static int[][] ROBERTS_X = {{1,0,0}, {0,-1,0}, {0,0,0}};
+    public final static int[][] ROBERTS_Y = {{0,1,0}, {-1,0,0}, {0,0,0}};
 
     public final static int[][] PREWITT_X = {{1,0,-1}, {1,0,-1}, {1,0,-1}};
-    public final static int[][] PREWITT_Y = {{-1,-1,-1}, {0,0,0}, {1,1,1}};
+    public final static int[][] PREWITT_Y = {{1,1,1}, {0,0,0}, {-1,-1,-1}};
 
     public final static int[][] SOBEL_X = {{1,0,-1}, {2,0,-2}, {1,0,-1}};
-    public final static int[][] SOBEL_Y = {{-1,-2,-1}, {0,0,0}, {1,2,1}};
+    public final static int[][] SOBEL_Y = {{1,2,1}, {0,0,0}, {-1,-2,-1}};
     
     public final static int[][] LAPLACIANO_A = {{0,-1,0}, {-1,4,-1}, {0,-1,0}};
     public final static int[][] LAPLACIANO_B = {{-1,-1,-1}, {-1,8,-1}, {-1,-1,-1}};    
@@ -141,8 +141,8 @@ public class Filtros {
             suma+= argb[x-1][y+1][canal] * kernel[2][0];
             suma+= argb[x][y+1][canal] * kernel[2][1];
             suma+= argb[x+1][y+1][canal] * kernel[2][2];           
-            
-            return suma/k;
+           // System.out.println("Suma " + suma + " k " + k + " = " + (suma/k));
+            return Math.round(suma/k);
         }
     
     public int[][][] mediana(int[][][] argb)        
@@ -297,6 +297,21 @@ public class Filtros {
                 Arrays.sort(vecinos);    
                 
                 return (sel == 0) ? vecinos[0] : vecinos[8]; //0 es el minimo
+            }
+        public int[][][] magnitud(int[][][] fx, int[][][] fy)
+            {
+              int[][][] magnitud = new int[fx.length][fx[0].length][4];
+              
+                for(int x = 1; x < fx.length; x++)
+                    {
+                        for(int y = 1; y < fx[0].length; y++)
+                            {
+                                magnitud[x][y][1] = (int) Math.sqrt((fx[x][y][1] * fx[x][y][1]) + (fy[x][y][1] * fy[x][y][1]) );
+                                magnitud[x][y][2] = (int) Math.sqrt((fx[x][y][2] * fx[x][y][2]) + (fy[x][y][2] * fy[x][y][2]) );
+                                magnitud[x][y][3] = (int) Math.sqrt((fx[x][y][3] * fx[x][y][3]) + (fy[x][y][3] * fy[x][y][3]) );
+                            }
+                    }
+                return magnitud;
             }
 }
 
