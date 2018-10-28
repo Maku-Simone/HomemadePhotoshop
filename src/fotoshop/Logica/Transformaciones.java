@@ -495,5 +495,112 @@ public class Transformaciones {
         return Integer.parseInt(neg, 2);
     }
     
+      public int[][][] multiUmbral(int numUmb, String umbralesCadena, Imagen img) throws IOException
+        {
+            int[] umbrales = new int[numUmb];
+            String[] partes = umbralesCadena.split(",");
+            
+            
+            for(int i = 0; i < numUmb; i++)
+                {
+                    umbrales[i] = Integer.parseInt(partes[i]);
+                }
+            Arrays.sort(umbrales); //aqui ya tengo ordenados mis umbrales y separados en un arreglo
+            
+            
+            
+            int[][][] imagenRGB = img.getModificado();            
+            int ancho = img.getAncho();
+            int alto = img.getAlto();
+            File f = new File(img.getRuta());
+            BufferedImage newImagen = null;
+            newImagen = ImageIO.read(f); 
+            int[][][] retorno = new int[ancho][alto][4];
+            for (int x = 0; x < ancho; x++)
+                {
+                    for (int y = 0; y < alto; y++)
+                    {
+                         for(int k = 0; k < numUmb; k+=2)   // con este for verifico que el pixel esté dentro de los umbrales o no
+                         {
+                             int fin = 0;
+                             if(k == (numUmb - 1)) //umbrales impar y último umbral
+                                {
+                                    if(numUmb %2 != 0) //impar
+                                       {
+                                           fin = 255;
+                                       }                                    
+                                }
+                             else
+                                {
+                                    fin = umbrales[k+1];
+                                }
+                             if(imagenRGB[x][y][2] >= umbrales[k] && imagenRGB[x][y][2] <= fin)
+                                {
+                                    newImagen.setRGB(x, y, Color.WHITE.getRGB());
+                                }
+                             else
+                                {
+                                    newImagen.setRGB(x, y, Color.BLACK.getRGB());
+                                }
+                         }
+                            int p = newImagen.getRGB(x,y); 
+                        //retorno[x][y][0] = (p>>24)&0xff; //a
+                            retorno[x][y][1] = (p>>16)&0xff;//r
+                            retorno[x][y][2] = (p>>8)&0xff;//g
+                            retorno[x][y][3] = p&0xff;  //b                         
+                    }
+                }                        
+            return retorno;
+        }   
+   
+   
+   
+      public int[][][] multiUmbralDos(Imagen img) throws IOException
+        {
+            int[][][] binario = img.getArgb();            
+            int ancho = img.getAncho();
+            int alto = img.getAlto();
+            File f = new File(img.getRuta());
+            BufferedImage newImagen = null;
+            newImagen = ImageIO.read(f); 
+            int[][][] retorno = new int[ancho][alto][4];
+            int[] umbral = new int[2];
+            
+            umbral[0] = binario[img.getUmbral1().x][img.getUmbral1().y][2];
+            umbral[1] = binario[img.getUmbral2().x][img.getUmbral2().y][2];
+            
+            Arrays.sort(umbral);
+            System.out.println("Solo lo que esté entre " + umbral[0] + " y " + umbral[1]);
+            for (int x = 0; x < ancho; x++)
+                {
+                    for (int y = 0; y < alto; y++)
+                    {
+                        //obtengo las coordenadas x,y y los canales argb                                                                           
+                        
+                        if(binario[x][y][2] >= umbral[0] && binario[x][y][2] <= umbral[1]) //
+                            {
+                               // System.out.println(binario[x][y][2] + " > umbral:" + umbral);
+                                newImagen.setRGB(x, y, Color.WHITE.getRGB());
+                            }
+                        else
+                            {
+                                newImagen.setRGB(x, y, Color.black.getRGB());
+                            }
+                        
+                        int p = newImagen.getRGB(x,y); 
+                        retorno[x][y][0] = (p>>24)&0xff; //a
+                        retorno[x][y][1] = (p>>16)&0xff;//r
+                        retorno[x][y][2] = (p>>8)&0xff;//g
+                        retorno[x][y][3] = p&0xff;  //b
+                    }
+                }                        
+            return retorno;
+        }
+      
+      
+      public int[][][] addRuido(int[][][] argb, int porcentaje, int tipo)
+        {
+        
+        }
    
 }

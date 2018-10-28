@@ -9,9 +9,13 @@ package fotoshop.Logica;
  *
  * @author Maku
  */
+import fotoshop.mainVentana;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 
 public class Dibujo extends JPanel {
@@ -24,7 +28,7 @@ public class Dibujo extends JPanel {
         {
             this.canales = argb;
             this.ancho = ancho;
-            this.alto = alto;            
+            this.alto = alto;             
         }
     @Override               
     public void paintComponent(Graphics g) 

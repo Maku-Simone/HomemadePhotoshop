@@ -5,6 +5,7 @@
  */
 package fotoshop.Logica;
 
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +25,27 @@ public class Imagen
         private int argb[][][];// = new int[1][1][4]; //argb[x][y][valores argb]	
         private int modificado[][][];// = new int[1][1][4]; //argb[x][y][valores argb]	
         private int preHistograma[][][];// = new int[1][1][4]; //argb[x][y][valores argb]	
+        private Point umbral1, umbral2;
 
+    public Point getUmbral1() {
+        return umbral1;
+    }
+
+    public void setUmbral1(Point umbral1) {
+        this.umbral1 = umbral1;
+    }
+
+    public Point getUmbral2() {
+        return umbral2;
+    }
+
+    public void setUmbral2(Point umbral2) {
+        this.umbral2 = umbral2;
+    }
+
+        
+
+      
     public int[][][] getPreHistograma() {
         return preHistograma;
     }

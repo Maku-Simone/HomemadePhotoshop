@@ -16,12 +16,16 @@ import histograma.dobleHistograma;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.List;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -35,6 +39,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import static javax.swing.WindowConstants.HIDE_ON_CLOSE;
+import org.jfree.util.StringUtils;
 
 
 /**
@@ -49,6 +54,7 @@ public class mainVentana extends javax.swing.JFrame {
     
     ArrayList<Imagen> listaImagenes = new ArrayList<Imagen>();
     static int[][][] operacionesAritmeticas;
+    Point umbral1 = new Point(0,0), umbral2  = new Point(0,0);
     
     public mainVentana() {                       
         initComponents();     
@@ -177,6 +183,10 @@ public class mainVentana extends javax.swing.JFrame {
         modaBoton = new javax.swing.JButton();
         medianaBoton = new javax.swing.JButton();
         maxMinBoton = new javax.swing.JButton();
+        multiUmbralBoton = new javax.swing.JButton();
+        multiUmbLabel = new javax.swing.JLabel();
+        dobleUmbralBoton = new javax.swing.JButton();
+        addRuidoBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -635,6 +645,44 @@ public class mainVentana extends javax.swing.JFrame {
             }
         });
 
+        multiUmbralBoton.setBackground(new java.awt.Color(255, 255, 255));
+        multiUmbralBoton.setForeground(new java.awt.Color(0, 204, 255));
+        multiUmbralBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/multiUmb.png"))); // NOI18N
+        multiUmbralBoton.setToolTipText("Multiumbralización");
+        multiUmbralBoton.setBorderPainted(false);
+        multiUmbralBoton.setContentAreaFilled(false);
+        multiUmbralBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                multiUmbralBotonActionPerformed(evt);
+            }
+        });
+
+        multiUmbLabel.setText("U1: 123 - U2: 456");
+
+        dobleUmbralBoton.setBackground(new java.awt.Color(255, 255, 255));
+        dobleUmbralBoton.setForeground(new java.awt.Color(0, 204, 255));
+        dobleUmbralBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/2multiUmb.png"))); // NOI18N
+        dobleUmbralBoton.setToolTipText("Multiumbralización de 2 umbrales");
+        dobleUmbralBoton.setBorderPainted(false);
+        dobleUmbralBoton.setContentAreaFilled(false);
+        dobleUmbralBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dobleUmbralBotonActionPerformed(evt);
+            }
+        });
+
+        addRuidoBoton.setBackground(new java.awt.Color(255, 255, 255));
+        addRuidoBoton.setForeground(new java.awt.Color(0, 204, 255));
+        addRuidoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/ruido.png"))); // NOI18N
+        addRuidoBoton.setToolTipText("Añadir Ruido");
+        addRuidoBoton.setBorderPainted(false);
+        addRuidoBoton.setContentAreaFilled(false);
+        addRuidoBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addRuidoBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -709,7 +757,9 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(modaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(maxMinBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(maxMinBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(multiUmbLabel))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(filtroPromedioPesadoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -719,8 +769,14 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(laplacianoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(medianaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 314, Short.MAX_VALUE)))
+                                .addComponent(medianaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(multiUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dobleUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(addRuidoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 172, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -757,9 +813,12 @@ public class mainVentana extends javax.swing.JFrame {
                             .addComponent(gaussianoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(prewittBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(laplacianoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(medianaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(medianaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(multiUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dobleUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addRuidoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(sumaBotom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(multiBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(restaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -773,7 +832,8 @@ public class mainVentana extends javax.swing.JFrame {
                             .addComponent(sobelBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(difPixBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(modaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(maxMinBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(maxMinBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(multiUmbLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(panelTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
                 .addContainerGap())
@@ -804,6 +864,7 @@ public class mainVentana extends javax.swing.JFrame {
                                 JFrame f = new JFrame();                                   
                                 JScrollPane scroll = new JScrollPane();
                                 scroll.getViewport().add(new Dibujo(img.getArgb(), img.getAncho(), img.getAlto()));                                
+                                scroll = umb(scroll, img.getAncho(), img.getAncho());
                                 f.add(scroll);                                                                   
                                 panelTabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
                                 panelTabs.addTab(img.getNombreImagen(),null, f.getContentPane(), ":3");                                
@@ -851,7 +912,8 @@ public class mainVentana extends javax.swing.JFrame {
 
                         JFrame f = new JFrame();                                   
                         JScrollPane scroll = new JScrollPane();
-                        scroll.getViewport().add(new Dibujo(binario, img.getAncho(), img.getAlto()));                                       
+                        scroll.getViewport().add(new Dibujo(binario, img.getAncho(), img.getAlto()));      
+                        scroll = umb(scroll, img.getAncho(), img.getAncho());
                         f.add(scroll);  
                        // f.setVisible(true);
                         panelTabs.setComponentAt(r, f.getContentPane());
@@ -878,6 +940,7 @@ public class mainVentana extends javax.swing.JFrame {
                 JScrollPane scroll = new JScrollPane();
                 scroll.getViewport().add(new Dibujo(img.getArgb(), img.getAncho(), img.getAlto()));                                       
                 listaImagenes.get(r).setModificado(listaImagenes.get(r).getArgb());
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
                 f.add(scroll);          
                 panelTabs.setComponentAt(r, f.getContentPane());
             }
@@ -899,7 +962,8 @@ public class mainVentana extends javax.swing.JFrame {
                         gris = tra.grises(listaImagenes.get(r));                                                   
                         JFrame f = new JFrame();                                   
                         JScrollPane scroll = new JScrollPane();
-                        scroll.getViewport().add(new Dibujo(gris, img.getAncho(), img.getAlto()));                                       
+                        scroll.getViewport().add(new Dibujo(gris, img.getAncho(), img.getAlto()));       
+                        scroll = umb(scroll, img.getAncho(), img.getAncho());
                         f.add(scroll);  
                         listaImagenes.get(r).setModificado(gris);
                         panelTabs.setComponentAt(r, f.getContentPane());//                    
@@ -929,6 +993,7 @@ public class mainVentana extends javax.swing.JFrame {
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
                 scroll.getViewport().add(new Dibujo(canal, img.getAncho(), img.getAlto()));
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
                 f.add(scroll);
                 listaImagenes.get(r).setModificado(canal);
                 panelTabs.setComponentAt(r, f.getContentPane());
@@ -953,6 +1018,7 @@ public class mainVentana extends javax.swing.JFrame {
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
                 scroll.getViewport().add(new Dibujo(canal, img.getAncho(), img.getAlto()));
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
                 f.add(scroll);
                 panelTabs.setComponentAt(r, f.getContentPane());
 
@@ -976,6 +1042,7 @@ public class mainVentana extends javax.swing.JFrame {
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
                 scroll.getViewport().add(new Dibujo(canal, img.getAncho(), img.getAlto()));
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
                 f.add(scroll);
                 panelTabs.setComponentAt(r, f.getContentPane());
 
@@ -1019,6 +1086,7 @@ public class mainVentana extends javax.swing.JFrame {
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
                 scroll.getViewport().add(new Dibujo(canal, img.getAncho(), img.getAlto()));
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
                 f.add(scroll);
                 panelTabs.setComponentAt(r, f.getContentPane());
 
@@ -1116,6 +1184,7 @@ public class mainVentana extends javax.swing.JFrame {
                         JFrame f = new JFrame();
                         JScrollPane scroll = new JScrollPane();
                         scroll.getViewport().add(new Dibujo(filtro, img.getAncho(), img.getAlto()));
+                        scroll = umb(scroll, img.getAncho(), img.getAncho());
                         f.add(scroll);
                         panelTabs.setComponentAt(r, f.getContentPane());
                     }               
@@ -1145,6 +1214,7 @@ public class mainVentana extends javax.swing.JFrame {
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
                 scroll.getViewport().add(new Dibujo(filtrado, img.getAncho(), img.getAlto()));
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
                 f.add(scroll);
                 panelTabs.setComponentAt(r, f.getContentPane());
 
@@ -1170,6 +1240,7 @@ public class mainVentana extends javax.swing.JFrame {
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
                 scroll.getViewport().add(new Dibujo(filtrado, img.getAncho(), img.getAlto()));
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
                 f.add(scroll);
                 panelTabs.setComponentAt(r, f.getContentPane());
 
@@ -1190,6 +1261,7 @@ public class mainVentana extends javax.swing.JFrame {
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
                 scroll.getViewport().add(new Dibujo(filtrado, img.getAncho(), img.getAlto()));
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
                 f.add(scroll);
                 panelTabs.setComponentAt(r, f.getContentPane());
 
@@ -1213,6 +1285,7 @@ public class mainVentana extends javax.swing.JFrame {
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
                 scroll.getViewport().add(new Dibujo(filtroXY, img.getAncho(), img.getAlto()));
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
                 f.add(scroll);
                 panelTabs.setComponentAt(r, f.getContentPane());
 
@@ -1235,6 +1308,7 @@ public class mainVentana extends javax.swing.JFrame {
                         JFrame f = new JFrame();
                         JScrollPane scroll = new JScrollPane();
                         scroll.getViewport().add(new Dibujo(filtroXY, img.getAncho(), img.getAlto()));
+                        scroll = umb(scroll, img.getAncho(), img.getAncho());
                         f.add(scroll);
                         panelTabs.setComponentAt(r, f.getContentPane());
 
@@ -1259,6 +1333,7 @@ public class mainVentana extends javax.swing.JFrame {
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
                 scroll.getViewport().add(new Dibujo(filtroXY, img.getAncho(), img.getAlto()));
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
                 f.add(scroll);
                 panelTabs.setComponentAt(r, f.getContentPane());
 
@@ -1282,6 +1357,7 @@ public class mainVentana extends javax.swing.JFrame {
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
                 scroll.getViewport().add(new Dibujo(filtroXY, img.getAncho(), img.getAlto()));
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
                 f.add(scroll);
                 panelTabs.setComponentAt(r, f.getContentPane());
 
@@ -1304,6 +1380,7 @@ public class mainVentana extends javax.swing.JFrame {
                 listaImagenes.get(r).setModificado(filtroXY);
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
                 scroll.getViewport().add(new Dibujo(filtroXY, img.getAncho(), img.getAlto()));
                 f.add(scroll);
                 panelTabs.setComponentAt(r, f.getContentPane());
@@ -1348,6 +1425,7 @@ public class mainVentana extends javax.swing.JFrame {
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
                 scroll.getViewport().add(new Dibujo(filtro, img.getAncho(), img.getAlto()));
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
                 f.add(scroll);
                 panelTabs.setComponentAt(r, f.getContentPane());
 
@@ -1370,6 +1448,7 @@ public class mainVentana extends javax.swing.JFrame {
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
                 scroll.getViewport().add(new Dibujo(filtro, img.getAncho(), img.getAlto()));
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
                 f.add(scroll);
                 panelTabs.setComponentAt(r, f.getContentPane());
 
@@ -1391,6 +1470,7 @@ public class mainVentana extends javax.swing.JFrame {
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
                 scroll.getViewport().add(new Dibujo(filtro, img.getAncho(), img.getAlto()));
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
                 f.add(scroll);
                 panelTabs.setComponentAt(r, f.getContentPane());
 
@@ -1436,6 +1516,7 @@ public class mainVentana extends javax.swing.JFrame {
                         JFrame f = new JFrame();
                         JScrollPane scroll = new JScrollPane();
                         scroll.getViewport().add(new Dibujo(filtro, img.getAncho(), img.getAlto()));
+                        scroll = umb(scroll, img.getAncho(), img.getAncho());
                         f.add(scroll);
                         panelTabs.setComponentAt(r, f.getContentPane());
 
@@ -1444,6 +1525,128 @@ public class mainVentana extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_maxMinBotonActionPerformed
+
+    private void multiUmbralBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiUmbralBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        int numUmbrales = 0;
+        String umbrales = "";
+        //System.out.println("index es " + r);
+        int[][][] binario = null;
+        Transformaciones tra = new Transformaciones();       
+        Imagen img = listaImagenes.get(r);        
+        
+        numUmbrales = verificaEntero(JOptionPane.showInputDialog("Introduzca el número de umbrales"));
+        if(numUmbrales > 0)
+            {
+                umbrales = JOptionPane.showInputDialog("Introduzca los umbrales separados por comas");
+            }
+        if(verificaNumUmbrales(numUmbrales, umbrales) == 1)
+        {
+            try 
+                {
+                    binario =tra.multiUmbral(numUmbrales, umbrales, listaImagenes.get(r));
+                }
+            catch (IOException ex) 
+                {
+                    Logger.getLogger(mainVentana.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            listaImagenes.get(r).setModificado(binario);
+            JFrame f = new JFrame();
+            JScrollPane scroll = new JScrollPane();
+            scroll.getViewport().add(new Dibujo(binario, img.getAncho(), img.getAlto()));
+            scroll = umb(scroll, img.getAncho(), img.getAncho());
+            f.add(scroll);
+            // f.setVisible(true);
+            panelTabs.setComponentAt(r, f.getContentPane());
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Mete el número correcto de umbrales");
+        }
+
+        
+    }//GEN-LAST:event_multiUmbralBotonActionPerformed
+
+    private void dobleUmbralBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobleUmbralBotonActionPerformed
+        
+            int r = panelTabs.getSelectedIndex();
+            //System.out.println("index es " + r);
+            int[][][] binario = null;
+            Transformaciones tra = new Transformaciones();       
+            Imagen img = listaImagenes.get(r);    
+            img.setUmbral1(umbral1);
+            img.setUmbral2(umbral2);
+            int[] umbral = new int[2];
+            
+            umbral[0] = img.getModificado()[img.getUmbral1().x][img.getUmbral1().y][2];
+            umbral[1] = img.getModificado()[img.getUmbral2().x][img.getUmbral2().y][2];    
+            Arrays.sort(umbral);
+            multiUmbLabel.setText("U1: " + umbral[0] + " - U2: " + umbral[1]);
+            try 
+                {
+                    binario =tra.multiUmbralDos(listaImagenes.get(r));
+                }
+            catch (IOException ex) 
+                {
+                    Logger.getLogger(mainVentana.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            listaImagenes.get(r).setModificado(binario);
+            JFrame f = new JFrame();
+            JScrollPane scroll = new JScrollPane();
+            scroll.getViewport().add(new Dibujo(binario, img.getAncho(), img.getAlto()));
+            scroll = umb(scroll, img.getAncho(), img.getAncho());
+            f.add(scroll);
+            // f.setVisible(true);
+            panelTabs.setComponentAt(r, f.getContentPane());   
+    }//GEN-LAST:event_dobleUmbralBotonActionPerformed
+
+    private void addRuidoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRuidoBotonActionPerformed
+        // TODO add your handling code here:
+        
+        int r = panelTabs.getSelectedIndex();
+        int[][][] filtro;
+        if(r >= 0)
+            {                                                                                                              
+                Filtros F = new Filtros(); 
+                Transformaciones T = new Transformaciones();
+                Imagen img = listaImagenes.get(r);         
+                
+                Object[] buttons = {"Tipo Sal", "Tipo Pimienta", "Combinado"};      
+                int result = JOptionPane.showOptionDialog(null, "Elige el tipo de ruido", ":3",
+                                JOptionPane.PLAIN_MESSAGE, 0, null, buttons, buttons[0]);
+                
+                int porcentaje = verificaEntero(JOptionPane.showInputDialog("Introduzca el porcentaje de ruido"));
+                
+                switch(result)                         
+                    {
+                    case 0:
+                        filtro = F.convolucion(img.getModificado(), Filtros.LAPLACIANO_A, 1, 1);
+                        break;
+                    case 1:
+                        filtro = F.convolucion(img.getModificado(), Filtros.LAPLACIANO_B, 1, 1);
+                        break;
+                    case 2:
+                        filtro = F.convolucion(img.getModificado(), Filtros.LAPLACIANO_C, 1, 1);
+                        break;
+                    /*case 3:
+                        filtro = F.convolucion(img.getModificado(), Filtros.LAPLACIANO_D, 1, 1);
+                        break;               */
+                    default:
+                        filtro = img.getModificado();
+                    }
+                T.ajusta(filtro);
+                listaImagenes.get(r).setModificado(filtro);
+                JFrame f = new JFrame();
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(filtro, img.getAncho(), img.getAlto()));
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
+                f.add(scroll);
+                panelTabs.setComponentAt(r, f.getContentPane());
+
+            }              
+        
+    }//GEN-LAST:event_addRuidoBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1484,11 +1687,13 @@ public class mainVentana extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Binarización;
     private javax.swing.JButton abrirBoton;
+    private javax.swing.JButton addRuidoBoton;
     private javax.swing.JButton andBoton;
     private javax.swing.JButton bBoton;
     private javax.swing.JButton cerrarTab;
     private javax.swing.JButton difPixBoton;
     private javax.swing.JButton diviBoton;
+    private javax.swing.JButton dobleUmbralBoton;
     private javax.swing.JButton filtroPromedioBoton;
     private javax.swing.JButton filtroPromedioPesadoBoton;
     private javax.swing.JButton gBoton;
@@ -1502,6 +1707,8 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JButton medianaBoton;
     private javax.swing.JButton modaBoton;
     private javax.swing.JButton multiBoton;
+    private javax.swing.JLabel multiUmbLabel;
+    private javax.swing.JButton multiUmbralBoton;
     private javax.swing.JButton nanBoton;
     private javax.swing.JButton norBoton;
     private javax.swing.JButton opersHistogramaBoton;
@@ -1649,7 +1856,7 @@ public class mainVentana extends javax.swing.JFrame {
                 listaImagenes.add(img);                                                                                               
                 JFrame f = new JFrame();                                   
                 JScrollPane scroll = new JScrollPane();
-                scroll.getViewport().add(new Dibujo(img.getArgb(), img.getAncho(), img.getAlto()));                                
+                scroll.getViewport().add(new Dibujo(img.getArgb(), img.getAncho(), img.getAlto()));      
                 f.add(scroll);                                                                   
                 panelTabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
                 panelTabs.addTab(img.getNombreImagen(),null, f.getContentPane(), ":3");
@@ -1666,5 +1873,51 @@ public class mainVentana extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(null,"Te dije que un numero >:c \n Ahora le pondré 0 :3");
                             return -1;
                         }
-                }        
+                }   
+        public void setUmbrales(int u1, int u2)
+            {
+              multiUmbLabel.setText("U1: " + u1 + " - " + "U2: " + u2);
+            } 
+        
+        public JScrollPane umb(JScrollPane j, int ancho, int alto)
+            {
+                    j.addMouseListener(new MouseAdapter() 
+                    {
+                        @Override
+                        public void mousePressed(MouseEvent e) 
+                        {
+                            int x = e.getX();
+                            int y = e.getY();
+                            //System.out.println("Le picaste en " + new Point(e.getX(), e.getY()) );
+                            if(x <= ancho && y <= alto)
+                                {
+                                   // System.out.println("esta en rango :3");                                    
+                                    //mainVentana v = mn;
+                                    //mn.setUmbrales(x, y);
+                                    umbral1 = umbral2;
+                                    umbral2 = new Point(x, y);
+                                }
+                            
+                        }
+                    });
+                    return j;
+            }
+        public int verificaNumUmbrales(int numUmb, String umb)
+            {
+                int c = 0;
+                c = umb.length() - umb.replace(",", "").length();
+             //   System.out.println("C es " + c);
+                if((c + 1) == numUmb)
+                    {
+                        if(umb.length() - c == numUmb)
+                            {
+                                return 1; //son iguales y está bien
+                            }
+                        return 0;
+                    }
+                else
+                    {
+                        return 0;
+                    }
+            }
 }
