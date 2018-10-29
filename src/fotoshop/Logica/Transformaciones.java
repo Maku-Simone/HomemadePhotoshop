@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Random;
 import javax.imageio.ImageIO;
 
 /**
@@ -20,7 +21,7 @@ public class Transformaciones {
     
     public int[][][] binarizado(int umbral, Imagen img) throws IOException
         {
-            int[][][] binario = img.getArgb();            
+            int[][][] binario = img.getModificado();            
             int ancho = img.getAncho();
             int alto = img.getAlto();
             File f = new File(img.getRuta());
@@ -405,7 +406,7 @@ public class Transformaciones {
             ancho = img.getAncho();
             alto = img.getAlto();
             int[][][] inverso = new int[ancho][alto][4];
-            int[][][] rgb = img.getArgb();
+            int[][][] rgb = img.getModificado();
             for(int x = 0; x < ancho; x++)
                 {
                     for(int y = 0; y < alto; y++)
@@ -557,7 +558,7 @@ public class Transformaciones {
    
       public int[][][] multiUmbralDos(Imagen img) throws IOException
         {
-            int[][][] binario = img.getArgb();            
+            int[][][] binario = img.getModificado();            
             int ancho = img.getAncho();
             int alto = img.getAlto();
             File f = new File(img.getRuta());
@@ -598,9 +599,62 @@ public class Transformaciones {
         }
       
       
-      public int[][][] addRuido(int[][][] argb, int porcentaje, int tipo)
+      public int[][][] addRuido(Imagen img, int porcentaje, int tipo)
         {
-        
+            if(porcentaje > 100)
+                {
+                    porcentaje = 100;
+                }
+            if(porcentaje < 0)
+                {
+                    porcentaje = 0;
+                }
+            int[][][] sucia = img.getModificado();            
+            int ancho = img.getAncho();
+            int alto = img.getAlto();
+            int[][][] retorno = new int[ancho][alto][4];
+            
+            for(int x = 0; x < ancho; x++)
+                {
+                    for(int y = 0; y < alto; y++)
+                        {
+                            retorno[x][y][1] = sucia[x][y][1];
+                            retorno[x][y][2] = sucia[x][y][2];
+                            retorno[x][y][3] = sucia[x][y][3];
+                        }
+                }
+            
+            int totalSuciedad = (int) ((float)(ancho * alto) * (float)(porcentaje/100.0)); //total de pixeles con mugre @3@
+            //System.out.println("Mugre total " + totalSuciedad + " - " + (float)(porcentaje/100.0));
+            int[][] pixelesSucios = new int[totalSuciedad][2]; //[elementosucio][x,y]
+            int ruido = 0;
+            if(tipo == 0) //sal
+                {
+                    ruido = 255;
+                    totalSuciedad = (int) ((float)totalSuciedad * 0.75);
+                }
+            if(tipo == 1) //pimienta
+                {
+                    ruido = 0;
+                }
+            
+            for(int i = 0; i < totalSuciedad; i++) //asignar posiciones aleatorias del ruido
+                {
+                    Random rand = new Random();                    
+                    pixelesSucios[i][0] = rand.nextInt(ancho); //x
+                    pixelesSucios[i][1] = rand.nextInt(alto); //y
+                }
+            
+            
+               for(int i = 0; i < totalSuciedad; i++) //pintar el ruido
+                {     
+                    Random rand = new Random();                    
+                    int comb = rand.nextInt(1)*255;
+                    retorno[pixelesSucios[i][0]][pixelesSucios[i][1]][1] =  (tipo == 2) ?  comb : ruido;
+                    retorno[pixelesSucios[i][0]][pixelesSucios[i][1]][2] =  (tipo == 2) ?  comb : ruido;
+                    retorno[pixelesSucios[i][0]][pixelesSucios[i][1]][3] =  (tipo == 2) ?  comb : ruido;
+                }
+               return retorno;
         }
    
 }

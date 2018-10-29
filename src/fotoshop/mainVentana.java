@@ -774,9 +774,9 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addComponent(multiUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(dobleUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(addRuidoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 172, Short.MAX_VALUE)))
+                        .addGap(0, 178, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -1608,7 +1608,6 @@ public class mainVentana extends javax.swing.JFrame {
         int[][][] filtro;
         if(r >= 0)
             {                                                                                                              
-                Filtros F = new Filtros(); 
                 Transformaciones T = new Transformaciones();
                 Imagen img = listaImagenes.get(r);         
                 
@@ -1617,26 +1616,27 @@ public class mainVentana extends javax.swing.JFrame {
                                 JOptionPane.PLAIN_MESSAGE, 0, null, buttons, buttons[0]);
                 
                 int porcentaje = verificaEntero(JOptionPane.showInputDialog("Introduzca el porcentaje de ruido"));
-                
+                if(porcentaje == 0)
+                    {
+                        result = 10;
+                    }
                 switch(result)                         
                     {
                     case 0:
-                        filtro = F.convolucion(img.getModificado(), Filtros.LAPLACIANO_A, 1, 1);
+                        filtro = T.addRuido(img, porcentaje, 0);
                         break;
                     case 1:
-                        filtro = F.convolucion(img.getModificado(), Filtros.LAPLACIANO_B, 1, 1);
+                        filtro = T.addRuido(img, porcentaje, 1);
                         break;
                     case 2:
-                        filtro = F.convolucion(img.getModificado(), Filtros.LAPLACIANO_C, 1, 1);
+                        filtro = T.addRuido(img, porcentaje, 2);
                         break;
-                    /*case 3:
-                        filtro = F.convolucion(img.getModificado(), Filtros.LAPLACIANO_D, 1, 1);
-                        break;               */
                     default:
                         filtro = img.getModificado();
                     }
                 T.ajusta(filtro);
-                listaImagenes.get(r).setModificado(filtro);
+                listaImagenes.get(r).setArgb(img.getArgb());
+                listaImagenes.get(r).setModificado(filtro);                
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
                 scroll.getViewport().add(new Dibujo(filtro, img.getAncho(), img.getAlto()));
