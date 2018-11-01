@@ -631,7 +631,7 @@ public class Transformaciones {
             if(tipo == 0) //sal
                 {
                     ruido = 255;
-                    totalSuciedad = (int) ((float)totalSuciedad * 0.75);
+                    totalSuciedad = (int) ((float)totalSuciedad * 0.65);
                 }
             if(tipo == 1) //pimienta
                 {
@@ -649,7 +649,7 @@ public class Transformaciones {
                for(int i = 0; i < totalSuciedad; i++) //pintar el ruido
                 {     
                     Random rand = new Random();                    
-                    int comb = rand.nextInt(1)*255;
+                    int comb = rand.nextInt(2)*255;
                     retorno[pixelesSucios[i][0]][pixelesSucios[i][1]][1] =  (tipo == 2) ?  comb : ruido;
                     retorno[pixelesSucios[i][0]][pixelesSucios[i][1]][2] =  (tipo == 2) ?  comb : ruido;
                     retorno[pixelesSucios[i][0]][pixelesSucios[i][1]][3] =  (tipo == 2) ?  comb : ruido;

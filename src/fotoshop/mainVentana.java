@@ -856,7 +856,7 @@ public class mainVentana extends javax.swing.JFrame {
               //  System.out.println("Abriendo: " + file.getPath() + "    -    " + file.getName() + " de extension " + formatoImg);       
                 if(checaExtensionImg(formatoImg)) //si está admitido
                     {
-                        System.out.println("Si :3");
+                        //System.out.println("Si :3");
                         try 
                             {
                                 Imagen img = new Imagen(file.getPath(), file.getName(), formatoImg);                                
@@ -883,7 +883,7 @@ public class mainVentana extends javax.swing.JFrame {
             }
 	else 
             {
-                System.out.println("Open command cancelled by user.");
+                //System.out.println("Open command cancelled by user.");
             //    System.exit(0);
             }		        		
     }//GEN-LAST:event_abrirBotonActionPerformed
@@ -1906,14 +1906,10 @@ public class mainVentana extends javax.swing.JFrame {
             {
                 int c = 0;
                 c = umb.length() - umb.replace(",", "").length();
-             //   System.out.println("C es " + c);
+                System.out.println("C es " + c + " y hay " + numUmb + " umbrales");
                 if((c + 1) == numUmb)
                     {
-                        if(umb.length() - c == numUmb)
-                            {
-                                return 1; //son iguales y está bien
-                            }
-                        return 0;
+                        return 1;
                     }
                 else
                     {

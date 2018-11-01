@@ -173,7 +173,7 @@ public class AjusteDeBrillo {
                         }
                 }
                         
-            System.out.println("Tneog en mapaR " + mapaR.toString() + " y divido " + TOTAL_PX);
+          //  System.out.println("Tneog en mapaR " + mapaR.toString() + " y divido " + TOTAL_PX);
             
             for(int i = 0; i < 255; i++)
                 {
@@ -210,7 +210,7 @@ public class AjusteDeBrillo {
                     reemplazoB.put(i, bAcu);
                 } 
             
-            System.out.println("Aca hay " + reemplazoR.toString());
+            //System.out.println("Aca hay " + reemplazoR.toString());
             
             for(int x = 0; x < ancho; x++)
                 {
