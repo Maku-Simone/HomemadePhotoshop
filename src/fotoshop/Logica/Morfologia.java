@@ -22,139 +22,142 @@ public class Morfologia {
                 {
                     for(int y = 2; y < binario[0].length + 2; y++)
                         {
-                            if(centroX == 0 && centroY == 0)
+                            if(binario[x-2][y-2][1] == 255)
                                 {
-                                    expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
-                                    expandido[x+1][y][1] = or(expandido[x+1][y][1], EE[a+1][b]);
-                                    expandido[x+2][y][1] = or(expandido[x+2][y][1], EE[a+2][b]);
+                                    if(centroX == 0 && centroY == 0)
+                                        {
+                                            expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
+                                            expandido[x+1][y][1] = or(expandido[x+1][y][1], EE[a+1][b]);
+                                            expandido[x+2][y][1] = or(expandido[x+2][y][1], EE[a+2][b]);
 
-                                    expandido[x][y+1][1] = or(expandido[x][y+1][1], EE[a][b+1]);
-                                    expandido[x+1][y+1][1] = or(expandido[x+1][y+1][1], EE[a+1][b+1]);
-                                    expandido[x+2][y+1][1] = or(expandido[x+2][y+1][1], EE[a+2][b+1]);
+                                            expandido[x][y+1][1] = or(expandido[x][y+1][1], EE[a][b+1]);
+                                            expandido[x+1][y+1][1] = or(expandido[x+1][y+1][1], EE[a+1][b+1]);
+                                            expandido[x+2][y+1][1] = or(expandido[x+2][y+1][1], EE[a+2][b+1]);
 
-                                    expandido[x][y+2][1] = or(expandido[x][y+2][1], EE[a][b+2]);
-                                    expandido[x+1][y+2][1] = or(expandido[x+1][y+2][1], EE[a+1][b+2]);
-                                    expandido[x+2][y+2][1] = or(expandido[x+2][y+2][1], EE[a+2][b+2]);
-                                }
-                            if(centroX == 0 && centroY == 1)
-                                {
-                                    expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
-                                    expandido[x+1][y][1] = or(expandido[x+1][y][1], EE[a+1][b]);
-                                    expandido[x-1][y][1] = or(expandido[x-1][y][1], EE[a-1][b]);
+                                            expandido[x][y+2][1] = or(expandido[x][y+2][1], EE[a][b+2]);
+                                            expandido[x+1][y+2][1] = or(expandido[x+1][y+2][1], EE[a+1][b+2]);
+                                            expandido[x+2][y+2][1] = or(expandido[x+2][y+2][1], EE[a+2][b+2]);
+                                        }
+                                    if(centroX == 0 && centroY == 1)
+                                        {
+                                            expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
+                                            expandido[x+1][y][1] = or(expandido[x+1][y][1], EE[a+1][b]);
+                                            expandido[x-1][y][1] = or(expandido[x-1][y][1], EE[a-1][b]);
 
-                                    expandido[x][y+1][1] = or(expandido[x][y+1][1], EE[a][b+1]);
-                                    expandido[x+1][y+1][1] = or(expandido[x+1][y+1][1], EE[a+1][b+1]);
-                                    expandido[x-1][y+1][1] = or(expandido[x-1][y+1][1], EE[a-1][b+1]);
+                                            expandido[x][y+1][1] = or(expandido[x][y+1][1], EE[a][b+1]);
+                                            expandido[x+1][y+1][1] = or(expandido[x+1][y+1][1], EE[a+1][b+1]);
+                                            expandido[x-1][y+1][1] = or(expandido[x-1][y+1][1], EE[a-1][b+1]);
 
-                                    expandido[x][y+2][1] = or(expandido[x][y+2][1], EE[a][b+2]);
-                                    expandido[x+1][y+2][1] = or(expandido[x+1][y+2][1], EE[a+1][b+2]);
-                                    expandido[x-1][y+2][1] = or(expandido[x-1][y+2][1], EE[a-1][b+2]);
-                                }
-                            if(centroX == 0 && centroY == 2)
-                                {
-                                    expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
-                                    expandido[x-2][y][1] = or(expandido[x-2][y][1], EE[a-2][b]);
-                                    expandido[x-1][y][1] = or(expandido[x-1][y][1], EE[a-1][b]);
+                                            expandido[x][y+2][1] = or(expandido[x][y+2][1], EE[a][b+2]);
+                                            expandido[x+1][y+2][1] = or(expandido[x+1][y+2][1], EE[a+1][b+2]);
+                                            expandido[x-1][y+2][1] = or(expandido[x-1][y+2][1], EE[a-1][b+2]);
+                                        }
+                                    if(centroX == 0 && centroY == 2)
+                                        {
+                                            expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
+                                            expandido[x-2][y][1] = or(expandido[x-2][y][1], EE[a-2][b]);
+                                            expandido[x-1][y][1] = or(expandido[x-1][y][1], EE[a-1][b]);
 
-                                    expandido[x][y+1][1] = or(expandido[x][y+1][1], EE[a][b+1]);
-                                    expandido[x-2][y+1][1] = or(expandido[x-2][y+1][1], EE[a-2][b+1]);
-                                    expandido[x-1][y+1][1] = or(expandido[x-1][y+1][1], EE[a-1][b+1]);
+                                            expandido[x][y+1][1] = or(expandido[x][y+1][1], EE[a][b+1]);
+                                            expandido[x-2][y+1][1] = or(expandido[x-2][y+1][1], EE[a-2][b+1]);
+                                            expandido[x-1][y+1][1] = or(expandido[x-1][y+1][1], EE[a-1][b+1]);
 
-                                    expandido[x][y+2][1] = or(expandido[x][y+2][1], EE[a][b+2]);
-                                    expandido[x-2][y+2][1] = or(expandido[x-2][y+2][1], EE[a-2][b+2]);
-                                    expandido[x-1][y+2][1] = or(expandido[x-1][y+2][1], EE[a-1][b+2]);
-                                }
+                                            expandido[x][y+2][1] = or(expandido[x][y+2][1], EE[a][b+2]);
+                                            expandido[x-2][y+2][1] = or(expandido[x-2][y+2][1], EE[a-2][b+2]);
+                                            expandido[x-1][y+2][1] = or(expandido[x-1][y+2][1], EE[a-1][b+2]);
+                                        }
 
-                            //////////////
+                                    //////////////
 
-                            if(centroX == 1 && centroY == 0)
-                                {
-                                    expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
-                                    expandido[x+1][y][1] = or(expandido[x+1][y][1], EE[a+1][b]);
-                                    expandido[x+2][y][1] = or(expandido[x+2][y][1], EE[a+2][b]);
+                                    if(centroX == 1 && centroY == 0)
+                                        {
+                                            expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
+                                            expandido[x+1][y][1] = or(expandido[x+1][y][1], EE[a+1][b]);
+                                            expandido[x+2][y][1] = or(expandido[x+2][y][1], EE[a+2][b]);
 
-                                    expandido[x][y+1][1] = or(expandido[x][y+1][1], EE[a][b+1]);
-                                    expandido[x+1][y+1][1] = or(expandido[x+1][y+1][1], EE[a+1][b+1]);
-                                    expandido[x+2][y+1][1] = or(expandido[x+2][y+1][1], EE[a+2][b+1]);
+                                            expandido[x][y+1][1] = or(expandido[x][y+1][1], EE[a][b+1]);
+                                            expandido[x+1][y+1][1] = or(expandido[x+1][y+1][1], EE[a+1][b+1]);
+                                            expandido[x+2][y+1][1] = or(expandido[x+2][y+1][1], EE[a+2][b+1]);
 
-                                    expandido[x][y-1][1] = or(expandido[x][y-1][1], EE[a][b-1]);
-                                    expandido[x+1][y-1][1] = or(expandido[x+1][y-1][1], EE[a+1][b-1]);
-                                    expandido[x+2][y-1][1] = or(expandido[x+2][y-1][1], EE[a+2][b-1]);
-                                }
-                            if(centroX == 1 && centroY == 1)
-                                {
-                                    expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
-                                    expandido[x+1][y][1] = or(expandido[x+1][y][1], EE[a+1][b]);
-                                    expandido[x-1][y][1] = or(expandido[x-1][y][1], EE[a-1][b]);
+                                            expandido[x][y-1][1] = or(expandido[x][y-1][1], EE[a][b-1]);
+                                            expandido[x+1][y-1][1] = or(expandido[x+1][y-1][1], EE[a+1][b-1]);
+                                            expandido[x+2][y-1][1] = or(expandido[x+2][y-1][1], EE[a+2][b-1]);
+                                        }
+                                    if(centroX == 1 && centroY == 1)
+                                        {
+                                            expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
+                                            expandido[x+1][y][1] = or(expandido[x+1][y][1], EE[a+1][b]);
+                                            expandido[x-1][y][1] = or(expandido[x-1][y][1], EE[a-1][b]);
 
-                                    expandido[x][y+1][1] = or(expandido[x][y+1][1], EE[a][b+1]);
-                                    expandido[x+1][y+1][1] = or(expandido[x+1][y+1][1], EE[a+1][b+1]);
-                                    expandido[x-1][y+1][1] = or(expandido[x-1][y+1][1], EE[a-1][b+1]);
+                                            expandido[x][y+1][1] = or(expandido[x][y+1][1], EE[a][b+1]);
+                                            expandido[x+1][y+1][1] = or(expandido[x+1][y+1][1], EE[a+1][b+1]);
+                                            expandido[x-1][y+1][1] = or(expandido[x-1][y+1][1], EE[a-1][b+1]);
 
-                                    expandido[x][y-1][1] = or(expandido[x][y-1][1], EE[a][b-1]);
-                                    expandido[x+1][y-1][1] = or(expandido[x+1][y-1][1], EE[a+1][b-1]);
-                                    expandido[x-1][y-1][1] = or(expandido[x-1][y-1][1], EE[a-1][b-1]);
-                                }
-                            if(centroX == 1 && centroY == 2)
-                                {
-                                    expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
-                                    expandido[x-2][y][1] = or(expandido[x-2][y][1], EE[a-2][b]);
-                                    expandido[x-1][y][1] = or(expandido[x-1][y][1], EE[a-1][b]);
+                                            expandido[x][y-1][1] = or(expandido[x][y-1][1], EE[a][b-1]);
+                                            expandido[x+1][y-1][1] = or(expandido[x+1][y-1][1], EE[a+1][b-1]);
+                                            expandido[x-1][y-1][1] = or(expandido[x-1][y-1][1], EE[a-1][b-1]);
+                                        }                            
+                                    if(centroX == 1 && centroY == 2)
+                                        {
+                                            expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
+                                            expandido[x-2][y][1] = or(expandido[x-2][y][1], EE[a-2][b]);
+                                            expandido[x-1][y][1] = or(expandido[x-1][y][1], EE[a-1][b]);
 
-                                    expandido[x][y+1][1] = or(expandido[x][y+1][1], EE[a][b+1]);
-                                    expandido[x-2][y+1][1] = or(expandido[x-2][y+1][1], EE[a-2][b+1]);
-                                    expandido[x-1][y+1][1] = or(expandido[x-1][y+1][1], EE[a-1][b+1]);
+                                            expandido[x][y+1][1] = or(expandido[x][y+1][1], EE[a][b+1]);
+                                            expandido[x-2][y+1][1] = or(expandido[x-2][y+1][1], EE[a-2][b+1]);
+                                            expandido[x-1][y+1][1] = or(expandido[x-1][y+1][1], EE[a-1][b+1]);
 
-                                    expandido[x][y-1][1] = or(expandido[x][y-1][1], EE[a][b-1]);
-                                    expandido[x-2][y-1][1] = or(expandido[x-2][y-1][1], EE[a-2][b-1]);
-                                    expandido[x-1][y-1][1] = or(expandido[x-1][y-1][1], EE[a-1][b-1]);
-                                }
+                                            expandido[x][y-1][1] = or(expandido[x][y-1][1], EE[a][b-1]);
+                                            expandido[x-2][y-1][1] = or(expandido[x-2][y-1][1], EE[a-2][b-1]);
+                                            expandido[x-1][y-1][1] = or(expandido[x-1][y-1][1], EE[a-1][b-1]);
+                                        }
 
 
 
-                            ////////////////
-                            if(centroX == 2 && centroY == 0)
-                                {
-                                    expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
-                                    expandido[x+1][y][1] = or(expandido[x+1][y][1], EE[a+1][b]);
-                                    expandido[x+2][y][1] = or(expandido[x+2][y][1], EE[a+2][b]);
+                                    ////////////////
+                                    if(centroX == 2 && centroY == 0)
+                                        {
+                                            expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
+                                            expandido[x+1][y][1] = or(expandido[x+1][y][1], EE[a+1][b]);
+                                            expandido[x+2][y][1] = or(expandido[x+2][y][1], EE[a+2][b]);
 
-                                    expandido[x][y-1][1] = or(expandido[x][y-1][1], EE[a][b-1]);
-                                    expandido[x+1][y-1][1] = or(expandido[x+1][y-1][1], EE[a+1][b-1]);
-                                    expandido[x+2][y-1][1] = or(expandido[x+2][y-1][1], EE[a+2][b-1]);
+                                            expandido[x][y-1][1] = or(expandido[x][y-1][1], EE[a][b-1]);
+                                            expandido[x+1][y-1][1] = or(expandido[x+1][y-1][1], EE[a+1][b-1]);
+                                            expandido[x+2][y-1][1] = or(expandido[x+2][y-1][1], EE[a+2][b-1]);
 
-                                    expandido[x][y-2][1] = or(expandido[x][y-2][1], EE[a][b-2]);
-                                    expandido[x+1][y-2][1] = or(expandido[x+1][y-2][1], EE[a+1][b-2]);
-                                    expandido[x+2][y-2][1] = or(expandido[x+2][y-2][1], EE[a+2][b-2]);
-                                }
-                            if(centroX == 2 && centroY == 1)
-                                {
-                                    expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
-                                    expandido[x+1][y][1] = or(expandido[x+1][y][1], EE[a+1][b]);
-                                    expandido[x-1][y][1] = or(expandido[x-1][y][1], EE[a-1][b]);
+                                            expandido[x][y-2][1] = or(expandido[x][y-2][1], EE[a][b-2]);
+                                            expandido[x+1][y-2][1] = or(expandido[x+1][y-2][1], EE[a+1][b-2]);
+                                            expandido[x+2][y-2][1] = or(expandido[x+2][y-2][1], EE[a+2][b-2]);
+                                        }
+                                    if(centroX == 2 && centroY == 1)
+                                        {
+                                            expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
+                                            expandido[x+1][y][1] = or(expandido[x+1][y][1], EE[a+1][b]);
+                                            expandido[x-1][y][1] = or(expandido[x-1][y][1], EE[a-1][b]);
 
-                                    expandido[x][y-1][1] = or(expandido[x][y-1][1], EE[a][b-1]);
-                                    expandido[x+1][y-1][1] = or(expandido[x+1][y-1][1], EE[a+1][b-1]);
-                                    expandido[x-1][y-1][1] = or(expandido[x-1][y-1][1], EE[a-1][b-1]);
+                                            expandido[x][y-1][1] = or(expandido[x][y-1][1], EE[a][b-1]);
+                                            expandido[x+1][y-1][1] = or(expandido[x+1][y-1][1], EE[a+1][b-1]);
+                                            expandido[x-1][y-1][1] = or(expandido[x-1][y-1][1], EE[a-1][b-1]);
 
-                                    expandido[x][y-2][1] = or(expandido[x][y-2][1], EE[a][b-2]);
-                                    expandido[x+1][y-2][1] = or(expandido[x+1][y-2][1], EE[a+1][b-2]);
-                                    expandido[x-1][y-2][1] = or(expandido[x-1][y-2][1], EE[a-1][b-2]);
-                                }
-                            if(centroX == 2 && centroY == 2)
-                                {
-                                    expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
-                                    expandido[x-2][y][1] = or(expandido[x-2][y][1], EE[a-2][b]);
-                                    expandido[x-1][y][1] = or(expandido[x-1][y][1], EE[a-1][b]);
+                                            expandido[x][y-2][1] = or(expandido[x][y-2][1], EE[a][b-2]);
+                                            expandido[x+1][y-2][1] = or(expandido[x+1][y-2][1], EE[a+1][b-2]);
+                                            expandido[x-1][y-2][1] = or(expandido[x-1][y-2][1], EE[a-1][b-2]);
+                                        }
+                                    if(centroX == 2 && centroY == 2)
+                                        {
+                                            expandido[x][y][1] = or(expandido[x][y][1], EE[a][b]);
+                                            expandido[x-2][y][1] = or(expandido[x-2][y][1], EE[a-2][b]);
+                                            expandido[x-1][y][1] = or(expandido[x-1][y][1], EE[a-1][b]);
 
-                                    expandido[x][y-1][1] = or(expandido[x][y-1][1], EE[a][b-1]);
-                                    expandido[x-2][y-1][1] = or(expandido[x-2][y-1][1], EE[a-2][b-1]);
-                                    expandido[x-1][y-1][1] = or(expandido[x-1][y-1][1], EE[a-1][b-1]);
+                                            expandido[x][y-1][1] = or(expandido[x][y-1][1], EE[a][b-1]);
+                                            expandido[x-2][y-1][1] = or(expandido[x-2][y-1][1], EE[a-2][b-1]);
+                                            expandido[x-1][y-1][1] = or(expandido[x-1][y-1][1], EE[a-1][b-1]);
 
-                                    expandido[x][y-2][1] = or(expandido[x][y-2][1], EE[a][b-2]);
-                                    expandido[x-2][y-2][1] = or(expandido[x-2][y-2][1], EE[a-2][b-2]);
-                                    expandido[x-1][y-2][1] = or(expandido[x-1][y-2][1], EE[a-1][b-2]);
-                                }
+                                            expandido[x][y-2][1] = or(expandido[x][y-2][1], EE[a][b-2]);
+                                            expandido[x-2][y-2][1] = or(expandido[x-2][y-2][1], EE[a-2][b-2]);
+                                            expandido[x-1][y-2][1] = or(expandido[x-1][y-2][1], EE[a-1][b-2]);
+                                        }
+                                }                            
                         }
                 }
             for(int x = 0; x < binario.length; x++)
@@ -163,7 +166,7 @@ public class Morfologia {
                         {
                             sinCeros[x][y][1] = expandido[x+2][y+2][1];
                             sinCeros[x][y][2] = expandido[x+2][y+2][1];
-                            sinCeros[x][y][3] = expandido[x+2][y+2][1];
+                            sinCeros[x][y][3] = expandido[x+2][y+2][1];                                                       
                         }
                 }
             return sinCeros;
@@ -224,13 +227,14 @@ public class Morfologia {
     
     public int or(int a, int b)
         {
+            
             if(a == 0 && b == 0)
                 {
-                    return 0;
+                    return 0;                    
                 }
             else
                 {
-                    return 1;
+                    return 255;
                 }
         }
 }

@@ -8,6 +8,7 @@ package fotoshop;
 import fotoshop.Logica.Dibujo;
 import fotoshop.Logica.Filtros;
 import fotoshop.Logica.Imagen;
+import fotoshop.Logica.Morfologia;
 import fotoshop.Logica.Transformaciones;
 import histograma.AjusteDeBrillo;
 import histograma.Data;
@@ -187,6 +188,7 @@ public class mainVentana extends javax.swing.JFrame {
         multiUmbLabel = new javax.swing.JLabel();
         dobleUmbralBoton = new javax.swing.JButton();
         addRuidoBoton = new javax.swing.JButton();
+        DilatacionBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -683,6 +685,18 @@ public class mainVentana extends javax.swing.JFrame {
             }
         });
 
+        DilatacionBoton.setBackground(new java.awt.Color(255, 255, 255));
+        DilatacionBoton.setForeground(new java.awt.Color(0, 204, 255));
+        DilatacionBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/ruido.png"))); // NOI18N
+        DilatacionBoton.setToolTipText("Dilatación");
+        DilatacionBoton.setBorderPainted(false);
+        DilatacionBoton.setContentAreaFilled(false);
+        DilatacionBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DilatacionBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -775,8 +789,10 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(dobleUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addRuidoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 178, Short.MAX_VALUE)))
+                                .addComponent(addRuidoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(DilatacionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 140, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -816,7 +832,8 @@ public class mainVentana extends javax.swing.JFrame {
                             .addComponent(medianaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(multiUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dobleUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addRuidoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(addRuidoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DilatacionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(sumaBotom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1648,6 +1665,27 @@ public class mainVentana extends javax.swing.JFrame {
         
     }//GEN-LAST:event_addRuidoBotonActionPerformed
 
+    private void DilatacionBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DilatacionBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        int[][][] dilatado;
+        int[][] ee = {{0,1,0}, {1,1,1}, {0,1,0}};
+        if(r >= 0)
+            {                                                                                                              
+                Morfologia M = new Morfologia();                
+                Imagen img = listaImagenes.get(r);                
+                dilatado = M.dilatacion(img.getModificado(), ee, 1, 1);                
+                listaImagenes.get(r).setModificado(dilatado);
+                JFrame f = new JFrame();
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(dilatado, img.getAncho(), img.getAlto()));
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
+                f.add(scroll);
+                panelTabs.setComponentAt(r, f.getContentPane());
+
+            }    
+    }//GEN-LAST:event_DilatacionBotonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1686,6 +1724,7 @@ public class mainVentana extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Binarización;
+    private javax.swing.JButton DilatacionBoton;
     private javax.swing.JButton abrirBoton;
     private javax.swing.JButton addRuidoBoton;
     private javax.swing.JButton andBoton;
