@@ -128,9 +128,11 @@
                               <Component id="addRuidoBoton" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="DilatacionBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="erosionBoton" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="140" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="102" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -180,6 +182,7 @@
                           <Component id="dobleUmbralBoton" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="addRuidoBoton" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="DilatacionBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="erosionBoton" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1052,6 +1055,25 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DilatacionBotonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="erosionBoton">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="cc" red="0" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/fotoshop/Icon/ruido.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Erosi&#xf3;n"/>
+        <Property name="borderPainted" type="boolean" value="false"/>
+        <Property name="contentAreaFilled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="erosionBotonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

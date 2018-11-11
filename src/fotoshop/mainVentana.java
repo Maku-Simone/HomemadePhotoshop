@@ -189,6 +189,7 @@ public class mainVentana extends javax.swing.JFrame {
         dobleUmbralBoton = new javax.swing.JButton();
         addRuidoBoton = new javax.swing.JButton();
         DilatacionBoton = new javax.swing.JButton();
+        erosionBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -697,6 +698,18 @@ public class mainVentana extends javax.swing.JFrame {
             }
         });
 
+        erosionBoton.setBackground(new java.awt.Color(255, 255, 255));
+        erosionBoton.setForeground(new java.awt.Color(0, 204, 255));
+        erosionBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/ruido.png"))); // NOI18N
+        erosionBoton.setToolTipText("Erosión");
+        erosionBoton.setBorderPainted(false);
+        erosionBoton.setContentAreaFilled(false);
+        erosionBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                erosionBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -791,8 +804,10 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(addRuidoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DilatacionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 140, Short.MAX_VALUE)))
+                                .addComponent(DilatacionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(erosionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 102, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -833,7 +848,8 @@ public class mainVentana extends javax.swing.JFrame {
                             .addComponent(multiUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dobleUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addRuidoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DilatacionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(DilatacionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(erosionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(sumaBotom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1669,7 +1685,7 @@ public class mainVentana extends javax.swing.JFrame {
         // TODO add your handling code here:
         int r = panelTabs.getSelectedIndex();
         int[][][] dilatado;
-        int[][] ee = {{0,1,0}, {1,1,1}, {0,1,0}};
+        int[][] ee = {{1,0,0}, {1,0,0}, {1,0,0}};
         if(r >= 0)
             {                                                                                                              
                 Morfologia M = new Morfologia();                
@@ -1685,6 +1701,27 @@ public class mainVentana extends javax.swing.JFrame {
 
             }    
     }//GEN-LAST:event_DilatacionBotonActionPerformed
+
+    private void erosionBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_erosionBotonActionPerformed
+        // TODO add your handling code here:
+                int r = panelTabs.getSelectedIndex();
+        int[][][] erosionado;
+        int[][] ee = {{2,255,2}, {255,255,255}, {2,255,2}};
+        if(r >= 0)
+            {                                                                                                              
+                Morfologia M = new Morfologia();                
+                Imagen img = listaImagenes.get(r);                
+                erosionado = M.erosion(img.getModificado(), ee, 1, 1);                
+                listaImagenes.get(r).setModificado(erosionado);
+                JFrame f = new JFrame();
+                JScrollPane scroll = new JScrollPane();
+                scroll.getViewport().add(new Dibujo(erosionado, img.getAncho(), img.getAlto()));
+                scroll = umb(scroll, img.getAncho(), img.getAncho());
+                f.add(scroll);
+                panelTabs.setComponentAt(r, f.getContentPane());
+
+            }    
+    }//GEN-LAST:event_erosionBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1733,6 +1770,7 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JButton difPixBoton;
     private javax.swing.JButton diviBoton;
     private javax.swing.JButton dobleUmbralBoton;
+    private javax.swing.JButton erosionBoton;
     private javax.swing.JButton filtroPromedioBoton;
     private javax.swing.JButton filtroPromedioPesadoBoton;
     private javax.swing.JButton gBoton;
