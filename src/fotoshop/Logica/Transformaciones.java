@@ -21,7 +21,7 @@ public class Transformaciones {
     
     public int[][][] binarizado(int umbral, Imagen img) throws IOException
         {
-            int[][][] binario = img.getModificado();            
+            int[][][] binario = img.getArgb();            
             int ancho = img.getAncho();
             int alto = img.getAlto();
             File f = new File(img.getRuta());

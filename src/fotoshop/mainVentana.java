@@ -902,14 +902,14 @@ public class mainVentana extends javax.swing.JFrame {
         if(r >= 0)
             {                            
              //   panelTabs.remove(r);
-               // System.out.println("repintaremos " + r);
+                
                 Transformaciones tra = new Transformaciones();       
                 Imagen img = listaImagenes.get(r);
                 try 
                     {
                         binario = tra.binarizado(sliderUmbral.getValue(), listaImagenes.get(r));                           
                         listaImagenes.get(r).setModificado(binario);
-
+                     //   System.out.println("repintaremos " + sliderUmbral.getValue());
                         JFrame f = new JFrame();                                   
                         JScrollPane scroll = new JScrollPane();
                         scroll.getViewport().add(new Dibujo(binario, img.getAncho(), img.getAlto()));      

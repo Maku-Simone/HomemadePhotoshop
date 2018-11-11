@@ -111,9 +111,9 @@ public class Filtros {
                     largo[x][largo[0].length - 1][2] = 0;
                     largo[x][largo[0].length - 1][3] = 0;                       
                 }
-            for(int x = 1; x < argb.length; x++)
+            for(int x = 1; x < argb.length + 1; x++)
                 {
-                    for(int y = 1; y < argb[0].length; y++)
+                    for(int y = 1; y < argb[0].length + 1; y++)
                         {
                             largo[x][y][1] = argb[x-1][y-1][1];
                             largo[x][y][2] = argb[x-1][y-1][2];
