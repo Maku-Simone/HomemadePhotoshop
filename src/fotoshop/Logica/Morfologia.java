@@ -191,7 +191,7 @@ public class Morfologia {
                         {
                             if(binario[x-2][y-2][1] == 255)
                                 {
-                                    System.out.println("255 en " + x + ", " + y);
+                                  //  System.out.println("255 en " + x + ", " + y);
                                     
                                     int[][] mm = new int[3][3];
                                     if(centroX == 0 && centroY == 0)
@@ -210,48 +210,48 @@ public class Morfologia {
                                         }
                                     if(centroX == 0 && centroY == 1)
                                         {
-                                            mm[1][0] = expandido[x][y][1];
+                                            mm[0][0] = expandido[x][y-1][1];
+                                            mm[0][1] = expandido[x][y][1];
+                                            mm[0][2] = expandido[x][y+1][1];
+
+                                            mm[1][0] = expandido[x+1][y-1][1];
                                             mm[1][1] = expandido[x+1][y][1];
-                                            mm[0][0] = expandido[x-1][y][1];
+                                            mm[1][2] = expandido[x+1][y+1][1];
 
-                                            mm[1][1] = expandido[x][y+1][1];
-                                            mm[2][1] = expandido[x+1][y+1][1];
-                                            mm[0][1] = expandido[x-1][y+1][1];
-
-                                            mm[1][2] = expandido[x][y+2][1];
-                                            mm[2][2] = expandido[x+1][y+2][1];
-                                            mm[0][2] = expandido[x-1][y+2][1];
+                                            mm[2][0] = expandido[x+2][y-1][1];
+                                            mm[2][1] = expandido[x+2][y][1];
+                                            mm[2][2] = expandido[x+2][y+1][1];
                                         }
                                     if(centroX == 0 && centroY == 2)
                                         {
-                                            mm[0][0] = expandido[x][y][1];
-                                            mm[0][1] = expandido[x-2][y][1];
-                                            mm[0][2] = expandido[x-1][y][1];
+                                            mm[0][0] = expandido[x][y-2][1];
+                                            mm[0][1] = expandido[x][y-1][1];
+                                            mm[0][2] = expandido[x][y][1];
 
-                                            mm[1][0] = expandido[x][y+1][1];
-                                            mm[1][1] = expandido[x-2][y+1][1];
-                                            mm[1][2] = expandido[x-1][y+1][1];
+                                            mm[1][0] = expandido[x+1][y-2][1];
+                                            mm[1][1] = expandido[x+1][y-1][1];
+                                            mm[1][2] = expandido[x+1][y][1];
 
-                                            mm[2][0] = expandido[x][y+2][1];
-                                            mm[2][1] = expandido[x-2][y+2][1];
-                                            mm[2][2] = expandido[x-1][y+2][1];
+                                            mm[2][0] = expandido[x+2][y-2][1];
+                                            mm[2][1] = expandido[x+2][y-1][1];
+                                            mm[2][2] = expandido[x+2][y][1];
                                         }
 
                                     //////////////
 
                                     if(centroX == 1 && centroY == 0)
                                         {
-                                            mm[0][0] = expandido[x][y][1];
-                                            mm[0][1] = expandido[x+1][y][1];
-                                            mm[0][2] = expandido[x+2][y][1];
+                                            mm[0][0] = expandido[x-1][y][1];
+                                            mm[0][1] = expandido[x-1][y+1][1];
+                                            mm[0][2] = expandido[x-1][y+2][1];
 
-                                            mm[1][0] = expandido[x][y+1][1];
-                                            mm[1][1] = expandido[x+1][y+1][1];
-                                            mm[1][2] = expandido[x+2][y+1][1];
+                                            mm[1][0] = expandido[x][y][1];
+                                            mm[1][1] = expandido[x][y+1][1];
+                                            mm[1][2] = expandido[x][y+2][1];
 
-                                            mm[2][0] = expandido[x][y-1][1];
-                                            mm[2][1] = expandido[x+1][y-1][1];
-                                            mm[2][2] = expandido[x+2][y-1][1];
+                                            mm[2][0] = expandido[x+1][y][1];
+                                            mm[2][1] = expandido[x+1][y+1][1];
+                                            mm[2][2] = expandido[x+1][y+2][1];
                                         }
                                     if(centroX == 1 && centroY == 1)
                                         {                                   
@@ -259,11 +259,11 @@ public class Morfologia {
                                             mm[0][1] = expandido[x-1][y][1];
                                             mm[0][2] = expandido[x-1][y+1][1];
 
-                                            mm[1][0] = expandido[x][y-1][1];                                                                       
+                                            mm[1][0] = expandido[x][y-1][1];
                                             mm[1][1] = expandido[x][y][1];
                                             mm[1][2] = expandido[x][y+1][1];
 
-                                            mm[2][0] = expandido[x+1][y-1][1];  
+                                            mm[2][0] = expandido[x+1][y-1][1];
                                             mm[2][1] = expandido[x+1][y][1];
                                             mm[2][2] = expandido[x+1][y+1][1];
                                         /*for(int i = 0; i < 3; i++)
@@ -278,17 +278,17 @@ public class Morfologia {
                                         }
                                     if(centroX == 1 && centroY == 2)
                                         {
-                                            mm[0][0] = expandido[x][y][1];
-                                            mm[0][1] = expandido[x-2][y][1];
+                                            mm[0][0] = expandido[x-1][y-2][1];
+                                            mm[0][1] = expandido[x-1][y-1][1];
                                             mm[0][2] = expandido[x-1][y][1];
 
-                                            mm[1][0] = expandido[x][y+1][1];
-                                            mm[1][1] = expandido[x-2][y+1][1];
-                                            mm[1][2] = expandido[x-1][y+1][1];
+                                            mm[1][0] = expandido[x][y-2][1];
+                                            mm[1][1] = expandido[x][y-1][1];
+                                            mm[1][2] = expandido[x][y][1];
 
-                                            mm[2][0] = expandido[x][y-1][1];
-                                            mm[2][1] = expandido[x-2][y-1][1];
-                                            mm[2][2] = expandido[x-1][y-1][1];
+                                            mm[2][0] = expandido[x+1][y-2][1];
+                                            mm[2][1] = expandido[x+1][y-1][1];
+                                            mm[2][2] = expandido[x+1][y][1];
                                         }
 
 
@@ -296,45 +296,45 @@ public class Morfologia {
                                     ////////////////
                                     if(centroX == 2 && centroY == 0)
                                         {
-                                            mm[0][0] = expandido[x][y][1];
-                                            mm[0][1] = expandido[x+1][y][1];
-                                            mm[0][2] = expandido[x+2][y][1];
+                                            mm[0][0] = expandido[x-2][y][1];
+                                            mm[0][1] = expandido[x-2][y+1][1];
+                                            mm[0][2] = expandido[x-2][y+2][1];
 
-                                            mm[1][0] = expandido[x][y-1][1];
-                                            mm[1][1] = expandido[x+1][y-1][1];
-                                            mm[1][2] = expandido[x+2][y-1][1];
+                                            mm[1][0] = expandido[x-1][y][1];
+                                            mm[1][1] = expandido[x-1][y+1][1];
+                                            mm[1][2] = expandido[x-1][y+2][1];
 
-                                            mm[2][0] = expandido[x][y-2][1];
-                                            mm[2][1] = expandido[x+1][y-2][1];
-                                            mm[2][2] = expandido[x+2][y-2][1];
+                                            mm[2][0] = expandido[x][y][1];
+                                            mm[2][1] = expandido[x][y+1][1];
+                                            mm[2][2] = expandido[x][y+2][1];
                                         }
                                     if(centroX == 2 && centroY == 1)
                                         {
-                                            mm[0][0] = expandido[x][y][1];
-                                            mm[0][1] = expandido[x+1][y][1];
-                                            mm[0][2] = expandido[x-1][y][1];
+                                            mm[0][0] = expandido[x-2][y-1][1];
+                                            mm[0][1] = expandido[x-2][y][1];
+                                            mm[0][2] = expandido[x-2][y+1][1];
 
-                                            mm[1][0] = expandido[x][y-1][1];
-                                            mm[1][1] = expandido[x+1][y-1][1];
-                                            mm[1][2] = expandido[x-1][y-1][1];
+                                            mm[1][0] = expandido[x-1][y-1][1];
+                                            mm[1][1] = expandido[x-1][y][1];
+                                            mm[1][2] = expandido[x-1][y+1][1];
 
-                                            mm[2][0] = expandido[x][y-2][1];
-                                            mm[2][1] = expandido[x+1][y-2][1];
-                                            mm[2][2] = expandido[x-1][y-2][1];
+                                            mm[2][0] = expandido[x][y-1][1];
+                                            mm[2][1] = expandido[x][y][1];
+                                            mm[2][2] = expandido[x][y+1][1];
                                         }
                                     if(centroX == 2 && centroY == 2)
                                         {
-                                            mm[0][0] = expandido[x][y][1];
-                                            mm[0][1] = expandido[x-2][y][1];
-                                            mm[0][2] = expandido[x-1][y][1];
+                                            mm[0][0] = expandido[x-2][y-2][1];
+                                            mm[0][1] = expandido[x-2][y-1][1];
+                                            mm[0][2] = expandido[x-2][y][1];
 
-                                            mm[1][0] = expandido[x][y-1][1];
-                                            mm[1][1] = expandido[x-2][y-1][1];
-                                            mm[1][2] = expandido[x-1][y-1][1];
+                                            mm[1][0] = expandido[x-1][y-2][1];
+                                            mm[1][1] = expandido[x-1][y-1][1];
+                                            mm[1][2] = expandido[x-1][y][1];
 
                                             mm[2][0] = expandido[x][y-2][1];
-                                            mm[2][1] = expandido[x-2][y-2][1];
-                                            mm[2][2] = expandido[x-1][y-2][1];
+                                            mm[2][1] = expandido[x][y-1][1];
+                                            mm[2][2] = expandido[x][y][1];
                                         }
 
                                     exp2[x][y][1] = compara(EE, mm);
@@ -342,14 +342,14 @@ public class Morfologia {
 
                         }
                 }
-            for(int x = 0; x < expandido.length; x++)
+          /*  for(int x = 0; x < expandido.length; x++)
                 {
                     for(int y = 0; y < expandido[0].length; y++)
                         {
                             System.out.print((exp2[x][y][1] == 255) ? "-|" : exp2[x][y][1] + "|");
                         }
                     System.out.println("");
-                }
+                }*/
             for(int x = 0; x < binario.length; x++)
                 {
                     for(int y = 0; y < binario[0].length; y++)
@@ -483,7 +483,7 @@ public class Morfologia {
 
     public int compara(int[][] EE, int[][] mm)
         {
-            System.out.println("");System.out.println("\n\n");         
+          /*  System.out.println("");System.out.println("\n\n");         
             for(int i = 0; i < 3; i++)
                 {
                     for(int j = 0; j < 3; j++)
@@ -491,7 +491,7 @@ public class Morfologia {
                             System.out.print(((mm[i][j] == 255 ) ? "☻": mm[i][j]) + "|");
                         }
                     System.out.println("");
-                }
+                }*/
             
             for(int i = 0; i < 3; i++)
                 {
@@ -510,7 +510,7 @@ public class Morfologia {
                                 }
                         }
                 }
-            System.out.println("Todo bien si cupo");
+            //System.out.println("Todo bien si cupo");
             return 255;
         }
     public int[][] ajustaEE(int[][] ee)

@@ -1685,12 +1685,12 @@ public class mainVentana extends javax.swing.JFrame {
         // TODO add your handling code here:
         int r = panelTabs.getSelectedIndex();
         int[][][] dilatado;
-        int[][] ee = {{1,0,0}, {1,0,0}, {1,0,0}};
+        int[][] ee = {{1,1,1}, {1,1,1}, {1,1,1}};
         if(r >= 0)
             {                                                                                                              
                 Morfologia M = new Morfologia();                
                 Imagen img = listaImagenes.get(r);                
-                dilatado = M.dilatacion(img.getModificado(), ee, 1, 1);                
+                dilatado = M.dilatacion(img.getModificado(), ee, 0, 2);                
                 listaImagenes.get(r).setModificado(dilatado);
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
@@ -1706,7 +1706,7 @@ public class mainVentana extends javax.swing.JFrame {
         // TODO add your handling code here:
                 int r = panelTabs.getSelectedIndex();
         int[][][] erosionado;
-        int[][] ee = {{2,255,2}, {255,255,255}, {2,255,2}};
+        int[][] ee = {{2,2,2}, {2,2,255}, {255,255,255}};
         if(r >= 0)
             {                                                                                                              
                 Morfologia M = new Morfologia();                
