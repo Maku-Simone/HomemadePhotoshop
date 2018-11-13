@@ -180,8 +180,8 @@ public class Transformaciones {
             ancho = menor(A.getAncho(), B.getAncho());
             int sumados[][][] = new int[ancho][alto][4];
             
-                       int imagenA[][][] = A.getArgb();
-            int imagenB[][][] = B.getArgb();
+                       int imagenA[][][] = A.getModificado();
+            int imagenB[][][] = B.getModificado();
             for(int x = 0; x < ancho; x++)
                 {
                     for(int y = 0; y < alto; y++)

@@ -140,7 +140,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="erosionBoton" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="clausuraBoton1" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="fronteraBoton" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="0" pref="64" max="32767" attributes="0"/>
@@ -194,7 +194,7 @@
                           <Component id="addRuidoBoton" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="DilatacionBoton" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="erosionBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="clausuraBoton1" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="fronteraBoton" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -1130,7 +1130,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clausuraBotonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="clausuraBoton1">
+    <Component class="javax.swing.JButton" name="fronteraBoton">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1146,7 +1146,7 @@
         <Property name="contentAreaFilled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clausuraBoton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fronteraBotonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

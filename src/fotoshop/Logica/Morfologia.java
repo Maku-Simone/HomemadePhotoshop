@@ -520,6 +520,10 @@ public class Morfologia {
                 {
                     for(int j = 0; j < 3; j++)
                         {
+                            if(ee[i][j] == -1 || ee[i][j] == 245 || ee[i][j] == 1) //si e scentro
+                                {
+                                    ee[i][j] += 1;
+                                }
                             ee2[i][j] = ee[j][i];
                         }
                 }

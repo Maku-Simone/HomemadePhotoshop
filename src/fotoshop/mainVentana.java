@@ -56,6 +56,7 @@ public class mainVentana extends javax.swing.JFrame {
     ArrayList<Imagen> listaImagenes = new ArrayList<Imagen>();
     static int[][][] operacionesAritmeticas, morfologiaOperado;
     static int[] centroEE;
+    static boolean centroDefinido = false;
     Point umbral1 = new Point(0,0), umbral2  = new Point(0,0);
     
     public mainVentana() {                       
@@ -193,7 +194,7 @@ public class mainVentana extends javax.swing.JFrame {
         erosionBoton = new javax.swing.JButton();
         aperturaBoton = new javax.swing.JButton();
         clausuraBoton = new javax.swing.JButton();
-        clausuraBoton1 = new javax.swing.JButton();
+        fronteraBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -738,15 +739,15 @@ public class mainVentana extends javax.swing.JFrame {
             }
         });
 
-        clausuraBoton1.setBackground(new java.awt.Color(255, 255, 255));
-        clausuraBoton1.setForeground(new java.awt.Color(0, 204, 255));
-        clausuraBoton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/ruido.png"))); // NOI18N
-        clausuraBoton1.setToolTipText("Cerco Convexo | Frontera");
-        clausuraBoton1.setBorderPainted(false);
-        clausuraBoton1.setContentAreaFilled(false);
-        clausuraBoton1.addActionListener(new java.awt.event.ActionListener() {
+        fronteraBoton.setBackground(new java.awt.Color(255, 255, 255));
+        fronteraBoton.setForeground(new java.awt.Color(0, 204, 255));
+        fronteraBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/ruido.png"))); // NOI18N
+        fronteraBoton.setToolTipText("Cerco Convexo | Frontera");
+        fronteraBoton.setBorderPainted(false);
+        fronteraBoton.setContentAreaFilled(false);
+        fronteraBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clausuraBoton1ActionPerformed(evt);
+                fronteraBotonActionPerformed(evt);
             }
         });
 
@@ -854,7 +855,7 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(erosionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(clausuraBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(fronteraBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 64, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -898,7 +899,7 @@ public class mainVentana extends javax.swing.JFrame {
                             .addComponent(addRuidoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(DilatacionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(erosionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(clausuraBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fronteraBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1736,57 +1737,47 @@ public class mainVentana extends javax.swing.JFrame {
     private void DilatacionBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DilatacionBotonActionPerformed
         // TODO add your handling code here:
         int r = panelTabs.getSelectedIndex();
-        int[][][] dilatado;
-        int[][] ee;
-        int[] centro;
         if(r >= 0)
-            {                              
-                          
-                Imagen img = listaImagenes.get(r);                
-                dilatado = MM(img, 0);                                
-                listaImagenes.get(r).setModificado(dilatado);
-                JFrame f = new JFrame();
-                JScrollPane scroll = new JScrollPane();
-                scroll.getViewport().add(new Dibujo(dilatado, img.getAncho(), img.getAlto()));
-                scroll = umb(scroll, img.getAncho(), img.getAncho());
-                f.add(scroll);
-                panelTabs.setComponentAt(r, f.getContentPane());
-
+            {                                                        
+                MM(r, 0);                                                          
             }    
     }//GEN-LAST:event_DilatacionBotonActionPerformed
 
     private void erosionBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_erosionBotonActionPerformed
         // TODO add your handling code here:
-                int r = panelTabs.getSelectedIndex();
-        int[][][] erosionado;
-        int[][] ee = {{2,2,2}, {2,2,255}, {255,255,255}};
+        int r = panelTabs.getSelectedIndex();
         if(r >= 0)
-            {                                                                                                              
-                Morfologia M = new Morfologia();                
-                Imagen img = listaImagenes.get(r);                
-                erosionado = M.erosion(img.getModificado(), ee, 1, 1);                
-                listaImagenes.get(r).setModificado(erosionado);
-                JFrame f = new JFrame();
-                JScrollPane scroll = new JScrollPane();
-                scroll.getViewport().add(new Dibujo(erosionado, img.getAncho(), img.getAlto()));
-                scroll = umb(scroll, img.getAncho(), img.getAncho());
-                f.add(scroll);
-                panelTabs.setComponentAt(r, f.getContentPane());
-
+            {                                                        
+                MM(r, 1);                                                          
             }    
     }//GEN-LAST:event_erosionBotonActionPerformed
 
     private void aperturaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aperturaBotonActionPerformed
         // TODO add your handling code here:
+                int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {                                                        
+                MM(r, 2);                                                          
+            }    
     }//GEN-LAST:event_aperturaBotonActionPerformed
 
     private void clausuraBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clausuraBotonActionPerformed
         // TODO add your handling code here:
+                int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {                                                        
+                MM(r, 3);                                                          
+            }    
     }//GEN-LAST:event_clausuraBotonActionPerformed
 
-    private void clausuraBoton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clausuraBoton1ActionPerformed
+    private void fronteraBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fronteraBotonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_clausuraBoton1ActionPerformed
+                int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {                                                        
+                MM(r, 4);                                                          
+            }    
+    }//GEN-LAST:event_fronteraBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1834,13 +1825,13 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JButton bBoton;
     private javax.swing.JButton cerrarTab;
     private javax.swing.JButton clausuraBoton;
-    private javax.swing.JButton clausuraBoton1;
     private javax.swing.JButton difPixBoton;
     private javax.swing.JButton diviBoton;
     private javax.swing.JButton dobleUmbralBoton;
     private javax.swing.JButton erosionBoton;
     private javax.swing.JButton filtroPromedioBoton;
     private javax.swing.JButton filtroPromedioPesadoBoton;
+    private javax.swing.JButton fronteraBoton;
     private javax.swing.JButton gBoton;
     private javax.swing.JButton gaussianoBoton;
     private javax.swing.JButton grisesBoton;
@@ -1887,15 +1878,17 @@ public class mainVentana extends javax.swing.JFrame {
             return false; //no estuvo dentro de los formatos admitidos
         }
 
-    int[][][] MM(Imagen img, int oper)
+    int[][][] MM(int r, int oper)
         {
-            int[][] ee = new int[3][3];
+            Imagen img = listaImagenes.get(r);
+            int[][] ee = {{2,2,2}, {2,2,2}, {2,2,2}};
             int[][][] operado;
             
             JFrame f = new JFrame();
             JPanel p = new JPanel();
             JLabel label = new JLabel("Determine el Elemento de Estructura");
-            JButton operar = new JButton("Hacer");                                                              
+            JButton operar = new JButton("Hacer");          
+            operar.setBounds(175, 350, 150, 30);
             label.setBounds(150, 50, 300, 20);
             p.add(label);
             p.setPreferredSize(new Dimension(500,500));
@@ -1908,9 +1901,57 @@ public class mainVentana extends javax.swing.JFrame {
                     for(int j = 0; j < 3; j++)
                     {
                         eeBotones[i][j] = new JButton("-");
+                        eeBotones[i][j].setName("");
                         eeBotones[i][j].setBackground(Color.gray);
                         eeBotones[i][j].setForeground(Color.gray);
                         eeBotones[i][j].setBounds(175 + (50 * j), 100 + (50 * i), 50, 50);       
+                        eeBotones[i][j].addMouseListener(new MouseAdapter()
+                            {
+                                @Override
+                                public void mouseClicked(MouseEvent e){
+                                     if (e.getButton() == 3) 
+                                        { // if right click
+                                            System.out.println("le picaste al derecho");
+                                            int i, j;                                    
+                                            JButton x = (JButton) e.getSource();
+                                            j = (x.getBounds().x - 175)/50;
+                                            i = (x.getBounds().y - 100)/50;        
+                                            System.out.println("le picaste al " + i + " " + j);
+                                            for(int a = 0; a < 3; a++)
+                                                {
+                                                    for(int b = 0; b < 3; b++)
+                                                        {
+                                                            if(eeBotones[a][b].getName().equals("centro"))
+                                                                {
+                                                                    int c;
+                                                                    Color col;
+                                                                    String car = eeBotones[a][b].getText();
+                                                                    
+                                                                    c = (car.equals("-") ? 2: Integer.parseInt(car));
+                                                                    col = (c == 2) ? Color.gray : new Color(c*255,c*255,c*255);
+                                                                    
+                                                                    eeBotones[a][b].setName("");                                                                    
+                                                                    eeBotones[a][b].setBackground(col); 
+                                                                    ee[a][b] += 1; //le quitamos sus propiedades de centro
+                                                                }
+                                                        }
+                                                }
+                                            //le ponemos propiedaddes de centro al nuevo boton centro
+                                            eeBotones[i][j].setName("centro");
+                                            eeBotones[i][j].setBackground(Color.red);
+                                            eeBotones[i][j].setForeground(Color.white);
+                                            ee[i][j] -= 1;
+                                            centroDefinido = true;
+                                            /*
+                                                En el EE vienen los valores 0, 255 y 2
+                                                Si son centros se les resta 1 y luego se ajusta
+                                            
+                                            */
+                                            
+                                            
+                                        }                                                                                 
+                                }
+                            });
                         
                         eeBotones[i][j].addActionListener(new ActionListener()                 
                             {
@@ -1922,9 +1963,7 @@ public class mainVentana extends javax.swing.JFrame {
                                     valor = e.getActionCommand();
                                     JButton x = (JButton) e.getSource();
                                     j = (x.getBounds().x - 175)/50;
-                                    i = (x.getBounds().y - 100)/50;
-                                    System.out.print("[" + i);
-                                    System.out.print(", " + j + "]\n");
+                                    i = (x.getBounds().y - 100)/50;                                    
                                     
                                    switch(valor)
                                     {
@@ -1948,6 +1987,7 @@ public class mainVentana extends javax.swing.JFrame {
                                             break;
                                         default:                                            
                                     }
+                                   centroDefinido = false;
                                 }
                             });
                         
@@ -1960,22 +2000,50 @@ public class mainVentana extends javax.swing.JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) 
                     {
-                        Morfologia M = new Morfologia();
-                        centroEE = getCentro(ee);
-                        switch(oper)
+                        if(centroDefinido)
                             {
-                                case 0:
-                                    morfologiaOperado = M.dilatacion(img.getModificado(), ee, centroEE[0], centroEE[1]);
-                                    break;
-                                case 1:
-                                    morfologiaOperado = M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]);
-                                    break;
-                                case 3: //
-                                    int[][][] tempOperado ;
-                                    tempOperado = M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]);
-                                    morfologiaOperado = M.erosion(tempOperado, ee, centroEE[0], centroEE[1]);
-                                    break;                                    
-                                default:    
+                                Morfologia M = new Morfologia();
+                                centroEE = getCentro(ee);
+                                switch(oper)
+                                    {
+                                        case 0:
+                                            morfologiaOperado = M.dilatacion(img.getModificado(), ee, centroEE[0], centroEE[1]);
+                                            listaImagenes.get(r).setModificado(morfologiaOperado);                                                                                                                                   
+                                            break;
+                                        case 1: //erosion
+                                            morfologiaOperado = M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]);
+                                            break;
+                                        case 2: //apertura
+                                            int[][][] tempOperado ;
+                                            tempOperado = M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]);
+                                            morfologiaOperado = M.dilatacion(tempOperado, ee, centroEE[0], centroEE[1]);
+                                            break;        
+                                        case 3: //cierre
+                                            int[][][] tempCerrado;
+                                            tempCerrado = M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]);
+                                            morfologiaOperado = M.dilatacion(tempCerrado, ee, centroEE[0], centroEE[1]);
+                                            break;          
+                                        case 4: //apertura
+                                            Transformaciones T = new Transformaciones();
+                                            Imagen imgErosionada = listaImagenes.get(r);   // A☻B                                          
+                                            
+                                            imgErosionada.setArgb(M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]));
+                                            imgErosionada.setModificado(M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]));
+                                            
+                                            morfologiaOperado = T.resta(img, imgErosionada);
+                                            break;                                             
+                                        default:    
+                                    }
+                                JFrame f = new JFrame();
+                                JScrollPane scroll = new JScrollPane();
+                                scroll.getViewport().add(new Dibujo(morfologiaOperado, img.getAncho(), img.getAlto()));
+                                scroll = umb(scroll, img.getAncho(), img.getAncho());
+                                f.add(scroll);
+                                panelTabs.setComponentAt(r, f.getContentPane());
+                            }
+                        else
+                            {
+                                System.out.println("define un centro -3-");
                             }
                     }
                 });
@@ -1997,7 +2065,7 @@ public class mainVentana extends javax.swing.JFrame {
                 {
                     for(int j = 0; j < 3; j++)
                         {
-                            if(ee[i][j] < 0)
+                            if(ee[i][j] == -1 || ee[i][j] ==  254|| ee[i][j] == 1)
                                 {
                                     ce[0] = i;
                                     ce[1] = j;
