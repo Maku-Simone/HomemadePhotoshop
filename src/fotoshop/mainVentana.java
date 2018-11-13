@@ -2024,13 +2024,16 @@ public class mainVentana extends javax.swing.JFrame {
                                             break;          
                                         case 4: //frontera
                                             Transformaciones T = new Transformaciones();
-                                            Imagen imgErosionada = listaImagenes.get(r);   // A☻B                                          
-                                            
-                                            imgErosionada.setArgb(M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]));
-                                            imgErosionada.setModificado(M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]));
+                                            int[][][] tempEro = M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]);
+
+                                            Imagen imgErosionada = new Imagen(); // A☻B
+                                            imgErosionada.setAlto(img.getAlto());
+                                            imgErosionada.setAncho(img.getAncho());                                                          
+                                            imgErosionada.setArgb(tempEro);
+                                            imgErosionada.setModificado(tempEro);
                                             
                                             morfologiaOperado = T.resta(img, imgErosionada); //A - (A☻B)
-                                            break;                                             
+                                            break;                                                                                          
                                         default:    
                                     }
                                 listaImagenes.get(r).setModificado(morfologiaOperado);   
@@ -2043,7 +2046,8 @@ public class mainVentana extends javax.swing.JFrame {
                             }
                         else
                             {
-                                System.out.println("define un centro -3-");
+                                JFrame mensaje = new JFrame("Mensajito de algo malo");
+                                JOptionPane.showMessageDialog(mensaje, "Define un centro :c");
                             }
                     }
                 });
