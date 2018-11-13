@@ -693,7 +693,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         DilatacionBoton.setBackground(new java.awt.Color(255, 255, 255));
         DilatacionBoton.setForeground(new java.awt.Color(0, 204, 255));
-        DilatacionBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/ruido.png"))); // NOI18N
+        DilatacionBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/dilatacion.png"))); // NOI18N
         DilatacionBoton.setToolTipText("Dilatación");
         DilatacionBoton.setBorderPainted(false);
         DilatacionBoton.setContentAreaFilled(false);
@@ -705,7 +705,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         erosionBoton.setBackground(new java.awt.Color(255, 255, 255));
         erosionBoton.setForeground(new java.awt.Color(0, 204, 255));
-        erosionBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/ruido.png"))); // NOI18N
+        erosionBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/erosion.png"))); // NOI18N
         erosionBoton.setToolTipText("Erosión");
         erosionBoton.setBorderPainted(false);
         erosionBoton.setContentAreaFilled(false);
@@ -717,7 +717,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         aperturaBoton.setBackground(new java.awt.Color(255, 255, 255));
         aperturaBoton.setForeground(new java.awt.Color(0, 204, 255));
-        aperturaBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/ruido.png"))); // NOI18N
+        aperturaBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/apertura.png"))); // NOI18N
         aperturaBoton.setToolTipText("Apertura");
         aperturaBoton.setBorderPainted(false);
         aperturaBoton.setContentAreaFilled(false);
@@ -729,7 +729,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         clausuraBoton.setBackground(new java.awt.Color(255, 255, 255));
         clausuraBoton.setForeground(new java.awt.Color(0, 204, 255));
-        clausuraBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/ruido.png"))); // NOI18N
+        clausuraBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/cierre.png"))); // NOI18N
         clausuraBoton.setToolTipText("Clausura");
         clausuraBoton.setBorderPainted(false);
         clausuraBoton.setContentAreaFilled(false);
@@ -741,7 +741,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         fronteraBoton.setBackground(new java.awt.Color(255, 255, 255));
         fronteraBoton.setForeground(new java.awt.Color(0, 204, 255));
-        fronteraBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/ruido.png"))); // NOI18N
+        fronteraBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/cerco.png"))); // NOI18N
         fronteraBoton.setToolTipText("Cerco Convexo | Frontera");
         fronteraBoton.setBorderPainted(false);
         fronteraBoton.setContentAreaFilled(false);
@@ -2019,8 +2019,8 @@ public class mainVentana extends javax.swing.JFrame {
                                             break;        
                                         case 3: //cierre
                                             int[][][] tempCerrado;
-                                            tempCerrado = M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]);
-                                            morfologiaOperado = M.dilatacion(tempCerrado, ee, centroEE[0], centroEE[1]);
+                                            tempCerrado = M.dilatacion(img.getModificado(), ee, centroEE[0], centroEE[1]);
+                                            morfologiaOperado = M.erosion(tempCerrado, ee, centroEE[0], centroEE[1]);
                                             break;          
                                         case 4: //frontera
                                             Transformaciones T = new Transformaciones();

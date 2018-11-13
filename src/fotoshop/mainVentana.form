@@ -1063,7 +1063,7 @@
           <Color blue="ff" green="cc" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/fotoshop/Icon/ruido.png"/>
+          <Image iconType="3" name="/fotoshop/Icon/dilatacion.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Dilataci&#xf3;n"/>
         <Property name="borderPainted" type="boolean" value="false"/>
@@ -1082,7 +1082,7 @@
           <Color blue="ff" green="cc" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/fotoshop/Icon/ruido.png"/>
+          <Image iconType="3" name="/fotoshop/Icon/erosion.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Erosi&#xf3;n"/>
         <Property name="borderPainted" type="boolean" value="false"/>
@@ -1101,7 +1101,7 @@
           <Color blue="ff" green="cc" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/fotoshop/Icon/ruido.png"/>
+          <Image iconType="3" name="/fotoshop/Icon/apertura.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Apertura"/>
         <Property name="borderPainted" type="boolean" value="false"/>
@@ -1120,7 +1120,7 @@
           <Color blue="ff" green="cc" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/fotoshop/Icon/ruido.png"/>
+          <Image iconType="3" name="/fotoshop/Icon/cierre.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Clausura"/>
         <Property name="borderPainted" type="boolean" value="false"/>
@@ -1139,7 +1139,7 @@
           <Color blue="ff" green="cc" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/fotoshop/Icon/ruido.png"/>
+          <Image iconType="3" name="/fotoshop/Icon/cerco.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Cerco Convexo | Frontera"/>
         <Property name="borderPainted" type="boolean" value="false"/>
