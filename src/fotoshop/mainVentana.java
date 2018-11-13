@@ -1911,12 +1911,12 @@ public class mainVentana extends javax.swing.JFrame {
                                 public void mouseClicked(MouseEvent e){
                                      if (e.getButton() == 3) 
                                         { // if right click
-                                            System.out.println("le picaste al derecho");
+                                           // System.out.println("le picaste al derecho");
                                             int i, j;                                    
                                             JButton x = (JButton) e.getSource();
                                             j = (x.getBounds().x - 175)/50;
                                             i = (x.getBounds().y - 100)/50;        
-                                            System.out.println("le picaste al " + i + " " + j);
+                                           // System.out.println("le picaste al " + i + " " + j);
                                             for(int a = 0; a < 3; a++)
                                                 {
                                                     for(int b = 0; b < 3; b++)
@@ -2006,9 +2006,8 @@ public class mainVentana extends javax.swing.JFrame {
                                 centroEE = getCentro(ee);
                                 switch(oper)
                                     {
-                                        case 0:
-                                            morfologiaOperado = M.dilatacion(img.getModificado(), ee, centroEE[0], centroEE[1]);
-                                            listaImagenes.get(r).setModificado(morfologiaOperado);                                                                                                                                   
+                                        case 0: //dilatacion
+                                            morfologiaOperado = M.dilatacion(img.getModificado(), ee, centroEE[0], centroEE[1]);                                                                                                                                
                                             break;
                                         case 1: //erosion
                                             morfologiaOperado = M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]);
@@ -2023,17 +2022,18 @@ public class mainVentana extends javax.swing.JFrame {
                                             tempCerrado = M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]);
                                             morfologiaOperado = M.dilatacion(tempCerrado, ee, centroEE[0], centroEE[1]);
                                             break;          
-                                        case 4: //apertura
+                                        case 4: //frontera
                                             Transformaciones T = new Transformaciones();
                                             Imagen imgErosionada = listaImagenes.get(r);   // A☻B                                          
                                             
                                             imgErosionada.setArgb(M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]));
                                             imgErosionada.setModificado(M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]));
                                             
-                                            morfologiaOperado = T.resta(img, imgErosionada);
+                                            morfologiaOperado = T.resta(img, imgErosionada); //A - (A☻B)
                                             break;                                             
                                         default:    
                                     }
+                                listaImagenes.get(r).setModificado(morfologiaOperado);   
                                 JFrame f = new JFrame();
                                 JScrollPane scroll = new JScrollPane();
                                 scroll.getViewport().add(new Dibujo(morfologiaOperado, img.getAncho(), img.getAlto()));
