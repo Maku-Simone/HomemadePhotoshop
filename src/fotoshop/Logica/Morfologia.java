@@ -468,10 +468,10 @@ public class Morfologia {
             return largo;
         }
     
-    public int or(int a, int b)
+    public int or(int a, int b) //b es el ee
         {
 
-            if(a == 0 && b == 0)
+            if(a == 0 && (b == 0 || b == 2))
                 {
                     return 0;
                 }

@@ -54,7 +54,8 @@ public class mainVentana extends javax.swing.JFrame {
      */
     
     ArrayList<Imagen> listaImagenes = new ArrayList<Imagen>();
-    static int[][][] operacionesAritmeticas;
+    static int[][][] operacionesAritmeticas, morfologiaOperado;
+    static int[] centroEE;
     Point umbral1 = new Point(0,0), umbral2  = new Point(0,0);
     
     public mainVentana() {                       
@@ -190,6 +191,9 @@ public class mainVentana extends javax.swing.JFrame {
         addRuidoBoton = new javax.swing.JButton();
         DilatacionBoton = new javax.swing.JButton();
         erosionBoton = new javax.swing.JButton();
+        aperturaBoton = new javax.swing.JButton();
+        clausuraBoton = new javax.swing.JButton();
+        clausuraBoton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -710,6 +714,42 @@ public class mainVentana extends javax.swing.JFrame {
             }
         });
 
+        aperturaBoton.setBackground(new java.awt.Color(255, 255, 255));
+        aperturaBoton.setForeground(new java.awt.Color(0, 204, 255));
+        aperturaBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/ruido.png"))); // NOI18N
+        aperturaBoton.setToolTipText("Apertura");
+        aperturaBoton.setBorderPainted(false);
+        aperturaBoton.setContentAreaFilled(false);
+        aperturaBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aperturaBotonActionPerformed(evt);
+            }
+        });
+
+        clausuraBoton.setBackground(new java.awt.Color(255, 255, 255));
+        clausuraBoton.setForeground(new java.awt.Color(0, 204, 255));
+        clausuraBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/ruido.png"))); // NOI18N
+        clausuraBoton.setToolTipText("Clausura");
+        clausuraBoton.setBorderPainted(false);
+        clausuraBoton.setContentAreaFilled(false);
+        clausuraBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clausuraBotonActionPerformed(evt);
+            }
+        });
+
+        clausuraBoton1.setBackground(new java.awt.Color(255, 255, 255));
+        clausuraBoton1.setForeground(new java.awt.Color(0, 204, 255));
+        clausuraBoton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/ruido.png"))); // NOI18N
+        clausuraBoton1.setToolTipText("Cerco Convexo | Frontera");
+        clausuraBoton1.setBorderPainted(false);
+        clausuraBoton1.setContentAreaFilled(false);
+        clausuraBoton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clausuraBoton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -776,18 +816,6 @@ public class mainVentana extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(pixSepBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(robertsBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sobelBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(modaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(maxMinBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(multiUmbLabel))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(filtroPromedioPesadoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(gaussianoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -802,12 +830,32 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(dobleUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addRuidoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(addRuidoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pixSepBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(robertsBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sobelBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(modaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(maxMinBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(multiUmbLabel)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(aperturaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(clausuraBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(DilatacionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(erosionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 102, Short.MAX_VALUE)))
+                                .addComponent(erosionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(clausuraBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 64, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -849,24 +897,28 @@ public class mainVentana extends javax.swing.JFrame {
                             .addComponent(dobleUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addRuidoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(DilatacionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(erosionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(erosionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(clausuraBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(sumaBotom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(multiBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(restaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(diviBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nanBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(norBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(xnorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(opersHistogramaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pixSepBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(robertsBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sobelBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(difPixBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(modaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(maxMinBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(multiUmbLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(sumaBotom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(multiBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(restaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(diviBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nanBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(norBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(xnorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(opersHistogramaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pixSepBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(robertsBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sobelBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(difPixBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(modaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(maxMinBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(multiUmbLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(aperturaBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(clausuraBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(panelTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1685,12 +1737,13 @@ public class mainVentana extends javax.swing.JFrame {
         // TODO add your handling code here:
         int r = panelTabs.getSelectedIndex();
         int[][][] dilatado;
-        int[][] ee = {{1,1,1}, {1,1,1}, {1,1,1}};
+        int[][] ee;
+        int[] centro;
         if(r >= 0)
-            {                                                                                                              
-                Morfologia M = new Morfologia();                
+            {                              
+                          
                 Imagen img = listaImagenes.get(r);                
-                dilatado = M.dilatacion(img.getModificado(), ee, 0, 2);                
+                dilatado = MM(img, 0);                                
                 listaImagenes.get(r).setModificado(dilatado);
                 JFrame f = new JFrame();
                 JScrollPane scroll = new JScrollPane();
@@ -1722,6 +1775,18 @@ public class mainVentana extends javax.swing.JFrame {
 
             }    
     }//GEN-LAST:event_erosionBotonActionPerformed
+
+    private void aperturaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aperturaBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_aperturaBotonActionPerformed
+
+    private void clausuraBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clausuraBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clausuraBotonActionPerformed
+
+    private void clausuraBoton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clausuraBoton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clausuraBoton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1765,8 +1830,11 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JButton abrirBoton;
     private javax.swing.JButton addRuidoBoton;
     private javax.swing.JButton andBoton;
+    private javax.swing.JButton aperturaBoton;
     private javax.swing.JButton bBoton;
     private javax.swing.JButton cerrarTab;
+    private javax.swing.JButton clausuraBoton;
+    private javax.swing.JButton clausuraBoton1;
     private javax.swing.JButton difPixBoton;
     private javax.swing.JButton diviBoton;
     private javax.swing.JButton dobleUmbralBoton;
@@ -1819,7 +1887,127 @@ public class mainVentana extends javax.swing.JFrame {
             return false; //no estuvo dentro de los formatos admitidos
         }
 
-     int initOperacion(ArrayList<Imagen> listaImagenes, int operacion)
+    int[][][] MM(Imagen img, int oper)
+        {
+            int[][] ee = new int[3][3];
+            int[][][] operado;
+            
+            JFrame f = new JFrame();
+            JPanel p = new JPanel();
+            JLabel label = new JLabel("Determine el Elemento de Estructura");
+            JButton operar = new JButton("Hacer");                                                              
+            label.setBounds(150, 50, 300, 20);
+            p.add(label);
+            p.setPreferredSize(new Dimension(500,500));
+            
+            JButton[][] eeBotones = new JButton[3][3];
+            
+            
+            for(int i = 0; i < 3; i++)
+                {
+                    for(int j = 0; j < 3; j++)
+                    {
+                        eeBotones[i][j] = new JButton("-");
+                        eeBotones[i][j].setBackground(Color.gray);
+                        eeBotones[i][j].setForeground(Color.gray);
+                        eeBotones[i][j].setBounds(175 + (50 * j), 100 + (50 * i), 50, 50);       
+                        
+                        eeBotones[i][j].addActionListener(new ActionListener()                 
+                            {
+                                @Override
+                                public void actionPerformed(ActionEvent e) 
+                                {
+                                    String valor = "";
+                                    int i, j;
+                                    valor = e.getActionCommand();
+                                    JButton x = (JButton) e.getSource();
+                                    j = (x.getBounds().x - 175)/50;
+                                    i = (x.getBounds().y - 100)/50;
+                                    System.out.print("[" + i);
+                                    System.out.print(", " + j + "]\n");
+                                    
+                                   switch(valor)
+                                    {
+                                        case "0":
+                                            eeBotones[i][j].setText("1");
+                                            eeBotones[i][j].setBackground(Color.white);
+                                            eeBotones[i][j].setForeground(Color.black);
+                                            ee[i][j] = 255;
+                                           break;
+                                        case "1":
+                                            eeBotones[i][j].setText("-");
+                                            eeBotones[i][j].setBackground(Color.gray);
+                                            eeBotones[i][j].setForeground(Color.gray);
+                                            ee[i][j] = 2;
+                                           break;
+                                        case "-":
+                                            eeBotones[i][j].setText("0");
+                                            eeBotones[i][j].setBackground(Color.black);
+                                            eeBotones[i][j].setForeground(Color.white);
+                                            ee[i][j] = 0;
+                                            break;
+                                        default:                                            
+                                    }
+                                }
+                            });
+                        
+                        p.add(eeBotones[i][j]);
+                    }                                        
+                }
+
+            operar.addActionListener(new ActionListener()                 
+                {
+                    @Override
+                    public void actionPerformed(ActionEvent e) 
+                    {
+                        Morfologia M = new Morfologia();
+                        centroEE = getCentro(ee);
+                        switch(oper)
+                            {
+                                case 0:
+                                    morfologiaOperado = M.dilatacion(img.getModificado(), ee, centroEE[0], centroEE[1]);
+                                    break;
+                                case 1:
+                                    morfologiaOperado = M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]);
+                                    break;
+                                case 3: //
+                                    int[][][] tempOperado ;
+                                    tempOperado = M.erosion(img.getModificado(), ee, centroEE[0], centroEE[1]);
+                                    morfologiaOperado = M.erosion(tempOperado, ee, centroEE[0], centroEE[1]);
+                                    break;                                    
+                                default:    
+                            }
+                    }
+                });
+            
+            p.add(operar);
+            p.setLayout(null);
+            f.getContentPane().add(p);
+            f.pack();
+            f.setVisible(true);
+            
+            
+            return morfologiaOperado;
+        }
+    
+    int[] getCentro(int[][] ee)
+        {
+            int[] ce = new int[2];
+            for(int i = 0; i < 3; i++)
+                {
+                    for(int j = 0; j < 3; j++)
+                        {
+                            if(ee[i][j] < 0)
+                                {
+                                    ce[0] = i;
+                                    ce[1] = j;
+                                }
+                        }
+                }
+            return ce;
+        }
+    
+    int initOperacion(ArrayList<Imagen> listaImagenes, int operacion)
         {
             final int numImagenes = listaImagenes.size();
             Imagen[] limiteArray = new Imagen[2];
@@ -1939,6 +2127,7 @@ public class mainVentana extends javax.swing.JFrame {
                 panelTabs.addTab(img.getNombreImagen(),null, f.getContentPane(), ":3");
                 return 0;
             }
+        
         public int verificaEntero(String string) 
                 {
                     try 
@@ -1951,6 +2140,7 @@ public class mainVentana extends javax.swing.JFrame {
                             return -1;
                         }
                 }   
+        
         public void setUmbrales(int u1, int u2)
             {
               multiUmbLabel.setText("U1: " + u1 + " - " + "U2: " + u2);
@@ -1979,6 +2169,7 @@ public class mainVentana extends javax.swing.JFrame {
                     });
                     return j;
             }
+        
         public int verificaNumUmbrales(int numUmb, String umb)
             {
                 int c = 0;

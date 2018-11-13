@@ -98,19 +98,6 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="pixSepBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="robertsBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="sobelBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="modaBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="maxMinBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="multiUmbLabel" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <Component id="filtroPromedioPesadoBoton" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="gaussianoBoton" min="-2" pref="32" max="-2" attributes="0"/>
@@ -126,13 +113,37 @@
                               <Component id="dobleUmbralBoton" min="-2" pref="43" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="addRuidoBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="pixSepBoton" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="robertsBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="sobelBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="modaBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="maxMinBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="multiUmbLabel" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="aperturaBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="clausuraBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="DilatacionBoton" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="erosionBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="clausuraBoton1" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="102" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="64" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -183,24 +194,29 @@
                           <Component id="addRuidoBoton" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="DilatacionBoton" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="erosionBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="clausuraBoton1" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="sumaBotom" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="multiBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="restaBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="diviBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="nanBoton" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="norBoton" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="xnorBoton" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="opersHistogramaBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="pixSepBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="robertsBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="sobelBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="difPixBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="modaBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="maxMinBoton" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="multiUmbLabel" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="sumaBotom" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="multiBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="restaBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="diviBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="nanBoton" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="norBoton" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="xnorBoton" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="opersHistogramaBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="pixSepBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="robertsBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="sobelBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="difPixBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="modaBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="maxMinBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="multiUmbLabel" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="aperturaBoton" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="clausuraBoton" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1074,6 +1090,63 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="erosionBotonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="aperturaBoton">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="cc" red="0" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/fotoshop/Icon/ruido.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Apertura"/>
+        <Property name="borderPainted" type="boolean" value="false"/>
+        <Property name="contentAreaFilled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aperturaBotonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="clausuraBoton">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="cc" red="0" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/fotoshop/Icon/ruido.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Clausura"/>
+        <Property name="borderPainted" type="boolean" value="false"/>
+        <Property name="contentAreaFilled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clausuraBotonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="clausuraBoton1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="cc" red="0" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/fotoshop/Icon/ruido.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Cerco Convexo | Frontera"/>
+        <Property name="borderPainted" type="boolean" value="false"/>
+        <Property name="contentAreaFilled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clausuraBoton1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
