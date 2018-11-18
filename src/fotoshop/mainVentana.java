@@ -9,6 +9,7 @@ import fotoshop.Logica.Dibujo;
 import fotoshop.Logica.Filtros;
 import fotoshop.Logica.Imagen;
 import fotoshop.Logica.Morfologia;
+import fotoshop.Logica.MorfologiaLatices;
 import fotoshop.Logica.Transformaciones;
 import histograma.AjusteDeBrillo;
 import histograma.Data;
@@ -195,6 +196,16 @@ public class mainVentana extends javax.swing.JFrame {
         aperturaBoton = new javax.swing.JButton();
         clausuraBoton = new javax.swing.JButton();
         fronteraBoton = new javax.swing.JButton();
+        DilatacionLaticesBoton = new javax.swing.JButton();
+        erosionLaticesBoton = new javax.swing.JButton();
+        clausuraLaticesBoton = new javax.swing.JButton();
+        aperturaLaticesBoton = new javax.swing.JButton();
+        alisamientoBoton = new javax.swing.JButton();
+        botHatBoton = new javax.swing.JButton();
+        topHatBoton = new javax.swing.JButton();
+        gradienteEBoton = new javax.swing.JButton();
+        gradienteDBoton = new javax.swing.JButton();
+        gradSimBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -751,6 +762,126 @@ public class mainVentana extends javax.swing.JFrame {
             }
         });
 
+        DilatacionLaticesBoton.setBackground(new java.awt.Color(255, 255, 255));
+        DilatacionLaticesBoton.setForeground(new java.awt.Color(0, 204, 255));
+        DilatacionLaticesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/dilatacion.png"))); // NOI18N
+        DilatacionLaticesBoton.setToolTipText("Dilatación Latices");
+        DilatacionLaticesBoton.setBorderPainted(false);
+        DilatacionLaticesBoton.setContentAreaFilled(false);
+        DilatacionLaticesBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DilatacionLaticesBotonActionPerformed(evt);
+            }
+        });
+
+        erosionLaticesBoton.setBackground(new java.awt.Color(255, 255, 255));
+        erosionLaticesBoton.setForeground(new java.awt.Color(0, 204, 255));
+        erosionLaticesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/erosion.png"))); // NOI18N
+        erosionLaticesBoton.setToolTipText("Erosión Latices");
+        erosionLaticesBoton.setBorderPainted(false);
+        erosionLaticesBoton.setContentAreaFilled(false);
+        erosionLaticesBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                erosionLaticesBotonActionPerformed(evt);
+            }
+        });
+
+        clausuraLaticesBoton.setBackground(new java.awt.Color(255, 255, 255));
+        clausuraLaticesBoton.setForeground(new java.awt.Color(0, 204, 255));
+        clausuraLaticesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/cierre.png"))); // NOI18N
+        clausuraLaticesBoton.setToolTipText("Clausura Latices");
+        clausuraLaticesBoton.setBorderPainted(false);
+        clausuraLaticesBoton.setContentAreaFilled(false);
+        clausuraLaticesBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clausuraLaticesBotonActionPerformed(evt);
+            }
+        });
+
+        aperturaLaticesBoton.setBackground(new java.awt.Color(255, 255, 255));
+        aperturaLaticesBoton.setForeground(new java.awt.Color(0, 204, 255));
+        aperturaLaticesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/apertura.png"))); // NOI18N
+        aperturaLaticesBoton.setToolTipText("Apertura Latices");
+        aperturaLaticesBoton.setBorderPainted(false);
+        aperturaLaticesBoton.setContentAreaFilled(false);
+        aperturaLaticesBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aperturaLaticesBotonActionPerformed(evt);
+            }
+        });
+
+        alisamientoBoton.setBackground(new java.awt.Color(255, 255, 255));
+        alisamientoBoton.setForeground(new java.awt.Color(0, 204, 255));
+        alisamientoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/cerco.png"))); // NOI18N
+        alisamientoBoton.setToolTipText("Alisamiento");
+        alisamientoBoton.setBorderPainted(false);
+        alisamientoBoton.setContentAreaFilled(false);
+        alisamientoBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alisamientoBotonActionPerformed(evt);
+            }
+        });
+
+        botHatBoton.setBackground(new java.awt.Color(255, 255, 255));
+        botHatBoton.setForeground(new java.awt.Color(0, 204, 255));
+        botHatBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/cerco.png"))); // NOI18N
+        botHatBoton.setToolTipText("Bot Hat");
+        botHatBoton.setBorderPainted(false);
+        botHatBoton.setContentAreaFilled(false);
+        botHatBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botHatBotonActionPerformed(evt);
+            }
+        });
+
+        topHatBoton.setBackground(new java.awt.Color(255, 255, 255));
+        topHatBoton.setForeground(new java.awt.Color(0, 204, 255));
+        topHatBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/cerco.png"))); // NOI18N
+        topHatBoton.setToolTipText("Top Hat");
+        topHatBoton.setBorderPainted(false);
+        topHatBoton.setContentAreaFilled(false);
+        topHatBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                topHatBotonActionPerformed(evt);
+            }
+        });
+
+        gradienteEBoton.setBackground(new java.awt.Color(255, 255, 255));
+        gradienteEBoton.setForeground(new java.awt.Color(0, 204, 255));
+        gradienteEBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/cerco.png"))); // NOI18N
+        gradienteEBoton.setToolTipText("Gradiente por Erosión");
+        gradienteEBoton.setBorderPainted(false);
+        gradienteEBoton.setContentAreaFilled(false);
+        gradienteEBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gradienteEBotonActionPerformed(evt);
+            }
+        });
+
+        gradienteDBoton.setBackground(new java.awt.Color(255, 255, 255));
+        gradienteDBoton.setForeground(new java.awt.Color(0, 204, 255));
+        gradienteDBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/cerco.png"))); // NOI18N
+        gradienteDBoton.setToolTipText("Gradiente por Dilatación");
+        gradienteDBoton.setBorderPainted(false);
+        gradienteDBoton.setContentAreaFilled(false);
+        gradienteDBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gradienteDBotonActionPerformed(evt);
+            }
+        });
+
+        gradSimBoton.setBackground(new java.awt.Color(255, 255, 255));
+        gradSimBoton.setForeground(new java.awt.Color(0, 204, 255));
+        gradSimBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/cerco.png"))); // NOI18N
+        gradSimBoton.setToolTipText("Gradiente Simetrico");
+        gradSimBoton.setBorderPainted(false);
+        gradSimBoton.setContentAreaFilled(false);
+        gradSimBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gradSimBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -856,7 +987,29 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addComponent(erosionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fronteraBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 64, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(aperturaLaticesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(clausuraLaticesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(topHatBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(gradienteEBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(gradSimBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(DilatacionLaticesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(erosionLaticesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(alisamientoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botHatBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(gradienteDBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 10, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -880,46 +1033,62 @@ public class mainVentana extends javax.swing.JFrame {
                         .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(gBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inversoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(andBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(orBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(xorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(histogramaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(filtroPromedioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(filtroPromedioPesadoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(gaussianoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(prewittBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(laplacianoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(medianaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(multiUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dobleUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addRuidoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DilatacionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(erosionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fronteraBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(sumaBotom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(multiBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(restaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(diviBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(nanBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(norBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(xnorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(opersHistogramaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(pixSepBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(robertsBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(sobelBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(difPixBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(modaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(maxMinBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(multiUmbLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(aperturaBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(clausuraBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(gBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(bBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(inversoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(andBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(orBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(xorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(histogramaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(filtroPromedioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(filtroPromedioPesadoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(gaussianoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(prewittBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(laplacianoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(medianaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(multiUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dobleUmbralBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addRuidoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DilatacionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(erosionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fronteraBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(sumaBotom, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(multiBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(restaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(diviBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(nanBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(norBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(xnorBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(opersHistogramaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(pixSepBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(robertsBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(sobelBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(difPixBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(modaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(maxMinBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(multiUmbLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(aperturaBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clausuraBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(DilatacionLaticesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(erosionLaticesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(alisamientoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botHatBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(gradienteDBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(aperturaLaticesBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clausuraLaticesBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(topHatBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(gradienteEBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(gradSimBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(panelTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1772,12 +1941,102 @@ public class mainVentana extends javax.swing.JFrame {
 
     private void fronteraBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fronteraBotonActionPerformed
         // TODO add your handling code here:
-                int r = panelTabs.getSelectedIndex();
+        int r = panelTabs.getSelectedIndex();
         if(r >= 0)
             {                                                        
                 MM(r, 4);                                                          
             }    
     }//GEN-LAST:event_fronteraBotonActionPerformed
+
+    private void DilatacionLaticesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DilatacionLaticesBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {                                                        
+                LL(r, 0);                                                          
+            }    
+    }//GEN-LAST:event_DilatacionLaticesBotonActionPerformed
+
+    private void erosionLaticesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_erosionLaticesBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {                                                        
+                LL(r, 1);                                                          
+            }    
+    }//GEN-LAST:event_erosionLaticesBotonActionPerformed
+
+    private void clausuraLaticesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clausuraLaticesBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {                                                        
+                LL(r, 3);                                                          
+            }    
+    }//GEN-LAST:event_clausuraLaticesBotonActionPerformed
+
+    private void aperturaLaticesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aperturaLaticesBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {                                                        
+                LL(r, 2);                                                          
+            }    
+    }//GEN-LAST:event_aperturaLaticesBotonActionPerformed
+
+    private void alisamientoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alisamientoBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {                                                        
+                LL(r, 4);                                                          
+            }    
+    }//GEN-LAST:event_alisamientoBotonActionPerformed
+
+    private void botHatBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botHatBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {                                                        
+                LL(r, 7);                                                          
+            }    
+    }//GEN-LAST:event_botHatBotonActionPerformed
+
+    private void topHatBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topHatBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {                                                        
+                LL(r, 5);                                                          
+            }    
+    }//GEN-LAST:event_topHatBotonActionPerformed
+
+    private void gradienteEBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradienteEBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {                                                        
+                LL(r, 8);                                                          
+            }    
+    }//GEN-LAST:event_gradienteEBotonActionPerformed
+
+    private void gradienteDBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradienteDBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {                                                        
+                LL(r, 9);                                                          
+            }    
+    }//GEN-LAST:event_gradienteDBotonActionPerformed
+
+    private void gradSimBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradSimBotonActionPerformed
+        // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {                                                        
+                LL(r, 10);                                                          
+            }    
+    }//GEN-LAST:event_gradSimBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1818,22 +2077,31 @@ public class mainVentana extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Binarización;
     private javax.swing.JButton DilatacionBoton;
+    private javax.swing.JButton DilatacionLaticesBoton;
     private javax.swing.JButton abrirBoton;
     private javax.swing.JButton addRuidoBoton;
+    private javax.swing.JButton alisamientoBoton;
     private javax.swing.JButton andBoton;
     private javax.swing.JButton aperturaBoton;
+    private javax.swing.JButton aperturaLaticesBoton;
     private javax.swing.JButton bBoton;
+    private javax.swing.JButton botHatBoton;
     private javax.swing.JButton cerrarTab;
     private javax.swing.JButton clausuraBoton;
+    private javax.swing.JButton clausuraLaticesBoton;
     private javax.swing.JButton difPixBoton;
     private javax.swing.JButton diviBoton;
     private javax.swing.JButton dobleUmbralBoton;
     private javax.swing.JButton erosionBoton;
+    private javax.swing.JButton erosionLaticesBoton;
     private javax.swing.JButton filtroPromedioBoton;
     private javax.swing.JButton filtroPromedioPesadoBoton;
     private javax.swing.JButton fronteraBoton;
     private javax.swing.JButton gBoton;
     private javax.swing.JButton gaussianoBoton;
+    private javax.swing.JButton gradSimBoton;
+    private javax.swing.JButton gradienteDBoton;
+    private javax.swing.JButton gradienteEBoton;
     private javax.swing.JButton grisesBoton;
     private javax.swing.JButton histogramaBoton;
     private javax.swing.JButton inversoBoton;
@@ -1860,6 +2128,7 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JSlider sliderUmbral;
     private javax.swing.JButton sobelBoton;
     private javax.swing.JButton sumaBotom;
+    private javax.swing.JButton topHatBoton;
     private javax.swing.JButton xnorBoton;
     private javax.swing.JButton xorBoton;
     // End of variables declaration//GEN-END:variables
@@ -2034,6 +2303,246 @@ public class mainVentana extends javax.swing.JFrame {
                                             
                                             morfologiaOperado = T.resta(img, imgErosionada); //A - (A☻B)
                                             break;                                                                                          
+                                        default:    
+                                    }
+                                listaImagenes.get(r).setModificado(morfologiaOperado);   
+                                JFrame f = new JFrame();
+                                JScrollPane scroll = new JScrollPane();
+                                scroll.getViewport().add(new Dibujo(morfologiaOperado, img.getAncho(), img.getAlto()));
+                                scroll = umb(scroll, img.getAncho(), img.getAncho());
+                                f.add(scroll);
+                                panelTabs.setComponentAt(r, f.getContentPane());
+                            }
+                        else
+                            {
+                                JFrame mensaje = new JFrame("Mensajito de algo malo");
+                                JOptionPane.showMessageDialog(mensaje, "Define un centro :c");
+                            }
+                    }
+                });
+            
+            p.add(operar);
+            p.setLayout(null);
+            f.getContentPane().add(p);
+            f.pack();
+            f.setVisible(true);
+            
+            
+            return morfologiaOperado;
+        }
+    
+    int[][][] LL(int r, int oper)
+        {
+            Imagen img = listaImagenes.get(r);
+            int[][] ee = {{2,2,2}, {2,2,2}, {2,2,2}};
+            int[][][] operado;
+            
+            JFrame f = new JFrame();
+            JPanel p = new JPanel();
+            JLabel label = new JLabel("Determine el Elemento de Estructura");
+            JButton operar = new JButton("Hacer");          
+            operar.setBounds(175, 350, 150, 30);
+            label.setBounds(150, 50, 300, 20);
+            p.add(label);
+            p.setPreferredSize(new Dimension(500,500));
+            
+            JButton[][] eeBotones = new JButton[3][3];
+            
+            
+            for(int i = 0; i < 3; i++)
+                {
+                    for(int j = 0; j < 3; j++)
+                    {
+                        eeBotones[i][j] = new JButton("-");
+                        eeBotones[i][j].setName("");
+                        eeBotones[i][j].setBackground(Color.gray);
+                        eeBotones[i][j].setForeground(Color.gray);
+                        eeBotones[i][j].setBounds(175 + (50 * j), 100 + (50 * i), 50, 50);       
+                        eeBotones[i][j].addMouseListener(new MouseAdapter()
+                            {
+                                @Override
+                                public void mouseClicked(MouseEvent e){
+                                     if (e.getButton() == 3) 
+                                        { // if right click
+                                           // System.out.println("le picaste al derecho");
+                                            int i, j;                                    
+                                            JButton x = (JButton) e.getSource();
+                                            j = (x.getBounds().x - 175)/50;
+                                            i = (x.getBounds().y - 100)/50;        
+                                           // System.out.println("le picaste al " + i + " " + j);
+                                            for(int a = 0; a < 3; a++)
+                                                {
+                                                    for(int b = 0; b < 3; b++)
+                                                        {
+                                                            if(eeBotones[a][b].getName().equals("centro"))
+                                                                {
+                                                                    int c;
+                                                                    Color col;
+                                                                    String car = eeBotones[a][b].getText();
+                                                                    
+                                                                    c = (car.equals("-") ? 2: Integer.parseInt(car));
+                                                                    col = (c == 2) ? Color.gray : new Color(c*255,c*255,c*255);
+                                                                    
+                                                                    eeBotones[a][b].setName("");                                                                    
+                                                                    eeBotones[a][b].setBackground(col); 
+                                                                    ee[a][b] += 1; //le quitamos sus propiedades de centro
+                                                                }
+                                                        }
+                                                }
+                                            //le ponemos propiedaddes de centro al nuevo boton centro
+                                            eeBotones[i][j].setName("centro");
+                                            eeBotones[i][j].setBackground(Color.red);
+                                            eeBotones[i][j].setForeground(Color.white);
+                                            ee[i][j] -= 1;
+                                            centroDefinido = true;
+                                            /*
+                                                En el EE vienen los valores 0, 255 y 2
+                                                Si son centros se les resta 1 y luego se ajusta
+                                            
+                                            */
+                                            
+                                            
+                                        }                                                                                 
+                                }
+                            });
+                        
+                        eeBotones[i][j].addActionListener(new ActionListener()                 
+                            {
+                                @Override
+                                public void actionPerformed(ActionEvent e) 
+                                {
+                                    String valor = "";
+                                    int i, j;
+                                    valor = e.getActionCommand();
+                                    JButton x = (JButton) e.getSource();
+                                    j = (x.getBounds().x - 175)/50;
+                                    i = (x.getBounds().y - 100)/50;                                    
+                                    
+                                   switch(valor)
+                                    {
+                                        case "0":
+                                            eeBotones[i][j].setText("1");
+                                            eeBotones[i][j].setBackground(Color.white);
+                                            eeBotones[i][j].setForeground(Color.black);
+                                            ee[i][j] = 255;
+                                           break;
+                                        case "1":
+                                            eeBotones[i][j].setText("-");
+                                            eeBotones[i][j].setBackground(Color.gray);
+                                            eeBotones[i][j].setForeground(Color.gray);
+                                            ee[i][j] = 2;
+                                           break;
+                                        case "-":
+                                            eeBotones[i][j].setText("0");
+                                            eeBotones[i][j].setBackground(Color.black);
+                                            eeBotones[i][j].setForeground(Color.white);
+                                            ee[i][j] = 0;
+                                            break;
+                                        default:                                            
+                                    }
+                                   centroDefinido = false;
+                                }
+                            });
+                        
+                        p.add(eeBotones[i][j]);
+                    }                                        
+                }
+
+            operar.addActionListener(new ActionListener()                 
+                {
+                    @Override
+                    public void actionPerformed(ActionEvent e) 
+                    {
+                        if(centroDefinido)
+                            {
+                                Transformaciones T = new Transformaciones();
+                                MorfologiaLatices M = new MorfologiaLatices();
+                                centroEE = getCentro(ee);
+                                switch(oper)
+                                    {
+                                        case 0: //dilatacion
+                                            morfologiaOperado = M.dilatacionLL(img.getModificado(), ee, centroEE[0], centroEE[1]);                                                                                                                                
+                                            break;
+                                        case 1: //erosion
+                                            morfologiaOperado = M.erosionLL(img.getModificado(), ee, centroEE[0], centroEE[1]);
+                                            break;
+                                        case 2: //apertura
+                                            morfologiaOperado = M.aperturaLL(img.getModificado(), ee, centroEE[0], centroEE[1]);
+                                            break;        
+                                        case 3: //cierre
+                                            morfologiaOperado = M.cierreLL(img.getModificado(), ee, centroEE[0], centroEE[1]);
+                                            break;          
+                                        case 4: //Alisamiento                                            
+                                            int[][][] abie = M.aperturaLL(img.getModificado(), ee, centroEE[0], centroEE[1]);                                          
+                                            morfologiaOperado = M.cierreLL(abie, ee, centroEE[0], centroEE[1]);
+                                        break;                                                                                          
+                                        case 5: //top hat                                            
+                                            int[][][] abierta = M.aperturaLL(img.getModificado(), ee, centroEE[0], centroEE[1]);
+
+                                            Imagen imgErosionada = new Imagen(); // A ° B
+                                            imgErosionada.setAlto(img.getAlto());
+                                            imgErosionada.setAncho(img.getAncho());                                                          
+                                            imgErosionada.setArgb(abierta);
+                                            imgErosionada.setModificado(abierta);
+                                            
+                                            morfologiaOperado = T.resta(img, imgErosionada); //A - (A ° B)
+                                            break; 
+                                        case 7: //bottom hat
+                                            int[][][] cerrado = M.cierreLL(img.getModificado(), ee, centroEE[0], centroEE[1]);
+
+                                            Imagen imgCerrada = new Imagen(); // A ° B
+                                            imgCerrada.setAlto(img.getAlto());
+                                            imgCerrada.setAncho(img.getAncho());                                                          
+                                            imgCerrada.setArgb(cerrado);
+                                            imgCerrada.setModificado(cerrado);
+                                            
+                                            morfologiaOperado = T.resta(imgCerrada, img); //(A • B) - A
+                                            break; 
+                                        case 8: //gradiente erosion
+                                            int[][][] ero = M.erosionLL(img.getModificado(), ee, centroEE[0], centroEE[1]);
+
+                                            Imagen imgero = new Imagen(); // A ° B
+                                            imgero.setAlto(img.getAlto());
+                                            imgero.setAncho(img.getAncho());                                                          
+                                            imgero.setArgb(ero);
+                                            imgero.setModificado(ero);
+                                            
+                                            morfologiaOperado = T.resta(img, imgero); //A - (A [-] b)
+                                        break;
+                                        case 9: //gardiente dilatacion
+                                            int[][][] dilat = M.dilatacionLL(img.getModificado(), ee, centroEE[0], centroEE[1]);
+
+                                            Imagen imgDil = new Imagen(); // A ° B
+                                            imgDil.setAlto(img.getAlto());
+                                            imgDil.setAncho(img.getAncho());                                                          
+                                            imgDil.setArgb(dilat);
+                                            imgDil.setModificado(dilat);
+                                            
+                                            morfologiaOperado = T.resta(imgDil, img); //(A [+] b) - A
+                                        break;    
+                                        case 10: //gradiente simetrico
+                                            int[][][] dilatada, erosionada;
+                                            
+                                            dilatada = M.dilatacionLL(img.getModificado(), ee, centroEE[0], centroEE[1]);
+                                            erosionada = M.erosionLL(img.getModificado(), ee, centroEE[0], centroEE[1]);
+
+                                            Imagen imgD = new Imagen(); // A [+] B
+                                            Imagen imgE = new Imagen(); // A [-] B
+                                            
+                                            
+                                            imgD.setAlto(img.getAlto());
+                                            imgD.setAncho(img.getAncho());                                                          
+                                            imgD.setArgb(dilatada);
+                                            imgD.setModificado(dilatada);
+                                            
+                                            imgE.setAlto(img.getAlto());
+                                            imgE.setAncho(img.getAncho());                                                          
+                                            imgE.setArgb(erosionada);
+                                            imgE.setModificado(erosionada);
+                                            
+                                            morfologiaOperado = T.resta(imgD, imgE); //(A [+] b) - (A [-] b)
+                                            
+                                        break;
                                         default:    
                                     }
                                 listaImagenes.get(r).setModificado(morfologiaOperado);   
