@@ -548,32 +548,7 @@ public class MorfologiaLatices {
             ero = dilatacionLL(dila, ee, centrox, centroy);
             
             return ero;
-        }    
-    
-    
-    public int[][][] hitOrMiss(int binario[][][], int[][] ee, int centroX, int centroY)
-        {
-            Transformaciones T = new Transformaciones();
-            
-            //Definimos la imagen A y su complemento
-            int[][][] THM = expande(binario);
-            int[][][] THMComp;
-            
-            
-            //Definimos una nueva imagen para obtener su complemento
-            Imagen imgX = new Imagen();
-            imgX.setAlto(binario[0].length);
-            imgX.setAncho(binario.length);
-            imgX.setArgb(binario);
-            imgX.setModificado(binario);
-            
-            //Obtenemos el complemento de la imagen
-            THMComp = expande(T.inverso(imgX));
-            
-            
-            return THM;
-        }
-    
+        }               
     
     
     

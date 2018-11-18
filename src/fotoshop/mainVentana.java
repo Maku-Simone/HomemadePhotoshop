@@ -2086,14 +2086,29 @@ public class mainVentana extends javax.swing.JFrame {
 
     private void adelgazamientoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adelgazamientoBotonActionPerformed
         // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {                                                        
+                MM(r, 6);                                                          
+            }    
     }//GEN-LAST:event_adelgazamientoBotonActionPerformed
 
     private void thomBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thomBotonActionPerformed
         // TODO add your handling code here:
+        int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {                                                        
+                MM(r, 5);                                                          
+            }    
     }//GEN-LAST:event_thomBotonActionPerformed
 
     private void esqueletoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esqueletoBotonActionPerformed
         // TODO add your handling code here:
+         int r = panelTabs.getSelectedIndex();
+        if(r >= 0)
+            {                                                        
+                MM(r, 7);                                                          
+            }    
     }//GEN-LAST:event_esqueletoBotonActionPerformed
 
     /**
@@ -2363,7 +2378,58 @@ public class mainVentana extends javax.swing.JFrame {
                                             imgErosionada.setModificado(tempEro);
                                             
                                             morfologiaOperado = T.resta(img, imgErosionada); //A - (A☻B)
-                                            break;                                                                                          
+                                        break;         
+                                        case 5:
+                                            morfologiaOperado = M.hitOrMiss(img.getModificado(), ee, centroEE[0], centroEE[1]);
+                                        break;    
+                                        case 6:
+                                            int k;
+                                            k = verificaEntero(JOptionPane.showInputDialog("Introduzca el número de rotaciones k"));
+                                                if(k > 0)
+                                                    {                                                
+                                                        morfologiaOperado = M.adelgazamiento(img.getModificado(), ee, centroEE[0], centroEE[1], k);
+                                                    }                                                                                            
+                                        break;    
+                                        case 7:
+                                            int K ;
+                                            K = verificaEntero(JOptionPane.showInputDialog("Introduzca el número de erosiones K"));
+                                                if(K > 0)
+                                                    {        
+                                                        int[][][] A = img.getModificado(), B = img.getModificado();
+                                                        int contador = 0;
+                                                        while(contador < K)
+                                                            {
+                                                                //A (-) kB
+                                                                A = M.erosion(A, ee, centroEE[0], centroEE[1]);
+                                                                
+                                                                //A (-) kB
+                                                                int[][][] tempB = (M.erosion(B, ee, centroEE[0], centroEE[1]));
+                                                                
+                                                                //[A (-) kB) ° B
+                                                                B = M.erosion(tempB, ee, centroEE[0], centroEE[1]);
+                                                                B = M.dilatacion(B, ee, centroEE[0], centroEE[1]);
+                                                                
+                                                                contador++;
+                                                            }
+                                                        
+                                                         Imagen imgD = new Imagen(); // A [+] B
+                                            Imagen imgE = new Imagen(); // A [-] B
+                                            
+                                            
+                                            imgD.setAlto(img.getAlto());
+                                            imgD.setAncho(img.getAncho());                                                          
+                                            imgD.setArgb(A);
+                                            imgD.setModificado(A);
+                                            
+                                            imgE.setAlto(img.getAlto());
+                                            imgE.setAncho(img.getAncho());                                                          
+                                            imgE.setArgb(B);
+                                            imgE.setModificado(B);
+                                            Transformaciones Tr = new Transformaciones();
+                                            morfologiaOperado = Tr.resta(imgD, imgE); //(A [+] b) - [(A [-] b) ° B]
+                                                      //  morfologiaOperado = M.adelgazamiento(img.getModificado(), ee, centroEE[0], centroEE[1], k);
+                                                    }    
+                                        break;    
                                         default:    
                                     }
                                 listaImagenes.get(r).setModificado(morfologiaOperado);   
@@ -2655,9 +2721,14 @@ public class mainVentana extends javax.swing.JFrame {
             Imagen[] limiteArray = new Imagen[2];
             JFrame f = new JFrame();
             JPanel p = new JPanel();
-            p.setPreferredSize(new Dimension(500,500));
+            p.setPreferredSize(new Dimension(600,600));
+            JCheckBox invertir = new JCheckBox("Invertir");  
+            invertir.setBounds(100,416 , 100, 100);
             JButton operar = new JButton("Hacer Operación");                            
-            JLabel texto = new JLabel("seleccione las imágenes sobre las que desea trabajar");
+            operar.setBounds(220, 450, 200, 30);
+            JLabel texto = new JLabel("Seleccione las imágenes sobre las que desea trabajar");
+            texto.setBounds(150, 50, 350, 50);
+            
             String[] nomImagenes = new String[numImagenes];        
             JCheckBox[] cajita = new JCheckBox[numImagenes];
             p.add(texto);
@@ -2678,6 +2749,13 @@ public class mainVentana extends javax.swing.JFrame {
                                         //System.out.println("++" + limiteArray[limite]);
                                         limite++;
                                     }
+                            }
+                        if(invertir.isSelected())
+                            {
+                                Imagen L = limiteArray[0];
+                                Imagen L2 = limiteArray[1];
+                                limiteArray[0] = L2;
+                                limiteArray[1] = L;
                             }
                         switch(operacion)
                             {
@@ -2743,15 +2821,24 @@ public class mainVentana extends javax.swing.JFrame {
                     }
                 });
 
-
+            int k = 0, j = 0;
             for (int i = 0; i < numImagenes; i++) 
                 {
                     nomImagenes[i] = listaImagenes.get(i).getNombreImagen();       
                     //System.out.println("["+nomImagenes[i]+"]");
                     cajita[i] = new JCheckBox(nomImagenes[i]);
+                    cajita[i].setBounds(50 + k, 100 + (40*j) , 100, 30);
+                    if((i+1) % 5 == 0)
+                        {
+                            k += 120;
+                            j = -1;
+                        }
+                    j++;
                     p.add(cajita[i]);
                 }
-            p.add(operar);
+            p.add(invertir);
+            p.add(operar);            
+            p.setLayout(null);                        
             f.getContentPane().add(p);
             f.pack();
             f.setVisible(true);

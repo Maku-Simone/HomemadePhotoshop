@@ -483,12 +483,12 @@ public class Morfologia {
 
     public int compara(int[][] EE, int[][] mm)
         {
-           /* System.out.println("");System.out.println("\n\n");         
+         /*   System.out.println("");System.out.println("\n\n");         
             for(int i = 0; i < 3; i++)
                 {
                     for(int j = 0; j < 3; j++)
                         {
-                            System.out.print(((mm[i][j] == 255 ) ? "☻": mm[i][j]) + "|");
+                            System.out.print("[" + EE[i][j]+ "] - " +((mm[i][j] == 255 ) ? "☻": mm[i][j]) + "|");
                         }
                     System.out.println("");
                 }*/
@@ -530,5 +530,221 @@ public class Morfologia {
             return ee2;
         }      
   
+    
+       public int[][][] adelgazamiento(int binario[][][], int[][] ee, int centroX, int centroY, int k)
+        {
+            int[][][] imgDelgada = expande(binario);
+            int[][][] cpyDelgada = expande(binario);
+            int contador = 0;
+            
+            while(contador < k)
+                {
+                    imgDelgada = erosion(imgDelgada, ee, centroX, centroY);
+                    ee = rotatematrix(3, 3, ee);
+                    contador++;
+                }
+            return imgDelgada;
+        }
+       
+      
+    
+       public int[][][] hitOrMiss(int binario[][][], int[][] ee, int centroX, int centroY)
+        {
+            Transformaciones T = new Transformaciones();
+            
+            //Definimos la imagen A y su complemento
+            int[][][] THM;
+            int[][][] THMComp, parteA, parteB;
+            
+            
+            //Definimos una nueva imagen para obtener su complemento
+            Imagen imgX = new Imagen();
+            imgX.setAlto(binario[0].length);
+            imgX.setAncho(binario.length);
+            imgX.setArgb(binario);
+            imgX.setModificado(binario);
+            
+            //Obtenemos el complemento de la imagen
+            THMComp = expande2(T.inverso(imgX));
+            
+            //Operamos cada parte
+            //A (-) B1
+            parteA = erosion(expande(binario), Bn(ee), centroX, centroY);
+            
+            //A° (-) B2
+            parteB = erosion(THMComp, Bn(inversoee(ee)),centroX, centroY);
+            
+            //Calculamos la intersección
+            
+            THM = interseccionTHM(parteA, parteB);
+            
+            return THM;
+        }
+       
+       public int[][][] interseccionTHM(int[][][] A, int[][][] B)
+        {
+            int[][][] intersectado = new int[A.length][A[0].length][4];
+            
+            for(int x = 0; x < A.length; x++)
+                {
+                    for(int y = 0; y < A[0].length; y++)
+                        {
+                            //System.out.println("A" + A[x][y][1] +  " B" + B[x][y][1]);
+                            if((A[x][y][1] == B[x][y][1]) && B[x][y][1] == 255)
+                                {
+                                    System.out.println("Unos");
+                                    intersectado[x][y][1] = 255;
+                                    intersectado[x][y][2] = 255;
+                                    intersectado[x][y][3] = 255;
+                                }
+                            else
+                                {
+                                    intersectado[x][y][1] = 0;
+                                    intersectado[x][y][2] = 0;
+                                    intersectado[x][y][3] = 0;
+                                }
+                        }                    
+                }
+            
+            return intersectado;
+        }
+       
+       public int[][] inversoee(int[][] ee)
+        {
+            int[][] antiEE = new int[3][3];
+            
+            for(int x = 0; x < 3; x++)
+                {
+                    for(int y = 0; y < 3; y++)
+                        {
+                            if(ee[x][y] == 0)
+                                {
+                                    antiEE[x][y] = 255;
+                                }
+                            else
+                                {
+                                    if(ee[x][y] == 255)
+                                        {
+                                            antiEE[x][y] = 0;
+                                        }
+                                    else
+                                        {
+                                            antiEE[x][y] = ee[x][y];
+                                        }
+                                }                            
+                        }
+                }
+            return antiEE;
+        }
+       
+       public int[][] Bn(int[][] ee)
+        {
+            int[][]b1 = new int[3][3];
+            
+             for(int x = 0; x < 3; x++)
+                {
+                    for(int y = 0; y < 3; y++)
+                        {
+                            if(ee[x][y] == 0)
+                                {
+                                    b1[x][y] = 2;
+                                }
+                            else
+                                {
+                                    if(ee[x][y] == 255)
+                                        {
+                                            b1[x][y] = 255;
+                                        }
+                                    else
+                                        {
+                                            b1[x][y] = ee[x][y];
+                                        }
+                                }                            
+                        }
+                }
+            return b1;
+        }
+
+      public int[][] rotatematrix(int m, int n, int mat[][]) 
+	{ 
+            // me lo chuté de aqui https://www.geeksforgeeks.org/rotate-matrix-elements/ :3
+	    int r = m, c = n;
+		int row = 0, col = 0; 
+		int prev, curr; 
+
+		/* 
+		row - Staring row index 
+		m - ending row index 
+		col - starting column index 
+		n - ending column index 
+		i - iterator 
+		*/
+		while (row < m && col < n) 
+		{ 
+	
+			if (row + 1 == m || col + 1 == n) 
+				break; 
+	
+			// Store the first element of next 
+			// row, this element will replace 
+			// first element of current row 
+			prev = mat[row + 1][col]; 
+	
+			// Move elements of first row 
+			// from the remaining rows 
+			for (int i = col; i < n; i++) 
+			{ 
+				curr = mat[row][i]; 
+				mat[row][i] = prev; 
+				prev = curr; 
+			} 
+			row++; 
+	
+			// Move elements of last column 
+			// from the remaining columns 
+			for (int i = row; i < m; i++) 
+			{ 
+				curr = mat[i][n-1]; 
+				mat[i][n-1] = prev; 
+				prev = curr; 
+			} 
+			n--; 
+	
+			// Move elements of last row 
+			// from the remaining rows 
+			if (row < m) 
+			{ 
+				for (int i = n-1; i >= col; i--) 
+				{ 
+					curr = mat[m-1][i]; 
+					mat[m-1][i] = prev; 
+					prev = curr; 
+				} 
+			} 
+			m--; 
+	
+			// Move elements of first column 
+			// from the remaining rows 
+			if (col < n) 
+			{ 
+				for (int i = m-1; i >= row; i--) 
+				{ 
+					curr = mat[i][col]; 
+					mat[i][col] = prev; 
+					prev = curr; 
+				} 
+			} 
+			col++; 
+		} 
+			
+                        return mat;
+	} 
+
+
+
+// This code is contributed by Sahil_Bansall 
+
+  
+            
     
 }
