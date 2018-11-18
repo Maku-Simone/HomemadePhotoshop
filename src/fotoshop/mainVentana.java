@@ -206,6 +206,9 @@ public class mainVentana extends javax.swing.JFrame {
         gradienteEBoton = new javax.swing.JButton();
         gradienteDBoton = new javax.swing.JButton();
         gradSimBoton = new javax.swing.JButton();
+        adelgazamientoBoton = new javax.swing.JButton();
+        thomBoton = new javax.swing.JButton();
+        esqueletoBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -764,7 +767,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         DilatacionLaticesBoton.setBackground(new java.awt.Color(255, 255, 255));
         DilatacionLaticesBoton.setForeground(new java.awt.Color(0, 204, 255));
-        DilatacionLaticesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/dilatacion.png"))); // NOI18N
+        DilatacionLaticesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/lldilatacion.png"))); // NOI18N
         DilatacionLaticesBoton.setToolTipText("Dilatación Latices");
         DilatacionLaticesBoton.setBorderPainted(false);
         DilatacionLaticesBoton.setContentAreaFilled(false);
@@ -776,7 +779,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         erosionLaticesBoton.setBackground(new java.awt.Color(255, 255, 255));
         erosionLaticesBoton.setForeground(new java.awt.Color(0, 204, 255));
-        erosionLaticesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/erosion.png"))); // NOI18N
+        erosionLaticesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/llerosion.png"))); // NOI18N
         erosionLaticesBoton.setToolTipText("Erosión Latices");
         erosionLaticesBoton.setBorderPainted(false);
         erosionLaticesBoton.setContentAreaFilled(false);
@@ -788,7 +791,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         clausuraLaticesBoton.setBackground(new java.awt.Color(255, 255, 255));
         clausuraLaticesBoton.setForeground(new java.awt.Color(0, 204, 255));
-        clausuraLaticesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/cierre.png"))); // NOI18N
+        clausuraLaticesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/llcierre.png"))); // NOI18N
         clausuraLaticesBoton.setToolTipText("Clausura Latices");
         clausuraLaticesBoton.setBorderPainted(false);
         clausuraLaticesBoton.setContentAreaFilled(false);
@@ -800,7 +803,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         aperturaLaticesBoton.setBackground(new java.awt.Color(255, 255, 255));
         aperturaLaticesBoton.setForeground(new java.awt.Color(0, 204, 255));
-        aperturaLaticesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/apertura.png"))); // NOI18N
+        aperturaLaticesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/llapertura.png"))); // NOI18N
         aperturaLaticesBoton.setToolTipText("Apertura Latices");
         aperturaLaticesBoton.setBorderPainted(false);
         aperturaLaticesBoton.setContentAreaFilled(false);
@@ -812,7 +815,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         alisamientoBoton.setBackground(new java.awt.Color(255, 255, 255));
         alisamientoBoton.setForeground(new java.awt.Color(0, 204, 255));
-        alisamientoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/cerco.png"))); // NOI18N
+        alisamientoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/alisamiento.png"))); // NOI18N
         alisamientoBoton.setToolTipText("Alisamiento");
         alisamientoBoton.setBorderPainted(false);
         alisamientoBoton.setContentAreaFilled(false);
@@ -824,7 +827,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         botHatBoton.setBackground(new java.awt.Color(255, 255, 255));
         botHatBoton.setForeground(new java.awt.Color(0, 204, 255));
-        botHatBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/cerco.png"))); // NOI18N
+        botHatBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/bottomhat.png"))); // NOI18N
         botHatBoton.setToolTipText("Bot Hat");
         botHatBoton.setBorderPainted(false);
         botHatBoton.setContentAreaFilled(false);
@@ -836,7 +839,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         topHatBoton.setBackground(new java.awt.Color(255, 255, 255));
         topHatBoton.setForeground(new java.awt.Color(0, 204, 255));
-        topHatBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/cerco.png"))); // NOI18N
+        topHatBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/tophat.png"))); // NOI18N
         topHatBoton.setToolTipText("Top Hat");
         topHatBoton.setBorderPainted(false);
         topHatBoton.setContentAreaFilled(false);
@@ -848,7 +851,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         gradienteEBoton.setBackground(new java.awt.Color(255, 255, 255));
         gradienteEBoton.setForeground(new java.awt.Color(0, 204, 255));
-        gradienteEBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/cerco.png"))); // NOI18N
+        gradienteEBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/gradEro.png"))); // NOI18N
         gradienteEBoton.setToolTipText("Gradiente por Erosión");
         gradienteEBoton.setBorderPainted(false);
         gradienteEBoton.setContentAreaFilled(false);
@@ -860,7 +863,7 @@ public class mainVentana extends javax.swing.JFrame {
 
         gradienteDBoton.setBackground(new java.awt.Color(255, 255, 255));
         gradienteDBoton.setForeground(new java.awt.Color(0, 204, 255));
-        gradienteDBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/cerco.png"))); // NOI18N
+        gradienteDBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/graddila.png"))); // NOI18N
         gradienteDBoton.setToolTipText("Gradiente por Dilatación");
         gradienteDBoton.setBorderPainted(false);
         gradienteDBoton.setContentAreaFilled(false);
@@ -872,13 +875,49 @@ public class mainVentana extends javax.swing.JFrame {
 
         gradSimBoton.setBackground(new java.awt.Color(255, 255, 255));
         gradSimBoton.setForeground(new java.awt.Color(0, 204, 255));
-        gradSimBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/cerco.png"))); // NOI18N
+        gradSimBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/gardSym.png"))); // NOI18N
         gradSimBoton.setToolTipText("Gradiente Simetrico");
         gradSimBoton.setBorderPainted(false);
         gradSimBoton.setContentAreaFilled(false);
         gradSimBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gradSimBotonActionPerformed(evt);
+            }
+        });
+
+        adelgazamientoBoton.setBackground(new java.awt.Color(255, 255, 255));
+        adelgazamientoBoton.setForeground(new java.awt.Color(0, 204, 255));
+        adelgazamientoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/adelgazar.png"))); // NOI18N
+        adelgazamientoBoton.setToolTipText("Adelgazamiento");
+        adelgazamientoBoton.setBorderPainted(false);
+        adelgazamientoBoton.setContentAreaFilled(false);
+        adelgazamientoBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adelgazamientoBotonActionPerformed(evt);
+            }
+        });
+
+        thomBoton.setBackground(new java.awt.Color(255, 255, 255));
+        thomBoton.setForeground(new java.awt.Color(0, 204, 255));
+        thomBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/hotormiss.png"))); // NOI18N
+        thomBoton.setToolTipText("Transformada Hit or Miss");
+        thomBoton.setBorderPainted(false);
+        thomBoton.setContentAreaFilled(false);
+        thomBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thomBotonActionPerformed(evt);
+            }
+        });
+
+        esqueletoBoton.setBackground(new java.awt.Color(255, 255, 255));
+        esqueletoBoton.setForeground(new java.awt.Color(0, 204, 255));
+        esqueletoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/esqueleto.png"))); // NOI18N
+        esqueletoBoton.setToolTipText("Esqueleto Morfológico");
+        esqueletoBoton.setBorderPainted(false);
+        esqueletoBoton.setContentAreaFilled(false);
+        esqueletoBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                esqueletoBotonActionPerformed(evt);
             }
         });
 
@@ -980,13 +1019,19 @@ public class mainVentana extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(aperturaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(clausuraBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(clausuraBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(thomBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(esqueletoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(DilatacionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(erosionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fronteraBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(fronteraBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(adelgazamientoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -1008,9 +1053,7 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(botHatBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(gradienteDBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 10, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(gradienteDBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1032,7 +1075,7 @@ public class mainVentana extends javax.swing.JFrame {
                             .addComponent(grisesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(gBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1074,21 +1117,24 @@ public class mainVentana extends javax.swing.JFrame {
                                         .addComponent(maxMinBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(multiUmbLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(aperturaBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(clausuraBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(clausuraBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(thomBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(DilatacionLaticesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(erosionLaticesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(alisamientoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(botHatBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(gradienteDBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(gradienteDBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(adelgazamientoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(aperturaLaticesBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(clausuraLaticesBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(topHatBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(gradienteEBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(gradSimBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(gradSimBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(esqueletoBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(panelTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
                 .addContainerGap())
@@ -2038,6 +2084,18 @@ public class mainVentana extends javax.swing.JFrame {
             }    
     }//GEN-LAST:event_gradSimBotonActionPerformed
 
+    private void adelgazamientoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adelgazamientoBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_adelgazamientoBotonActionPerformed
+
+    private void thomBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thomBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_thomBotonActionPerformed
+
+    private void esqueletoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esqueletoBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_esqueletoBotonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2080,6 +2138,7 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JButton DilatacionLaticesBoton;
     private javax.swing.JButton abrirBoton;
     private javax.swing.JButton addRuidoBoton;
+    private javax.swing.JButton adelgazamientoBoton;
     private javax.swing.JButton alisamientoBoton;
     private javax.swing.JButton andBoton;
     private javax.swing.JButton aperturaBoton;
@@ -2094,6 +2153,7 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JButton dobleUmbralBoton;
     private javax.swing.JButton erosionBoton;
     private javax.swing.JButton erosionLaticesBoton;
+    private javax.swing.JButton esqueletoBoton;
     private javax.swing.JButton filtroPromedioBoton;
     private javax.swing.JButton filtroPromedioPesadoBoton;
     private javax.swing.JButton fronteraBoton;
@@ -2128,6 +2188,7 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JSlider sliderUmbral;
     private javax.swing.JButton sobelBoton;
     private javax.swing.JButton sumaBotom;
+    private javax.swing.JButton thomBoton;
     private javax.swing.JButton topHatBoton;
     private javax.swing.JButton xnorBoton;
     private javax.swing.JButton xorBoton;

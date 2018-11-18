@@ -134,6 +134,10 @@
                               <Component id="aperturaBoton" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="clausuraBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="thomBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="esqueletoBoton" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="DilatacionBoton" min="-2" pref="32" max="-2" attributes="0"/>
@@ -141,6 +145,8 @@
                               <Component id="erosionBoton" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="fronteraBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="adelgazamientoBoton" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -168,10 +174,8 @@
                               <Component id="gradienteDBoton" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -199,8 +203,8 @@
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="gBoton" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="bBoton" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
@@ -244,6 +248,7 @@
                                   </Group>
                                   <Component id="aperturaBoton" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="clausuraBoton" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="thomBoton" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
@@ -253,6 +258,7 @@
                                   <Component id="alisamientoBoton" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="botHatBoton" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="gradienteDBoton" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="adelgazamientoBoton" min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -261,6 +267,7 @@
                                   <Component id="topHatBoton" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="gradienteEBoton" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="gradSimBoton" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="esqueletoBoton" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -1204,7 +1211,7 @@
           <Color blue="ff" green="cc" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/fotoshop/Icon/dilatacion.png"/>
+          <Image iconType="3" name="/fotoshop/Icon/lldilatacion.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Dilataci&#xf3;n Latices"/>
         <Property name="borderPainted" type="boolean" value="false"/>
@@ -1223,7 +1230,7 @@
           <Color blue="ff" green="cc" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/fotoshop/Icon/erosion.png"/>
+          <Image iconType="3" name="/fotoshop/Icon/llerosion.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Erosi&#xf3;n Latices"/>
         <Property name="borderPainted" type="boolean" value="false"/>
@@ -1242,7 +1249,7 @@
           <Color blue="ff" green="cc" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/fotoshop/Icon/cierre.png"/>
+          <Image iconType="3" name="/fotoshop/Icon/llcierre.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Clausura Latices"/>
         <Property name="borderPainted" type="boolean" value="false"/>
@@ -1261,7 +1268,7 @@
           <Color blue="ff" green="cc" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/fotoshop/Icon/apertura.png"/>
+          <Image iconType="3" name="/fotoshop/Icon/llapertura.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Apertura Latices"/>
         <Property name="borderPainted" type="boolean" value="false"/>
@@ -1280,7 +1287,7 @@
           <Color blue="ff" green="cc" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/fotoshop/Icon/cerco.png"/>
+          <Image iconType="3" name="/fotoshop/Icon/alisamiento.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Alisamiento"/>
         <Property name="borderPainted" type="boolean" value="false"/>
@@ -1299,7 +1306,7 @@
           <Color blue="ff" green="cc" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/fotoshop/Icon/cerco.png"/>
+          <Image iconType="3" name="/fotoshop/Icon/bottomhat.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Bot Hat"/>
         <Property name="borderPainted" type="boolean" value="false"/>
@@ -1318,7 +1325,7 @@
           <Color blue="ff" green="cc" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/fotoshop/Icon/cerco.png"/>
+          <Image iconType="3" name="/fotoshop/Icon/tophat.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Top Hat"/>
         <Property name="borderPainted" type="boolean" value="false"/>
@@ -1337,7 +1344,7 @@
           <Color blue="ff" green="cc" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/fotoshop/Icon/cerco.png"/>
+          <Image iconType="3" name="/fotoshop/Icon/gradEro.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Gradiente por Erosi&#xf3;n"/>
         <Property name="borderPainted" type="boolean" value="false"/>
@@ -1356,7 +1363,7 @@
           <Color blue="ff" green="cc" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/fotoshop/Icon/cerco.png"/>
+          <Image iconType="3" name="/fotoshop/Icon/graddila.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Gradiente por Dilataci&#xf3;n"/>
         <Property name="borderPainted" type="boolean" value="false"/>
@@ -1375,7 +1382,7 @@
           <Color blue="ff" green="cc" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/fotoshop/Icon/cerco.png"/>
+          <Image iconType="3" name="/fotoshop/Icon/gardSym.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Gradiente Simetrico"/>
         <Property name="borderPainted" type="boolean" value="false"/>
@@ -1383,6 +1390,63 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gradSimBotonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="adelgazamientoBoton">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="cc" red="0" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/fotoshop/Icon/adelgazar.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Adelgazamiento"/>
+        <Property name="borderPainted" type="boolean" value="false"/>
+        <Property name="contentAreaFilled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adelgazamientoBotonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="thomBoton">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="cc" red="0" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/fotoshop/Icon/hotormiss.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Transformada Hit or Miss"/>
+        <Property name="borderPainted" type="boolean" value="false"/>
+        <Property name="contentAreaFilled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="thomBotonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="esqueletoBoton">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="cc" red="0" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/fotoshop/Icon/esqueleto.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Esqueleto Morfol&#xf3;gico"/>
+        <Property name="borderPainted" type="boolean" value="false"/>
+        <Property name="contentAreaFilled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="esqueletoBotonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
