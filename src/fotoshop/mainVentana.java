@@ -2382,7 +2382,7 @@ public class mainVentana extends javax.swing.JFrame {
                                         case 5:
                                             morfologiaOperado = M.hitOrMiss(img.getModificado(), ee, centroEE[0], centroEE[1]);
                                         break;    
-                                        case 6:
+                                        case 6://adelgazamiento
                                             int k;
                                             k = verificaEntero(JOptionPane.showInputDialog("Introduzca el número de rotaciones k"));
                                                 if(k > 0)
@@ -2390,16 +2390,20 @@ public class mainVentana extends javax.swing.JFrame {
                                                         morfologiaOperado = M.adelgazamiento(img.getModificado(), ee, centroEE[0], centroEE[1], k);
                                                     }                                                                                            
                                         break;    
-                                        case 7:
-                                            int K ;
+                                        case 7: //esquelero
+                                            int K ; 
+                                            int[][][] x;
+                                            Imagen huesos = new Imagen();
+                                            Transformaciones Tr = new Transformaciones();
                                             K = verificaEntero(JOptionPane.showInputDialog("Introduzca el número de erosiones K"));
+                                            Imagen[] Sk = new Imagen[K];
                                                 if(K > 0)
                                                     {        
                                                         int[][][] A = img.getModificado(), B = img.getModificado();
                                                         int contador = 0;
                                                         while(contador < K)
                                                             {
-                                                                //A (-) kB
+                                                                //A (+) kB
                                                                 A = M.erosion(A, ee, centroEE[0], centroEE[1]);
                                                                 
                                                                 //A (-) kB
@@ -2409,27 +2413,49 @@ public class mainVentana extends javax.swing.JFrame {
                                                                 B = M.erosion(tempB, ee, centroEE[0], centroEE[1]);
                                                                 B = M.dilatacion(B, ee, centroEE[0], centroEE[1]);
                                                                 
+                                                                //hago la resta para obtener el sk
+                                                                Imagen imgD = new Imagen(); // A [+] B
+                                                                Imagen imgE = new Imagen(); // A [-] B
+
+                                                                imgD.setAlto(img.getAlto());
+                                                                imgD.setAncho(img.getAncho());                                                          
+                                                                imgD.setArgb(A);
+                                                                imgD.setModificado(A);
+
+                                                                imgE.setAlto(img.getAlto());
+                                                                imgE.setAncho(img.getAncho());                                                          
+                                                                imgE.setArgb(B);
+                                                                imgE.setModificado(B);
+                                                                Sk[contador] =  new Imagen();
+                                                                Sk[contador].setAncho(img.getAncho());                                                          
+                                                                Sk[contador].setAlto(img.getAlto());                                                          
+                                                                Sk[contador].setModificado(Tr.resta(imgD, imgE) ); //(A [+] b) - [(A [-] b) ° B]                                                                
+                                                                Sk[contador].setArgb(Tr.resta(imgD, imgE) );           
+                                                               // System.out.println("sk " + contador + " mide "  + Sk[contador].getModificado().length);
                                                                 contador++;
                                                             }
-                                                        
-                                                         Imagen imgD = new Imagen(); // A [+] B
-                                            Imagen imgE = new Imagen(); // A [-] B
-                                            
-                                            
-                                            imgD.setAlto(img.getAlto());
-                                            imgD.setAncho(img.getAncho());                                                          
-                                            imgD.setArgb(A);
-                                            imgD.setModificado(A);
-                                            
-                                            imgE.setAlto(img.getAlto());
-                                            imgE.setAncho(img.getAncho());                                                          
-                                            imgE.setArgb(B);
-                                            imgE.setModificado(B);
-                                            Transformaciones Tr = new Transformaciones();
-                                            morfologiaOperado = Tr.resta(imgD, imgE); //(A [+] b) - [(A [-] b) ° B]
-                                                      //  morfologiaOperado = M.adelgazamiento(img.getModificado(), ee, centroEE[0], centroEE[1], k);
+                                                        huesos.setArgb(Sk[0].getModificado());
+                                                        huesos.setAncho(img.getAncho());                                                          
+                                                        huesos.setAlto(img.getAlto());  
+                                                        huesos.setModificado(Sk[0].getModificado());                                                        
+                                                        //System.out.println("huesos mide " + huesos.getModificado().length + " y sk" + Sk[1].getModificado().length);
+                                                        for(int i = 1; i < K; i++)
+                                                            {
+                                                                huesos.setModificado(Tr.suma(huesos, Sk[i]));
+                                                               // System.out.println("x " + i + " mide " + x.length);
+                                                            }
+                                                        huesos.setArgb(huesos.getModificado());
+                                                        x = huesos.getModificado();
+                                                    /*    for(int i = 0; i < img.getAlto(); i++)
+                                                            {
+                                                                for(int j = 0; j < img.getAncho(); j++)
+                                                                    {
+                                                                        System.out.println("[" + i  + "," + j + "] " + " - " + x[i][j][1] + " | " + x[i][j][2] + " | " + x[i][j][3] + " | "  ); 
+                                                                    }
+                                                            }*/
+                                                        morfologiaOperado = Tr.ajusta(huesos.getModificado());//M.adelgazamiento(img.getModificado(), ee, centroEE[0], centroEE[1], k);
                                                     }    
-                                        break;    
+                                        break;        
                                         default:    
                                     }
                                 listaImagenes.get(r).setModificado(morfologiaOperado);   
