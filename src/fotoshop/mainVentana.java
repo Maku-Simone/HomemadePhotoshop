@@ -5,6 +5,8 @@
  */
 package fotoshop;
 
+import Creditos.Creditos;
+import Creditos.LuigiLlora;
 import fotoshop.Logica.Dibujo;
 import fotoshop.Logica.Filtros;
 import fotoshop.Logica.Imagen;
@@ -31,6 +33,7 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
@@ -48,11 +51,14 @@ import org.jfree.util.StringUtils;
  *
  * @author Maku
  */
+    
 public class mainVentana extends javax.swing.JFrame {
 
     /**
      * Creates new form mainVentana
      */
+    
+    
     
     ArrayList<Imagen> listaImagenes = new ArrayList<Imagen>();
     static int[][][] operacionesAritmeticas, morfologiaOperado;
@@ -209,10 +215,12 @@ public class mainVentana extends javax.swing.JFrame {
         adelgazamientoBoton = new javax.swing.JButton();
         thomBoton = new javax.swing.JButton();
         esqueletoBoton = new javax.swing.JButton();
+        creditosBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(java.awt.Color.white);
+        setIconImage(getIconImage());
 
         abrirBoton.setBackground(new java.awt.Color(204, 204, 204));
         abrirBoton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -921,6 +929,18 @@ public class mainVentana extends javax.swing.JFrame {
             }
         });
 
+        creditosBoton.setBackground(new java.awt.Color(255, 255, 255));
+        creditosBoton.setForeground(new java.awt.Color(0, 204, 255));
+        creditosBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotoshop/Icon/not.png"))); // NOI18N
+        creditosBoton.setToolTipText("Créditos");
+        creditosBoton.setBorderPainted(false);
+        creditosBoton.setContentAreaFilled(false);
+        creditosBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creditosBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -985,7 +1005,7 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(difPixBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(filtroPromedioPesadoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1013,7 +1033,9 @@ public class mainVentana extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(maxMinBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(multiUmbLabel)))
+                                .addComponent(multiUmbLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(creditosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -1118,7 +1140,8 @@ public class mainVentana extends javax.swing.JFrame {
                                         .addComponent(multiUmbLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(aperturaBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(clausuraBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(thomBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(thomBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(creditosBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(DilatacionLaticesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1838,6 +1861,7 @@ public class mainVentana extends javax.swing.JFrame {
         Imagen img = listaImagenes.get(r);        
         
         numUmbrales = verificaEntero(JOptionPane.showInputDialog("Introduzca el número de umbrales"));
+        
         if(numUmbrales > 0)
             {
                 umbrales = JOptionPane.showInputDialog("Introduzca los umbrales separados por comas");
@@ -1863,7 +1887,10 @@ public class mainVentana extends javax.swing.JFrame {
         }
         else
         {
-            JOptionPane.showMessageDialog(this, "Mete el número correcto de umbrales");
+            if(numUmbrales != -2)
+                {
+                 JOptionPane.showMessageDialog(this, "Mete el número correcto de umbrales");   
+                }            
         }
 
         
@@ -2094,7 +2121,13 @@ public class mainVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_adelgazamientoBotonActionPerformed
 
     private void thomBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thomBotonActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            LuigiLlora.main();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "No me salió :c");   
+            Logger.getLogger(mainVentana.class.getName()).log(Level.SEVERE, null, ex);
+        }
         int r = panelTabs.getSelectedIndex();
         if(r >= 0)
             {                                                        
@@ -2104,12 +2137,24 @@ public class mainVentana extends javax.swing.JFrame {
 
     private void esqueletoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esqueletoBotonActionPerformed
         // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            LuigiLlora.main();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "No me salió :c");   
+            Logger.getLogger(mainVentana.class.getName()).log(Level.SEVERE, null, ex);
+        }
          int r = panelTabs.getSelectedIndex();
         if(r >= 0)
             {                                                        
                 MM(r, 7);                                                          
             }    
     }//GEN-LAST:event_esqueletoBotonActionPerformed
+
+    private void creditosBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditosBotonActionPerformed
+        // TODO add your handling code here:
+        Creditos.main();
+    }//GEN-LAST:event_creditosBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2163,6 +2208,7 @@ public class mainVentana extends javax.swing.JFrame {
     private javax.swing.JButton cerrarTab;
     private javax.swing.JButton clausuraBoton;
     private javax.swing.JButton clausuraLaticesBoton;
+    private javax.swing.JButton creditosBoton;
     private javax.swing.JButton difPixBoton;
     private javax.swing.JButton diviBoton;
     private javax.swing.JButton dobleUmbralBoton;
@@ -2885,6 +2931,10 @@ public class mainVentana extends javax.swing.JFrame {
         
         public int verificaEntero(String string) 
                 {
+                    if(string == null)
+                        {
+                            return -2;
+                        }
                     try 
                         {
                             return Integer.parseInt(string);
